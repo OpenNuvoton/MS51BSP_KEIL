@@ -537,6 +537,7 @@ extern bit BIT_TMP;
 #define    PWM1_COMPLEMENTARY_MODE            SFRS=2;PWM1CON1&=0x3F;PWM1CON1|=0x40;SFRS=0
 #define    PWM1_SYNCHRONIZED_MODE             SFRS=2;PWM1CON1&=0x3F;PWM1CON1|=0x80;SFRS=0
 //--------- PWM1 clock devide define ----------------------------
+#define    PWM1_CLOCK_DIV_1                   SFRS=2;PWM1CON1&=0xF8;               SFRS=0
 #define    PWM1_CLOCK_DIV_2                   SFRS=2;PWM1CON1&=0xF8;PWM1CON1|=0x01;SFRS=0
 #define    PWM1_CLOCK_DIV_4                   SFRS=2;PWM1CON1&=0xF8;PWM1CON1|=0x02;SFRS=0
 #define    PWM1_CLOCK_DIV_8                   SFRS=2;PWM1CON1&=0xF8;PWM1CON1|=0x03;SFRS=0
@@ -585,7 +586,8 @@ extern bit BIT_TMP;
 #define    PWM2_IMDEPENDENT_MODE              SFRS=2;PWM2CON1&=0x3F               ;SFRS=0
 #define    PWM2_COMPLEMENTARY_MODE            SFRS=2;PWM2CON1&=0x3F;PWM2CON1|=0x40;SFRS=0
 #define    PWM2_SYNCHRONIZED_MODE             SFRS=2;PWM2CON1&=0x3F;PWM2CON1|=0x80;SFRS=0
-//--------- PWM2 clock devide define ----------------------------                
+/*--------- PWM2 clock devide define ---------------------------- */
+#define    PWM2_CLOCK_DIV_1                   SFRS=2;PWM2CON1&=0xF8;              ;SFRS=0
 #define    PWM2_CLOCK_DIV_2                   SFRS=2;PWM2CON1&=0xF8;PWM2CON1|=0x01;SFRS=0
 #define    PWM2_CLOCK_DIV_4                   SFRS=2;PWM2CON1&=0xF8;PWM2CON1|=0x02;SFRS=0
 #define    PWM2_CLOCK_DIV_8                   SFRS=2;PWM2CON1&=0xF8;PWM2CON1|=0x03;SFRS=0
@@ -638,7 +640,8 @@ extern bit BIT_TMP;
 #define    PWM3_IMDEPENDENT_MODE              SFRS=2;PWM3CON1&=0x3F               ;SFRS=0
 #define    PWM3_COMPLEMENTARY_MODE            SFRS=2;PWM3CON1&=0x3F;PWM3CON1|=0x40;SFRS=0
 #define    PWM3_SYNCHRONIZED_MODE             SFRS=2;PWM3CON1&=0x3F;PWM3CON1|=0x80;SFRS=0
-//--------- PWM3 clock devide define ----------------------------
+/*--------- PWM3 clock devide define ---------------------------- */
+#define    PWM3_CLOCK_DIV_1                   SFRS=2;PWM3CON1&=0xF8;              ;SFRS=0
 #define    PWM3_CLOCK_DIV_2                   SFRS=2;PWM3CON1&=0xF8;PWM3CON1|=0x01;SFRS=0
 #define    PWM3_CLOCK_DIV_4                   SFRS=2;PWM3CON1&=0xF8;PWM3CON1|=0x02;SFRS=0
 #define    PWM3_CLOCK_DIV_8                   SFRS=2;PWM3CON1&=0xF8;PWM3CON1|=0x03;SFRS=0

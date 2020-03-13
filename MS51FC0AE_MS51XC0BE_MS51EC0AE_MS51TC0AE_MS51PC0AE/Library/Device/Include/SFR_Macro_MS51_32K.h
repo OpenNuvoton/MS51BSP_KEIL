@@ -22,6 +22,7 @@
 #include "IAP.h"
 #include "watchdog.h"
 #include "pwm0.h"
+#include "pwm123.h"
 #include "uart2.h"
 #include "uart3.h"
 #include "uart4.h"
