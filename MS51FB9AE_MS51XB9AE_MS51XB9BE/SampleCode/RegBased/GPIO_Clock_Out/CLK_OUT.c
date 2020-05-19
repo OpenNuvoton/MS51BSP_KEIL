@@ -32,11 +32,11 @@ void main(void)
 #if 1
 /* 16MHz HIRC clock out demo */
     MODIFY_HIRC(HIRC_16);
-    CKDIV = 0x50;
+    CKDIV = 80;     /* Divider *2 */
 #else 
 /* 24MHz HIRC clock out demo */
     MODIFY_HIRC(HIRC_24);
-    CKDIV = 0x78;
+    CKDIV = 120    /* Divider *2 */
 #endif
 /*Please measure P1.1 (CLKO) pin for system clock output, it should as system clock;    */
     while(1);
