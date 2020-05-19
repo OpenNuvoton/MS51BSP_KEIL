@@ -135,19 +135,13 @@ typedef unsigned long         uint32_t;
 #define    ENABLE_PIN_INTERRUPT          set_EIE_EPI  
 #define    ENABLE_I2C_INTERRUPT          set_EIE_EI2C
                                          
-#define    ENABLE_PWM1_FB_INTERRUPT      set_EIE1_ET2
-#define    ENABLE_PWM1_INTERRUPT         set_EIE1_ESPI
-#define    ENABLE_I2C1_INTERRUPT         set_EIE1_EFB0
-#define    ENABLE_ESPI1_INTERRUPT        set_EIE1_EWDT
-#define    ENABLE_HARDFAULT_INTERRUPT    set_EIE1_EHFI
 #define    ENABLE_WKT_INTERRUPT          set_EIE1_EWKT
-#define    ENABLE_TIMER3_INTERRUPT       set_EIE1_ET3
+#define    ENABLE_TIMER3_INTERRUPT       set_EIE1_ET3    
 #define    ENABLE_UART1_INTERRUPT        set_EIE1_ES_1
 
-
 /*DISABLE INTERRUPT*/ 
-#define    DISABLE_ADC_INTERRUPT         set_IE_EADC
-#define    DISABLE_BOD_INTERRUPT         set_IE_EBOD
+#define    DISABLE_ADC_INTERRUPT         clr_IE_EADC
+#define    DISABLE_BOD_INTERRUPT         clr_IE_EBOD
 #define    DISABLE_UART0_INTERRUPT       clr_IE_ES
 #define    DISABLE_TIMER1_INTERRUPT      clr_IE_ET1
 #define    DISABLE_INT1_INTERRUPT        clr_IE_EX1
@@ -163,9 +157,9 @@ typedef unsigned long         uint32_t;
 #define    DISABLE_PIN_INTERRUPT         clr_EIE_EPI  
 #define    DISABLE_I2C_INTERRUPT         clr_EIE_EI2C
           
-#define    ENABLE_WKT_INTERRUPT          set_EIE1_EWKT
-#define    ENABLE_TIMER3_INTERRUPT       set_EIE1_ET3    
-#define    ENABLE_UART1_INTERRUPT        set_EIE1_ES_1
+#define    DISABLE_WKT_INTERRUPT         clr_EIE1_EWKT
+#define    DISABLE_TIMER3_INTERRUPT      clr_EIE1_ET3    
+#define    DISABLE_UART1_INTERRUPT       clr_EIE1_ES_1
 
 /*****************************************************************************************
 * For GPIO INIT setting 
