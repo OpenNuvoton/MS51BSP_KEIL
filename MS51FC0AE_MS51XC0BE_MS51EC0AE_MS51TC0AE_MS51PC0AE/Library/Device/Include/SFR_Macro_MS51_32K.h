@@ -14,6 +14,7 @@
 /******************************************************************************/
 #include "Function_define_MS51_32K.h"
 #include "adc.h"
+#include "bod.h"
 #include "sys.h"
 #include "eeprom.h"
 #include "Delay.h" 

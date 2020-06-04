@@ -16,17 +16,19 @@
 /*                         Peripheral header files                            */
 /******************************************************************************/
 #include "Function_define_MS51_8K.h"
-#include "sys.h"
-#include "eeprom.h"
+#include "bod.h"
 #include "Delay.h"
-#include "uart.h"
-#include "timer.h"
-#include "IAP.h"
-#include "watchdog.h"
-#include "pwm.h"
-#include "IAP_SPROM.h"
+#include "eeprom.h"
 #include "eeprom_sprom.h"
+#include "IAP.h"
+#include "IAP_SPROM.h"
+#include "pwm.h"
+#include "sys.h"
 #include "spi.h"
+#include "timer.h"
+#include "uart.h"
+#include "watchdog.h"
+
 /********************************************************************/
 /*  <Macro define                                                   */
 /********************************************************************/

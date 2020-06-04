@@ -15,16 +15,16 @@
 /*                         Peripheral header files                            */
 /******************************************************************************/
 #include "Function_define_MS51_16K.h"
-#include "sys.h"
-#include "eeprom.h"
+#include "bod.h"
 #include "Delay.h"
-#include "uart.h"
-#include "watchdog.h"
+#include "eeprom.h"
 #include "IAP.h"
 #include "IAP_SPROM.h"
 #include "eeprom_sprom.h"
 #include "spi.h"
-
+#include "sys.h"
+#include "uart.h"
+#include "watchdog.h"
 /********************************************************************/
 /*  <Macro define                                                   */
 /********************************************************************/
