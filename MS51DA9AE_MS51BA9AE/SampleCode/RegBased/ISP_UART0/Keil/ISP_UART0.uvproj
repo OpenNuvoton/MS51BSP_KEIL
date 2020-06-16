@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>GPIO</TargetName>
+      <TargetName>Regbased</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
@@ -352,9 +352,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>ISP_UART0_main.c</FileName>
+              <FileName>main_autosize.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ISP_UART0_main.c</FilePath>
+              <FilePath>..\main_autosize.c</FilePath>
             </File>
           </Files>
         </Group>

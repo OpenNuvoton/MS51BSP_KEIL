@@ -23,7 +23,7 @@ data volatile uint32_t g_totalchecksum;
 bit volatile bUartDataReady;
 bit volatile g_timer0Over;
 bit volatile g_timer1Over;
-bit volatile g_progarmflag;
+bit volatile g_programflag;
 bit  BIT_TMP;
 unsigned char PID_highB, PID_lowB, DID_highB, DID_lowB, CONF0, CONF1, CONF2, CONF4;
 unsigned char recv_CONF0, recv_CONF1, recv_CONF2, recv_CONF4;
@@ -33,8 +33,8 @@ void MODIFY_HIRC_24(void)
     unsigned char data hircmap0, hircmap1;
     /* Check if power on reset, modify HIRC */
 //    set_CHPCON_IAPEN;
-    IAPAL = 0x38;
     IAPAH = 0x00;
+    IAPAL = 0x38;
     IAPCN = READ_UID;
     set_IAPTRG_IAPGO;
     hircmap0 = IAPFD;
@@ -55,8 +55,8 @@ void MODIFY_HIRC_16(void)
 {
     unsigned char data hircmap0, hircmap1;
 //    set_CHPCON_IAPEN;
-    IAPAL = 0x30;
     IAPAH = 0x00;
+    IAPAL = 0x30;
     IAPCN = READ_UID;
     set_IAPTRG_IAPGO;
     hircmap0 = IAPFD;
@@ -121,14 +121,14 @@ void TM0_ini(void)
 void UART0_ini_115200_24MHz(void)
 {
     P06_QUASI_MODE;
-    P07_INPUT_MODE;
+//    P07_INPUT_MODE;
 
     SCON = 0x50;            /*UART0 Mode1,REN=1,TI=1*/
     set_PCON_SMOD;          /*UART0 Double Rate Enable*/
-    T3CON &= 0xF8;           /*T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)*/
-    set_T3CON_BRCK;          /*UART0 baud rate clock source = Timer3*/
-    RH3    = HIBYTE(65536 - 13);
-    RL3    = LOBYTE(65536 - 13);
+    T3CON &= 0xF8;          /*T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)*/
+    set_T3CON_BRCK;         /*UART0 baud rate clock source = Timer3*/
+    RH3    = 0xFF;          /*HIBYTE(65536 - 13)*/
+    RL3    = 0xF3;          /*LOBYTE(65536 - 13)*/
     set_T3CON_TR3;          /*Trigger Timer3*/
 
     ES = 1;

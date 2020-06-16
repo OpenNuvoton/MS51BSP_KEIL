@@ -1,5 +1,7 @@
-//#define TRUE       1
-//#define FALSE     0
+#define TRUE       1
+#define FALSE     0
+
+#define Timer0Out_Counter    800
 
 #define CMD_CONNECT          0xAE
 #define CMD_SYNC_PACKNO      0xA4
@@ -20,7 +22,7 @@
 #define BYTE_PROGRAM_CONFIG  0xE1
 #define READ_UID             0x04
 #define PAGE_SIZE            128
-#define APROM_SIZE           12*1024
+#define APROM_SIZE           4*1024
 
  
 extern  xdata volatile uint8_t uart_rcvbuf[64]; 
@@ -36,7 +38,7 @@ extern  data volatile uint32_t g_totalchecksum;
 extern  bit volatile bUartDataReady;
 extern  bit volatile g_timer0Over;
 extern  bit volatile g_timer1Over;
-extern  bit volatile g_progarmflag;
+extern  bit volatile g_programflag;
 
 extern unsigned char PID_highB,PID_lowB,DID_highB,DID_lowB,CONF0,CONF1,CONF2,CONF4;
 extern unsigned char recv_CONF0,recv_CONF1,recv_CONF2,recv_CONF4;
@@ -52,4 +54,3 @@ void MODIFY_HIRC_24(void);
 void MODIFY_HIRC_16(void);
 void READ_ID(void);
 void READ_CONFIG(void);
-void READ_ID_CONFIG(void);

@@ -24,7 +24,7 @@ bit BIT_TMP;
   bit volatile bUartDataReady;
   bit volatile g_timer0Over;
   bit volatile g_timer1Over;
-  bit volatile g_progarmflag;
+  bit volatile g_programflag;
 
 unsigned char PID_highB,PID_lowB,DID_highB,DID_lowB,CONF0,CONF1,CONF2,CONF4;
 unsigned char recv_CONF0,recv_CONF1,recv_CONF2,recv_CONF4;
@@ -34,13 +34,12 @@ void MODIFY_HIRC_24(void)
     unsigned char data hircmap0,hircmap1;
 /* Check if power on reset, modify HIRC */
 //        set_CHPCON_IAPEN;
-        IAPAL = 0x38;
         IAPAH = 0x00;
+        IAPAL = 0x38;
         IAPCN = READ_UID;
         set_IAPTRG_IAPGO;
         hircmap0 = IAPFD;
         IAPAL = 0x39;
-        IAPAH = 0x00;
         set_IAPTRG_IAPGO;
         hircmap1 = IAPFD;
 
@@ -57,13 +56,12 @@ void MODIFY_HIRC_16(void)
 {
     unsigned char data hircmap0,hircmap1;
 //    set_CHPCON_IAPEN;
-    IAPAL = 0x30;
     IAPAH = 0x00;
+    IAPAL = 0x30;
     IAPCN = READ_UID;
     set_IAPTRG_IAPGO;
     hircmap0 = IAPFD;
     IAPAL = 0x31;
-    IAPAH = 0x00;
     set_IAPTRG_IAPGO;
     hircmap1 = IAPFD;
 
@@ -96,8 +94,8 @@ void READ_ID(void)
 void READ_CONFIG(void)
 {
     IAPCN = BYTE_READ_CONFIG;
-    IAPAL = 0x00;
     IAPAH = 0x00;
+    IAPAL = 0x00;
     set_IAPTRG_IAPGO;
     CONF0 = IAPFD;
     IAPAL = 0x01;
@@ -123,9 +121,8 @@ void TM0_ini(void)
 
 void UART0_ini_115200_24MHz(void)
 {
-    SFRS = 0;
     P06_QUASI_MODE;    //Setting UART pin as Quasi mode for transmit
-    P07_INPUT_MODE;    //Setting UART pin as Quasi mode for transmit  
+//    P07_INPUT_MODE;    //Setting UART pin as Quasi mode for transmit  
     SCON = 0x50;            /*UART0 Mode1,REN=1,TI=1*/
     set_PCON_SMOD;          /*UART0 Double Rate Enable*/
     T3CON &= 0xF8;           /*T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)*/

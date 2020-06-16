@@ -24,12 +24,7 @@ void main (void)
     P06_QUASI_MODE;
     UART_Open(24000000,UART0_Timer3,115200);
     ENABLE_UART0_PRINTF;                              // Important! use prinft function must set TI=1;
-  
-    while(1)
-    {
-      ENABLE_UART0_PRINTF;
-			printf("\n Hello world!");
-			DISABLE_UART0_PRINTF;
-      Timer0_Delay(16000000,300,1000);
-    }
+
+    printf("\n Hello world!");
+    while(1);
 }
