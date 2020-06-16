@@ -22,7 +22,7 @@ void main (void)
   set_CHPCON_IAPEN;
   MODIFY_HIRC_24();
 #ifdef  isp_with_wdt
-  TA=0X55;TA=0XAA;WDCON=0x07;
+  TA=0x55;TA=0xAA;WDCON=0x07;
 #endif
 //uart initial for ISP programmer GUI, always use 115200 baudrate
   UART0_ini_115200_24MHz();
@@ -41,7 +41,7 @@ while(1)
           {
             for(count=8;count<64;count++)
             {
-              g_timer0Counter=Timer0Out_Counter;
+//              g_timer0Counter=Timer0Out_Counter;
               IAPCN = BYTE_PROGRAM_AP;          //program byte
               IAPAL = flash_address&0xff;
               IAPAH = (flash_address>>8)&0xff;
@@ -90,8 +90,8 @@ END_2:
             case CMD_GET_FWVER:
             {
               Package_checksum();
-              uart_txbuf[8]=FW_VERSION;  
-              Send_64byte_To_UART0();  
+              uart_txbuf[8]=FW_VERSION;
+              Send_64byte_To_UART0();
               break;
             }
             
@@ -116,7 +116,6 @@ END_2:
 
             case CMD_ERASE_ALL:
             {
-//              set_CHPCON_IAPEN;
               set_IAPUEN_APUEN;
               IAPFD = 0xFF;          //Erase must set IAPFD = 0xFF
               IAPCN = PAGE_ERASE_AP;
@@ -214,7 +213,7 @@ END_2:
 
             case CMD_UPDATE_APROM:
             {
-              g_timer0Counter=Timer0Out_Counter;
+//              g_timer0Counter=Timer0Out_Counter;
               set_IAPUEN_APUEN;
               IAPFD = 0xFF;          //Erase must set IAPFD = 0xFF
               IAPCN = PAGE_ERASE_AP;

@@ -529,8 +529,7 @@
 
 /**** IAPTRG  A4H  PAGE 0 TA protect register ****/
 #define set_IAPTRG_IAPGO                 SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG|=0x01;EA=BIT_TMP
-
-#define clr_IAPTRG_IAPGO                 SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG&=0xFE;EA=BIT_TMP
+#define set_IAPTRG_IAPGO_WDCLR           SFRS=0;BIT_TMP=EA;EA=0;set_WDCON_WDCLR;TA=0xAA;TA=0x55;IAPTRG|=0x01;EA=BIT_TMP
 
 /**** IAPUEN  A5H  PAGE 0 TA protect register ****/
 #define set_IAPUEN_SPMEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN|=0x10;EA=BIT_TMP

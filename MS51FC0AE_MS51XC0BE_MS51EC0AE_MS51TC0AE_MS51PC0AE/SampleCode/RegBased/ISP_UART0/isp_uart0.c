@@ -164,6 +164,7 @@ void Send_64byte_To_UART0(void)
         TI = 0;
         SBUF = uart_txbuf[count];
         while (TI == 0);
+        set_WDCON_WDCLR;
     }
 }
 

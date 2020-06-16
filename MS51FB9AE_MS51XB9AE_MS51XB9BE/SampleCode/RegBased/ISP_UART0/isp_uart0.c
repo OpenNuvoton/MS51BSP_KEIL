@@ -107,7 +107,6 @@ void READ_CONFIG(void)
     IAPAL = 0x04;
     set_IAPTRG_IAPGO;
     CONF4 = IAPFD;
-//    clr_CHPCON_IAPEN;
 }
 
 void TM0_ini(void)
@@ -127,8 +126,8 @@ void UART0_ini_115200_24MHz(void)
     set_PCON_SMOD;          /*UART0 Double Rate Enable*/
     T3CON &= 0xF8;           /*T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)*/
     set_T3CON_BRCK;          /*UART0 baud rate clock source = Timer3*/
-    RH3    = HIBYTE(65536 - 13);
-    RL3    = LOBYTE(65536 - 13);
+    RH3    = 0xFF;   /* HIBYTE(65536 - 13)*/
+    RL3    = 0xF3;   /* LOBYTE(65536 - 13); */
     set_T3CON_TR3;          /*Trigger Timer3*/
     ES=1;
     EA=1;
@@ -154,12 +153,12 @@ void Package_checksum(void)
 
 void Send_64byte_To_UART0(void)
 {
-//  SFRS=0;
    for(count=0;count<64;count++)
   {
      TI = 0;  
-    SBUF = uart_txbuf[count];
+     SBUF = uart_txbuf[count];
      while(TI==0);
+     set_WDCON_WDCLR;
   }
 }
 
@@ -170,7 +169,7 @@ void Serial_ISR (void) interrupt 4
     if (RI == 1)
     {   
       uart_rcvbuf[bufhead++]=  SBUF;    
-      clr_SCON_RI;                                         // Clear RI (Receive Interrupt).
+      clr_SCON_RI;                                           // Clear RI (Receive Interrupt).
     }
     if (TI == 1)
     {       

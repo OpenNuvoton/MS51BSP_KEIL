@@ -34,13 +34,12 @@ void MODIFY_HIRC_24(void)
     unsigned char data hircmap0,hircmap1;
 /* Check if power on reset, modify HIRC */
 //        set_CHPCON_IAPEN;
-        IAPAL = 0x38;
         IAPAH = 0x00;
+        IAPAL = 0x38;
         IAPCN = READ_UID;
         set_IAPTRG_IAPGO;
         hircmap0 = IAPFD;
         IAPAL = 0x39;
-//        IAPAH = 0x00;
         set_IAPTRG_IAPGO;
         hircmap1 = IAPFD;
 
@@ -50,20 +49,18 @@ void MODIFY_HIRC_24(void)
         TA=0XAA;
         TA=0X55;
         RCTRIM1 = hircmap1;
-//        clr_CHPCON_IAPEN;
 }
 
 void MODIFY_HIRC_16(void)
 {
     unsigned char data hircmap0,hircmap1;
 //    set_CHPCON_IAPEN;
-    IAPAL = 0x30;
     IAPAH = 0x00;
+    IAPAL = 0x30;
     IAPCN = READ_UID;
     set_IAPTRG_IAPGO;
     hircmap0 = IAPFD;
     IAPAL = 0x31;
-//    IAPAH = 0x00;
     set_IAPTRG_IAPGO;
     hircmap1 = IAPFD;
 
@@ -73,7 +70,6 @@ void MODIFY_HIRC_16(void)
     TA=0XAA;
     TA=0X55;
     RCTRIM1 = hircmap1;
-//        clr_CHPCON_IAPEN;
 }
 
 void READ_ID(void)
@@ -110,7 +106,6 @@ void READ_CONFIG(void)
     IAPAL = 0x04;
     set_IAPTRG_IAPGO;
     CONF4 = IAPFD;
-//    clr_CHPCON_IAPEN;
 }
 
 void TM0_ini(void)
@@ -165,12 +160,13 @@ void Send_64byte_To_UART0(void)
      TI = 0;  
     SBUF = uart_txbuf[count];
     while(TI==0);
+    set_WDCON_WDCLR;
   }
 }
 
 void Serial_ISR (void) interrupt 4 
 {
-    _push_(SFRS);
+//    _push_(SFRS);
   
   SFRS=0;
     if (RI == 1)
@@ -196,12 +192,12 @@ void Serial_ISR (void) interrupt 4
       bufhead = 0;
     }    
 
-    _pop_(SFRS);
+//    _pop_(SFRS);
 }
 
 void Timer0_ISR (void) interrupt 1
 {
-    _push_(SFRS);
+//    _push_(SFRS);
   
 if(g_timer0Counter)
   {
@@ -221,5 +217,5 @@ if(g_timer0Counter)
     }
   }
 
-    _pop_(SFRS);
+//    _pop_(SFRS);
 }
