@@ -1,7 +1,7 @@
 ..\..\..\..\..\ML51_BSP\Library\Startup\exe\hex2bin.exe  .\output\@L.hex
 
 hex2bin.exe  .\output\@L.hex
-    *By default, unused location will be filled with 00
+    *By default, unused location will be filled with FF
 
 hex2bin.exe  .\output\@L.hex -P 0x00
    * With parameter ¡VP or ¡Vp filled with data defined following. In this case will be filled with 00.
