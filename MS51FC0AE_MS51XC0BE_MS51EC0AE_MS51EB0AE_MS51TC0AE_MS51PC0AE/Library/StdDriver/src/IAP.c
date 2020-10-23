@@ -16,16 +16,6 @@ unsigned char xdata UCIDBuffer[12];
 unsigned char xdata IAPDataBuf[128];
 unsigned char xdata IAPCFBuf[5];
 
-void IAP_ERROR(void)
-{
-    while (1)
-    {
-        P35 = 0;
-        _delay_();
-        P35 = 1;
-        _delay_();
-    }
-}
 
 /**
  * @brief       Trig IAP and check status flag
@@ -40,7 +30,7 @@ void Trigger_IAP(void)
     if ((CHPCON | CLR_BIT6) == 1)                // if fail flag is set, toggle error LED and IAP stop
     {
         clr_CHPCON_IAPFF;
-        IAP_ERROR();
+        while(1);
     }
 }
 
@@ -94,7 +84,7 @@ void Erase_Verify_LDROM(unsigned int u16IAPStartAddress, unsigned int u16IAPData
         Trigger_IAP();
 
         if (IAPFD != 0xFF)
-            IAP_ERROR();
+            while(1);
 
         IAPAL++;
 
@@ -163,7 +153,7 @@ void Program_Verify_LDROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
         Trigger_IAP();
 
         if (IAPFD != IAPDataBuf[u16Count])
-            IAP_ERROR();
+            while(1);
 
         IAPAL++;
 
@@ -227,7 +217,7 @@ void Erase_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPData
         Trigger_IAP();
 
         if (IAPFD != 0xFF)
-            IAP_ERROR();
+            while(1);
 
         IAPAL++;
 
@@ -296,7 +286,7 @@ void Program_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
         Trigger_IAP();
 
         if (IAPFD != IAPDataBuf[u16Count])
-            IAP_ERROR();
+            while(1);
 
         IAPAL++;
 
@@ -311,36 +301,62 @@ void Program_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
 
 
 /**
- * @brief       Modify CONFIG
+ * @brief       Modify CONFIG  
  * @param       u8CF0,u8CF1,u8CF2,u8CF3,u8CF4,
  * @return      none
- * @details     Since CONFIG whole area include in 1 page, save old config define in xram, erase config and program as param define, if fail load saved config and program to recover.
- * @example      Erase_CONFIG();
+ * @details     1. Check the CONFIG setting and now CONFIG value, if this value is matched do not change, close Modify.
+                2. if value not match save old config define in XRAM, erase config and program as param define, if fail load saved config and program to recover.
+                3. All interrupt is disabled in modify config procese 
+ * @example     Modify_CONFIG(0xEF,0xFF,0x6B,0xFF,0xFF);
  */
-void Modify_CONFIG(unsigned char u8CF0, unsigned char u8CF1, unsigned char u8CF2, unsigned char u8CF3, unsigned char u8CF4)
-{
+void Modify_CONFIG(unsigned char u8CF0,unsigned char u8CF1,unsigned char u8CF2,unsigned char u8CF3,unsigned char u8CF4)
+{   
     unsigned char u8Count;
+
     BIT_TMP = EA;
     EA = 0;
-    /* Loop save original CONFIG data in XRAM  */
+
     set_CHPCON_IAPEN;                    // Enable IAP function
     IAPCN = BYTE_READ_CONFIG;
     IAPAH = 0x00;
+/* Check CONFIG setting data */
+    IAPAL = 0;
+    Trigger_IAP();
+    if (IAPFD != u8CF0)
+      goto COPRST;
+    IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF1)
+      goto COPRST;
+        IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF2)
+      goto COPRST;
+          IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF3)
+      goto COPRST;
+    IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF4)
+      goto COPRST;
+    goto CFCLOSE;
+/* Loop save original CONFIG data in XRAM  */
 
-    for (u8Count = 0; u8Count < 5; u8Count++)
-    {
+COPRST:
+    for(u8Count=0;u8Count<5;u8Count++)  
+    {        
         IAPAL = u8Count;
-        Trigger_IAP();
+        Trigger_IAP(); 
         IAPCFBuf[u8Count] = IAPFD;
-    }
-
-    /* Erase CONFIG setting    */
+    } 
+/* Erase CONFIG setting    */
     set_IAPUEN_CFUEN;                    // APROM modify Enable
-    IAPFD = 0xFF;                        // IMPORTANT !! To erase function must setting IAPFD = 0xFF
+    IAPFD = 0xFF;                        // IMPORTANT !! To erase function must setting IAPFD = 0xFF 
     IAPCN = PAGE_ERASE_CONFIG;
     IAPAL = 0x00;
     Trigger_IAP();
-    /* Modify CONFIG setting as customer define */
+/* Modify CONFIG setting as customer define */
     IAPCN = BYTE_PROGRAM_CONFIG;
     IAPFD = u8CF0;
     Trigger_IAP();
@@ -357,53 +373,41 @@ void Modify_CONFIG(unsigned char u8CF0, unsigned char u8CF1, unsigned char u8CF2
     IAPFD = u8CF4;
     Trigger_IAP();
     clr_IAPUEN_CFUEN;
-    /* Check programed data, if not match, program the storaged before data.  */
+/* Check programed data, if not match, program the storaged before data.  */
     IAPCN = BYTE_READ_CONFIG;
     IAPAL = 0x00;
-    Trigger_IAP();
-
+    Trigger_IAP(); 
     if (IAPFD != u8CF0)
-        goto MDCFEND;
-
+      goto MDCFEND;
     IAPAL++;
-    Trigger_IAP();
-
+    Trigger_IAP(); 
     if (IAPFD != u8CF1)
-        goto MDCFEND;
-
+      goto MDCFEND;
     IAPAL++;
-    Trigger_IAP();
-
+    Trigger_IAP(); 
     if (IAPFD != u8CF2)
-        goto MDCFEND;
-
+      goto MDCFEND;
     IAPAL++;
-    Trigger_IAP();
-
+    Trigger_IAP(); 
     if (IAPFD != u8CF3)
-        goto MDCFEND;
-
+      goto MDCFEND;
     IAPAL++;
-    Trigger_IAP();
-
+    Trigger_IAP(); 
     if (IAPFD != u8CF4)
-        goto MDCFEND;
-
+      goto MDCFEND;
     goto CFCLOSE;
 MDCFEND:
-    set_IAPUEN_CFUEN;                      // APROM modify Enable
-
-    for (u8Count = 0; u8Count < 5; u8Count++) // Loop page erase APROM special define address area.
-    {
+    set_IAPUEN_CFUEN;                      // CONFIG modify Enable
+    for(u8Count=0;u8Count<5;u8Count++)    // Loop page erase APROM special define address area.
+    {        
         IAPAL = u8Count;
         IAPFD = IAPCFBuf[u8Count];
-        Trigger_IAP();
-    }
-
+        Trigger_IAP(); 
+    } 
 CFCLOSE:
-    clr_IAPUEN_CFUEN;                    // Disable APROM modify
+    clr_IAPUEN_CFUEN;                    // Disable APROM modify 
     clr_CHPCON_IAPEN;                    // Disable IAP
-
+    
     EA = BIT_TMP;
 }
 

@@ -284,17 +284,46 @@ void Program_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
  * @brief       Modify CONFIG  
  * @param       u8CF0,u8CF1,u8CF2,u8CF3,u8CF4,
  * @return      none
- * @details     Since CONFIG whole area include in 1 page, save old config define in xram, erase config and program as param define, if fail load saved config and program to recover.    
+ * @details     1. Check the CONFIG setting and now CONFIG value, if this value is matched do not change, close Modify.
+                2. if value not match save old config define in XRAM, erase config and program as param define, if fail load saved config and program to recover.    
+                3. All interrupt is disabled in modify CONFIG process.
  * @example      Erase_CONFIG();
  */
 void Modify_CONFIG(unsigned char u8CF0,unsigned char u8CF1,unsigned char u8CF2,unsigned char u8CF3,unsigned char u8CF4)
 {   
     unsigned char u8Count;
-  
-/* Loop save original CONFIG data in XRAM  */
+    
+    BIT_TMP = EA;
+    EA = 0;
+    
     set_CHPCON_IAPEN;                    // Enable IAP function
-    IAPCN = BYTE_READ_CONFIG;            
+    IAPCN = BYTE_READ_CONFIG;
     IAPAH = 0x00;
+/* Check CONFIG setting data */
+    IAPAL = 0;
+    Trigger_IAP();
+    if (IAPFD != u8CF0)
+      goto COPRST;
+    IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF1)
+      goto COPRST;
+        IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF2)
+      goto COPRST;
+          IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF3)
+      goto COPRST;
+    IAPAL++;
+    Trigger_IAP();
+    if (IAPFD != u8CF4)
+      goto COPRST;
+    goto CFCLOSE;
+/* Loop save original CONFIG data in XRAM  */
+
+COPRST:
     for(u8Count=0;u8Count<5;u8Count++)  
     {        
         IAPAL = u8Count;
@@ -348,7 +377,7 @@ void Modify_CONFIG(unsigned char u8CF0,unsigned char u8CF1,unsigned char u8CF2,u
       goto MDCFEND;
     goto CFCLOSE;
 MDCFEND:
-    set_IAPUEN_CFUEN;                      // APROM modify Enable
+    set_IAPUEN_CFUEN;                      // CONFIG modify Enable
     for(u8Count=0;u8Count<5;u8Count++)    // Loop page erase APROM special define address area.
     {        
         IAPAL = u8Count;
@@ -359,8 +388,9 @@ CFCLOSE:
     clr_IAPUEN_CFUEN;                    // Disable APROM modify 
     clr_CHPCON_IAPEN;                    // Disable IAP
     
-
+    EA = BIT_TMP;
 }
+
 
 /**
  * @brief       Read UID loop
