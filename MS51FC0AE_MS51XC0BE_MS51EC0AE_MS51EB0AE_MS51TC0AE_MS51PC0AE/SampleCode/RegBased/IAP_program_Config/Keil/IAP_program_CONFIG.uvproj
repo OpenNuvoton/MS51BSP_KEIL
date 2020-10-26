@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Regbased</TargetName>
+      <TargetName>RegBased</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Output\</OutputDirectory>
-          <OutputName>IAP_APproLD</OutputName>
+          <OutputName>IAP_program_CONFIG</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>

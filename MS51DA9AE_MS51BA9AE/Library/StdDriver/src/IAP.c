@@ -16,32 +16,6 @@ unsigned char xdata UCIDBuffer[12];
 unsigned char xdata IAPDataBuf[128];
 unsigned char xdata IAPCFBuf[5];
 
-void IAP_ERROR(void)
-{
-  while (1)
-  {
-    P03 = 0;
-    P03 = 1;
-  }
-}
-
-
-/**
- * @brief       Trig IAP and check status flag  
- * @param       None
- * @return      none
- * @details     Trig IAPGO, check IAP Status flag if error set IAP disable all.
- */
-void Trigger_IAP(void)
-{   
-    set_IAPTRG_IAPGO;                            //trigger IAP
-    if((CHPCON|CLR_BIT6)==1)                     // if fail flag is set, toggle error LED and IAP stop
-    {
-      clr_CHPCON_IAPFF;
-      IAP_ERROR();
-    }
-}
-
 /**
  * @brief       Erase LDROM  
  * @param       u16IAPStartAddress define LDROM area start address
@@ -62,7 +36,7 @@ void Erase_LDROM(unsigned int u16IAPStartAddress,unsigned int u16IAPDataSize)
     {        
         IAPAL = LOBYTE(u16Count*PAGE_SIZE + u16IAPStartAddress);
         IAPAH = HIBYTE(u16Count*PAGE_SIZE + u16IAPStartAddress);
-        Trigger_IAP(); 
+        set_IAPTRG_IAPGO_WDCLR;
     } 
     clr_IAPUEN_LDUEN;                    // Disable LDROM modify 
     clr_CHPCON_IAPEN;                    // Disable IAP
@@ -87,9 +61,9 @@ void Erase_Verify_LDROM(unsigned int u16IAPStartAddress, unsigned int u16IAPData
     for(u16Count=0;u16Count<u16IAPDataSize;u16Count++)
     {   
         IAPFD = 0x00;    
-        Trigger_IAP();
+        set_IAPTRG_IAPGO;
         if(IAPFD != 0xFF)
-          IAP_ERROR();
+          while(1);
         IAPAL++;
         if(IAPAL == 0x00)
           IAPAH++;
@@ -118,7 +92,7 @@ void Program_LDROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDataSize)
     for(u16Count=0;u16Count<u16IAPDataSize;u16Count++)
     {   
         IAPFD = IAPDataBuf[u16Count];     
-        Trigger_IAP();
+        set_IAPTRG_IAPGO_WDCLR;
         IAPAL++;
         if(IAPAL == 0)
         {
@@ -149,9 +123,9 @@ void Program_Verify_LDROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
     for(u16Count=0;u16Count<u16IAPDataSize;u16Count++)
     {   
         IAPFD = 0x00;
-        Trigger_IAP();
+        set_IAPTRG_IAPGO;
         if (IAPFD != IAPDataBuf[u16Count])    
-            IAP_ERROR();
+            while(1);
         IAPAL++;
         if(IAPAL == 0)
         {
@@ -181,7 +155,7 @@ void Erase_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDataSize)
     {        
         IAPAL = LOBYTE(u16Count*PAGE_SIZE + u16IAPStartAddress);
         IAPAH = HIBYTE(u16Count*PAGE_SIZE + u16IAPStartAddress);
-        Trigger_IAP(); 
+        set_IAPTRG_IAPGO_WDCLR; 
     } 
     clr_IAPUEN_APUEN;                    // Disable APROM modify 
     clr_CHPCON_IAPEN;                    // Disable IAP
@@ -206,9 +180,9 @@ void Erase_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPData
     for(u16Count=0;u16Count<u16IAPDataSize;u16Count++)
     {   
         IAPFD = 0x00;    
-        Trigger_IAP();
+        set_IAPTRG_IAPGO;
         if(IAPFD != 0xFF)
-          IAP_ERROR();
+          while(1);
         IAPAL++;
         if(IAPAL == 0x00)
           IAPAH++;
@@ -235,8 +209,8 @@ void Program_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDataSize)
     IAPCN = BYTE_PROGRAM_APROM;
     for(u16Count=0;u16Count<u16IAPDataSize;u16Count++)
     {   
-        IAPFD=IAPDataBuf[u16Count];     
-        Trigger_IAP();
+        IAPFD=IAPDataBuf[u16Count];
+        set_IAPTRG_IAPGO_WDCLR;
         IAPAL++;
         if(IAPAL == 0)
         {
@@ -267,9 +241,9 @@ void Program_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
     for(u16Count=0;u16Count<u16IAPDataSize;u16Count++)
     {   
         IAPFD = 0x00;
-        Trigger_IAP();
-        if (IAPFD != IAPDataBuf[u16Count])     
-            IAP_ERROR();
+        set_IAPTRG_IAPGO;
+        if (IAPFD != IAPDataBuf[u16Count])
+            while(1);
         IAPAL++;
         if(IAPAL == 0)
         {
@@ -292,42 +266,42 @@ void Program_Verify_APROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDa
 void Modify_CONFIG(unsigned char u8CF0,unsigned char u8CF1,unsigned char u8CF2,unsigned char u8CF3,unsigned char u8CF4)
 {   
     unsigned char u8Count;
-    
+
     BIT_TMP = EA;
     EA = 0;
-    
+
     set_CHPCON_IAPEN;                    // Enable IAP function
     IAPCN = BYTE_READ_CONFIG;
     IAPAH = 0x00;
 /* Check CONFIG setting data */
     IAPAL = 0;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF0)
       goto COPRST;
     IAPAL++;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF1)
       goto COPRST;
         IAPAL++;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF2)
       goto COPRST;
           IAPAL++;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF3)
       goto COPRST;
     IAPAL++;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF4)
       goto COPRST;
     goto CFCLOSE;
 /* Loop save original CONFIG data in XRAM  */
 
 COPRST:
-    for(u8Count=0;u8Count<5;u8Count++)  
+    for(u8Count=0;u8Count<5;u8Count++)
     {        
         IAPAL = u8Count;
-        Trigger_IAP(); 
+        set_IAPTRG_IAPGO; 
         IAPCFBuf[u8Count] = IAPFD;
     } 
 /* Erase CONFIG setting    */
@@ -335,44 +309,44 @@ COPRST:
     IAPFD = 0xFF;                        // IMPORTANT !! To erase function must setting IAPFD = 0xFF 
     IAPCN = PAGE_ERASE_CONFIG;
     IAPAL = 0x00;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO_WDCLR;
 /* Modify CONFIG setting as customer define */
     IAPCN = BYTE_PROGRAM_CONFIG;
     IAPFD = u8CF0;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO_WDCLR;
     IAPAL++;
     IAPFD = u8CF1;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO_WDCLR;
     IAPAL++;
     IAPFD = u8CF2;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO_WDCLR;
     IAPAL++;
     IAPFD = u8CF3;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO_WDCLR;
     IAPAL++;
     IAPFD = u8CF4;
-    Trigger_IAP();
+    set_IAPTRG_IAPGO_WDCLR;
     clr_IAPUEN_CFUEN;
 /* Check programed data, if not match, program the storaged before data.  */
     IAPCN = BYTE_READ_CONFIG;
     IAPAL = 0x00;
-    Trigger_IAP(); 
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF0)
       goto MDCFEND;
     IAPAL++;
-    Trigger_IAP(); 
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF1)
       goto MDCFEND;
     IAPAL++;
-    Trigger_IAP(); 
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF2)
       goto MDCFEND;
     IAPAL++;
-    Trigger_IAP(); 
+    set_IAPTRG_IAPGO;
     if (IAPFD != u8CF3)
       goto MDCFEND;
     IAPAL++;
-    Trigger_IAP(); 
+    set_IAPTRG_IAPGO; 
     if (IAPFD != u8CF4)
       goto MDCFEND;
     goto CFCLOSE;
@@ -382,7 +356,7 @@ MDCFEND:
     {        
         IAPAL = u8Count;
         IAPFD = IAPCFBuf[u8Count];
-        Trigger_IAP(); 
+        set_IAPTRG_IAPGO_WDCLR;
     } 
 CFCLOSE:
     clr_IAPUEN_CFUEN;                    // Disable APROM modify 
@@ -390,7 +364,6 @@ CFCLOSE:
     
     EA = BIT_TMP;
 }
-
 
 /**
  * @brief       Read UID loop
@@ -410,7 +383,7 @@ void Read_UID(void)
     for(u8Count=0;u8Count<12;u8Count++)
     {   
         IAPFD = 0x00;
-        Trigger_IAP();
+        set_IAPTRG_IAPGO;
         UIDBuffer[u8Count] = IAPFD ;
         IAPAL++;
     } 
@@ -436,7 +409,7 @@ void Read_UCID(void)
     for(u8Count=0;u8Count<12;u8Count++)
     {   
         IAPFD = 0x00;
-        Trigger_IAP();
+        set_IAPTRG_IAPGO;
         UCIDBuffer[u8Count] = IAPFD ;
         IAPAL++;
     } 
@@ -461,7 +434,7 @@ void Read_DID(void)
     for(u8Count=0;u8Count<4;u8Count++)
     {   
         IAPFD = 0x00;
-        Trigger_IAP();
+        set_IAPTRG_IAPGO;
         DIDBuffer[u8Count] = IAPFD ;
         IAPAL++;
     } 
