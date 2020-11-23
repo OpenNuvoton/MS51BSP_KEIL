@@ -18,11 +18,18 @@
 
 void PinInterrupt_ISR (void) interrupt 7
 {
-    _push_(SFRS);
+_push_(SFRS);
   
-  PIF = 0;
+     if (PIF&=SET_BIT2)
+     {
+       P02 ^= 1;
+     }
+     if (PIF&=SET_BIT2)
+     {
+       P03 ^= 1;
+     }
 
-    _pop_(SFRS);
+_pop_(SFRS);
 }
 /******************************************************************************
 The main C function.  Program execution starts
@@ -30,16 +37,18 @@ here after stack initialization.
 ******************************************************************************/
 void main (void) 
 {
-
-    P13_QUASI_MODE;
-    P13 = 1;
-
+    P02_QUASI_MODE;
+    P03_QUASI_MODE;
+  
+    P12_QUASI_MODE;
+    P13_INPUT_MODE;
 /*----------------------------------------------------*/
 /*  P1.3 set as highlevel trig pin interrupt function */
 /*  otherwise, MCU into idle mode.                    */
 /*----------------------------------------------------*/
     ENABLE_INT_PORT1;
-    ENABLE_BIT3_RISINGEDGE_TRIG;
+    ENABLE_BIT2_BOTHEDGE_TRIG;
+    ENABLE_BIT3_FALLINGEDGE_TRIG;
     set_EIE_EPI;                            // Enable pin interrupt
     ENABLE_GLOBAL_INTERRUPT;                // global enable bit
     set_PCON_IDLE;

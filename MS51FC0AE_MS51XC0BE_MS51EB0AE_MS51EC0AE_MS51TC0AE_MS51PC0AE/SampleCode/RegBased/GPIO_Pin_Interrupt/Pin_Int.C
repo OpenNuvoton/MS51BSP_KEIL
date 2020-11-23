@@ -40,8 +40,8 @@ void main (void)
 
     P13_INPUT_MODE;
     ENABLE_P13_PULLUP;
-    P33_INPUT_MODE;
-    ENABLE_P33_PULLDOWN;
+    P32_INPUT_MODE;
+    ENABLE_P32_PULLDOWN;
     P35_QUASI_MODE;
     P35 = 1;
 /*----------------------------------------------------*/
@@ -49,8 +49,8 @@ void main (void)
 /*  otherwise, MCU into idle mode.                    */
 /*----------------------------------------------------*/
     ENABLE_PIT0_P13_LOWLEVEL;
-    ENABLE_PIT1_P33_RISINGEDGE;
-    ENABLE_PIN_INTERRUPT;                            // Enable pin interrupt
+    ENABLE_PIT1_P32_BOTHEDGE;
+    ENABLE_PIN_INTERRUPT;                   // Enable pin interrupt
     ENABLE_GLOBAL_INTERRUPT;                // global enable bit
     set_PCON_PD;
     while(1);

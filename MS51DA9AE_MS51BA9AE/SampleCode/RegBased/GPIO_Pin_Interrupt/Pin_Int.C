@@ -18,19 +18,19 @@
 
 void PinInterrupt_ISR (void) interrupt 7
 {
-    _push_(SFRS);
+_push_(SFRS);
 
-  if (PIF|CLR_BIT3)
+  if (PIF&SET_BIT3)
   {
-    P17 = ~P17;
+    P17 ^= 1;
   }
-  else if (PIF|CLR_BIT4)
+  if (PIF&SET_BIT3)
   {
-    P17 = ~P17;
+    P17 ^= 1;
   }
   PIF = 0;
-  
-    _pop_(SFRS);
+
+_pop_(SFRS);
 }
   
 /******************************************************************************
@@ -42,10 +42,9 @@ void main (void)
 
     P03_QUASI_MODE;
     P03 = 0;
-    P04_QUASI_MODE;
-    P04 = 1;
+    P04_INPUT_MODE;
     P17_QUASI_MODE;
-    P17 = 0;
+
 
 /*----------------------------------------------------*/
 /*  P1.3 set as highlevel trig pin interrupt function */
@@ -53,7 +52,7 @@ void main (void)
 /*----------------------------------------------------*/
     ENABLE_INT_PORT0;
     ENABLE_BIT3_RISINGEDGE_TRIG;
-    ENABLE_BIT4_FALLINGEDGE_TRIG;
+    ENABLE_BIT4_BOTHEDGE_TRIG;
     set_EIE_EPI;                            // Enable pin interrupt
     ENABLE_GLOBAL_INTERRUPT;                // global enable bit
     set_PCON_IDLE;

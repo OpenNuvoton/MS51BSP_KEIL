@@ -292,6 +292,17 @@ typedef unsigned long         uint32_t;
 #define    ENABLE_BIT2_RISINGEDGE_TRIG    PICON|=0x10;PINEN&=0xFB;PIPEN|=0x04
 #define    ENABLE_BIT1_RISINGEDGE_TRIG    PICON|=0x08;PINEN&=0xFD;PIPEN|=0x02
 #define    ENABLE_BIT0_RISINGEDGE_TRIG    PICON|=0x04;PINEN&=0xFE;PIPEN|=0x01
+/*****************************************************************************
+ Enable each bit both edge trig mode
+*****************************************************************************/
+#define    ENABLE_BIT7_BOTHEDGE_TRIG      PICON|=0x80;PINEN|=0x80;PIPEN|=0x80
+#define    ENABLE_BIT6_BOTHEDGE_TRIG      PICON|=0x80;PINEN|=0x40;PIPEN|=0x40
+#define    ENABLE_BIT5_BOTHEDGE_TRIG      PICON|=0x40;PINEN|=0x20;PIPEN|=0x20
+#define    ENABLE_BIT4_BOTHEDGE_TRIG      PICON|=0x40;PINEN|=0x10;PIPEN|=0x10
+#define    ENABLE_BIT3_BOTHEDGE_TRIG      PICON|=0x20;PINEN|=0x08;PIPEN|=0x08
+#define    ENABLE_BIT2_BOTHEDGE_TRIG      PICON|=0x10;PINEN|=0x04;PIPEN|=0x04
+#define    ENABLE_BIT1_BOTHEDGE_TRIG      PICON|=0x08;PINEN|=0x02;PIPEN|=0x02
+#define    ENABLE_BIT0_BOTHEDGE_TRIG      PICON|=0x04;PINEN|=0x01;PIPEN|=0x01
 
 /****************************************************************************************************************/
 /* USE Define in option For TIMER VALUE setting is base on " option -> C51 -> Preprocesser Symbols -> Define "  */

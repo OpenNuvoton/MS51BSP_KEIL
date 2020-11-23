@@ -1,0 +1,12 @@
+2020/11/23
+*\MS51DA9AE_MS51BA9AE
+1. Pin interrupt function  function_define_ms51_16k.h     Added Pin interrupt both edge define
+   \Regbased\Pin_Interrupt -> GPIO_Pin_Interrupt added both edge sample.
+
+*\MS51FB9AE_MS51XB9AE_MS51XB9BE
+1. Pin interrupt function  function_define_ms51_16k.h     Added Pin interrupt both edge define
+   \Regbased\Pin_Interrupt -> GPIO_Pin_Interrupt added both edge sample.
+
+*\MS51FC0AE_MS51XC0BE_MS51EB0AE_MS51EC0AE_MS51TC0AE_MS51PC0AE
+1. \library\include\ function_define_ms51_32k.h     Added Pin interrupt both edge define
+   \Regbased\Pin_Interrupt -> GPIO_Pin_Interrupt    Added both edge sample.
