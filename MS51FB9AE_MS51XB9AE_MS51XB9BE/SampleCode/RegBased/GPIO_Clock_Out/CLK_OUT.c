@@ -31,7 +31,7 @@ void main(void)
 
 #if 1
 /* 16MHz HIRC clock out demo */
-    MODIFY_HIRC(HIRC_16);
+    MODIFY_HIRC(HIRC_166);
     CKDIV = 80;     /* Divider *2 */
 #else 
 /* 24MHz HIRC clock out demo */

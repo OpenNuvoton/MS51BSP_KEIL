@@ -926,19 +926,19 @@
 #define set_ADCCON2_ADCMPOP              SFRS=0;ADCCON2|=0x40
 #define set_ADCCON2_ADCMPEN              SFRS=0;ADCCON2|=0x20
 #define set_ADCCON2_ADCMPO               SFRS=0;ADCCON2|=0x10
-#define set_ADCCON2_ADCAQT2              SFRS=0;ADCCON2|=0x08
-#define set_ADCCON2_ADCAQT1              SFRS=0;ADCCON2|=0x04
-#define set_ADCCON2_ADCAQT0              SFRS=0;ADCCON2|=0x02
-#define set_ADCCON2_ADCDLY.8             SFRS=0;ADCCON2|=0x01
+#define set_ADCCON2_ADCAQT0_2            SFRS=0;ADCCON2|=0x08
+#define set_ADCCON2_ADCAQT0_1            SFRS=0;ADCCON2|=0x04
+#define set_ADCCON2_ADCAQT0_0            SFRS=0;ADCCON2|=0x02
+#define set_ADCCON2_ADCDLY_8             SFRS=0;ADCCON2|=0x01
 
 #define clr_ADCCON2_ADFBEN               SFRS=0;ADCCON2&=0x7F
 #define clr_ADCCON2_ADCMPOP              SFRS=0;ADCCON2&=0xBF
 #define clr_ADCCON2_ADCMPEN              SFRS=0;ADCCON2&=0xDF
 #define clr_ADCCON2_ADCMPO               SFRS=0;ADCCON2&=0xEF
-#define clr_ADCCON2_ADCAQT2              SFRS=0;ADCCON2&=0xF7
-#define clr_ADCCON2_ADCAQT1              SFRS=0;ADCCON2&=0xFB
-#define clr_ADCCON2_ADCAQT0              SFRS=0;ADCCON2&=0xFD
-#define clr_ADCCON2_ADCDLY.8             SFRS=0;ADCCON2&=0xFE
+#define clr_ADCCON2_ADCAQT0_2            SFRS=0;ADCCON2&=0xF7
+#define clr_ADCCON2_ADCAQT0_1            SFRS=0;ADCCON2&=0xFB
+#define clr_ADCCON2_ADCAQT0_0            SFRS=0;ADCCON2&=0xFD
+#define clr_ADCCON2_ADCDLY_8             SFRS=0;ADCCON2&=0xFE
 
 /**** PICON  E9H  PAGE 0 ****/
 #define set_PICON_PIT7                   SFRS=0;PICON|=0x80
@@ -1372,16 +1372,16 @@
 /**** ADCCON3  86H  PAGE 2 ****/
 #define set_ADCCON3_HIE                  SFRS=2;ADCCON3|=0x20
 #define set_ADCCON3_CONT                 SFRS=2;ADCCON3|=0x10
-#define set_ADCCON3_ADCAQT2              SFRS=2;ADCCON3|=0x08
-#define set_ADCCON3_ADCAQT1              SFRS=2;ADCCON3|=0x04
-#define set_ADCCON3_ADCAQT0              SFRS=2;ADCCON3|=0x02
+#define set_ADCCON3_ADCAQT1_2            SFRS=2;ADCCON3|=0x08
+#define set_ADCCON3_ADCAQT1_1            SFRS=2;ADCCON3|=0x04
+#define set_ADCCON3_ADCAQT1_0            SFRS=2;ADCCON3|=0x02
 #define set_ADCCON3_SLOW                 SFRS=2;ADCCON3|=0x01
 
 #define clr_ADCCON3_HIE                  SFRS=2;ADCCON3&=0xDF
 #define clr_ADCCON3_CONT                 SFRS=2;ADCCON3&=0xEF
-#define clr_ADCCON3_ADCAQT2              SFRS=2;ADCCON3&=0xF7
-#define clr_ADCCON3_ADCAQT1              SFRS=2;ADCCON3&=0xFB
-#define clr_ADCCON3_ADCAQT0              SFRS=2;ADCCON3&=0xFD
+#define clr_ADCCON3_ADCAQT1_2            SFRS=2;ADCCON3&=0xF7
+#define clr_ADCCON3_ADCAQT1_1            SFRS=2;ADCCON3&=0xFB
+#define clr_ADCCON3_ADCAQT1_0            SFRS=2;ADCCON3&=0xFD
 #define clr_ADCCON3_SLOW                 SFRS=2;ADCCON3&=0xFE
 
 /**** P2M1  89H  PAGE 2 ****/

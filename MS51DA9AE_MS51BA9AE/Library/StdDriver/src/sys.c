@@ -7,10 +7,12 @@
 //***********************************************************************************************************
 //  Website: http://www.nuvoton.com
 //  E-Mail : MicroC-8bit@nuvoton.com
-//  Date   : June/21/2020
+//  Date   : Jan/21/2020
 //***********************************************************************************************************
-#include "MS51_8K.h"
+#include "MS51_8K.H"
+
 bit BIT_TMP;
+unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
 
   /**
   * @brief This API configures modify system HIRC value
@@ -21,9 +23,9 @@ bit BIT_TMP;
   * @note      None.
   * @exmaple : MODIFY_HIRC(HIRC_24);
   */
-void MODIFY_HIRC(unsigned char u8HIRCSEL)
+ void MODIFY_HIRC(unsigned char u8HIRCSEL)
 {
-    unsigned char data hircmap0,hircmap1;
+    unsigned char data hircmap0,hircmap1,offset;
     unsigned int trimvalue16bit;
     /* Check if power on reset, modify HIRC */
     SFRS = 0 ;
@@ -47,12 +49,24 @@ void MODIFY_HIRC(unsigned char u8HIRCSEL)
     IAPAL++;
     set_IAPTRG_IAPGO;
     hircmap1 = IAPFD;
-    clr_CHPCON_IAPEN;
     switch (u8HIRCSEL)
     {
       case HIRC_166:
         trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
-        trimvalue16bit = trimvalue16bit - 15;
+        trimvalue16bit -= 14;
+
+        IAPCN = READ_DID;
+        IAPAL = 1;
+        IAPAH = 0;
+        set_IAPTRG_IAPGO;
+        if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))
+        {
+          offset = hircmap0&0x3F;
+          if (offset<7)
+            trimvalue16bit -= 10;
+          else 
+            trimvalue16bit -= 1;
+        }
         hircmap1 = trimvalue16bit & 0x01;
         hircmap0 = trimvalue16bit >> 1;
 
@@ -66,9 +80,7 @@ void MODIFY_HIRC(unsigned char u8HIRCSEL)
     TA = 0x55;
     RCTRIM1 = hircmap1;
     clr_CHPCON_IAPEN;
-    PCON &= CLR_BIT4;
 }
-
 
 
   /**

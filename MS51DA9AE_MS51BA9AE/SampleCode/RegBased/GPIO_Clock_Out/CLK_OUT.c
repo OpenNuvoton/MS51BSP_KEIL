@@ -11,7 +11,7 @@
 //***********************************************************************************************************
 
 //***********************************************************************************************************
-//  File Function: MS51 Clock out from CLKO pin P1.1 demo.
+//  File Function: MS51 Clock out from CLKO pin P0.1 demo.
 //***********************************************************************************************************
 #include "MS51_8K.H"
 
@@ -30,8 +30,8 @@ void main(void)
 /* Each time modify the HIRC must do re-power on process to confirm HIRC modified. */
 
 #if 1
-/* 16MHz HIRC clock out demo */
-    MODIFY_HIRC(HIRC_16);;
+/* 16.6MHz HIRC clock out demo */
+    MODIFY_HIRC(HIRC_166);
     CKDIV = 80;
 #else 
 /* 24MHz HIRC clock out demo */

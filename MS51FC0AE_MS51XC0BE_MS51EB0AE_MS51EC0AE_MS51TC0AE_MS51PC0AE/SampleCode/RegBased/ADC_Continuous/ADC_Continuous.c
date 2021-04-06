@@ -63,7 +63,7 @@ void main (void)
     ENABLE_ADC_CONTINUES_MODE;                         /* Opend ADC as continous mode */
     ENABLE_ADC_CH0;                                    /* and input from AIN0 P1.7  */
     ADC_InitialContinous(0x300,128);                   /* Define data restore in RAM start address and ADC total sample number */
-    ADC_ConvertTime(ADC_CH0,2,7);                      /*  ADC clock = Fsys/4, sampling timer select longest value is 7     */
+    ADC_ConvertTime(ADC_CH0,2,7);                      /*  ADC sampling clock = Fsys/4, sampling timer select longest value is 7     */
     
     clr_ADCCON0_ADCF;
     ENABLE_ADC_INTERRUPT;

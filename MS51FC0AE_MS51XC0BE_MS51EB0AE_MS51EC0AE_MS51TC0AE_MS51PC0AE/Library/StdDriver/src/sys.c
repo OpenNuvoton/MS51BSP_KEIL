@@ -25,7 +25,7 @@ unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
 void MODIFY_HIRC(unsigned char u8HIRCSEL)
 {
     unsigned char data hircmap0,hircmap1;
-    unsigned int trimvalue16bit;
+    unsigned int trimvalue16bit,offset;
     /* Check if power on reset, modify HIRC */
     SFRS = 0 ;
     switch (u8HIRCSEL)
@@ -53,7 +53,20 @@ void MODIFY_HIRC(unsigned char u8HIRCSEL)
     {
       case HIRC_166:
         trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
-        trimvalue16bit = trimvalue16bit - 15;
+        trimvalue16bit -= 14;
+
+        IAPCN = READ_DID;
+        IAPAL = 1;
+        IAPAH = 0;
+        set_IAPTRG_IAPGO;
+        if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))
+        {
+          offset = hircmap0&0x3F;
+          if (offset<7)
+            trimvalue16bit -= 10;
+          else 
+            trimvalue16bit -= 1;
+        }
         hircmap1 = trimvalue16bit & 0x01;
         hircmap0 = trimvalue16bit >> 1;
 

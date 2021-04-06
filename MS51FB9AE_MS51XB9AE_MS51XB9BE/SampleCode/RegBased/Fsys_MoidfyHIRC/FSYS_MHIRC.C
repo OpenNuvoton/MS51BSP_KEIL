@@ -31,7 +31,7 @@ void main(void)
     P12 = 0;
     Timer0_Delay(16000000,5,1000);
   }
-/* HIRC modify to 16.6MHz , clock out 104 khz */
+/* HIRC modify to 24MHz  */
   MODIFY_HIRC(HIRC_24);
   while(1);
   

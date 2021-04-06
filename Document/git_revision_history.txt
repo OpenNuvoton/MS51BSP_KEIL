@@ -10,3 +10,4 @@
 *\MS51FC0AE_MS51XC0BE_MS51EB0AE_MS51EC0AE_MS51TC0AE_MS51PC0AE
 1. \library\include\ function_define_ms51_32k.h     Added Pin interrupt both edge define
    \Regbased\Pin_Interrupt -> GPIO_Pin_Interrupt    Added both edge sample.
+2. adc.c                                            Modified ADCDIV from ADCSR to ADCCON1

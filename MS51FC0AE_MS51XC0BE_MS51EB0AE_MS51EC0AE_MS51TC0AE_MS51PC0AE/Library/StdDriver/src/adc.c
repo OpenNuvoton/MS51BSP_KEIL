@@ -44,8 +44,8 @@ void ADC_InitialContinous(unsigned int u16ADCRBase, unsigned char u8ADCRLength)
 void ADC_ConvertTime(unsigned char u8AINCHNSEL, unsigned char u8ADCDIV, unsigned char u8ADCAQT)
 {
   SFRS=0;
-  ADCSR &= 0x8F;
-  ADCSR |= (u8ADCDIV&0x07)<<4;
+  ADCCON1 &= 0xCF;
+  ADCCON1 |= (u8ADCDIV&0x07)<<4;
   switch (u8AINCHNSEL)
   {
       case ADC_CH0:
@@ -73,7 +73,6 @@ void ADC_ConvertTime(unsigned char u8AINCHNSEL, unsigned char u8ADCDIV, unsigned
            ADCCON3|=(u8ADCAQT&0x07)<<1;
            break;
    }
-   SFRS = 0;
 }
 
 /**
