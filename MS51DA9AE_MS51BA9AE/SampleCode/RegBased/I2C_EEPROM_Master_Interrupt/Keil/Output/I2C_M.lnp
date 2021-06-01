@@ -1,0 +1,10 @@
+".\Output\I2C_M.obj",
+".\Output\uart.obj",
+".\Output\i2c.obj",
+".\Output\delay.obj",
+".\Output\sys.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\I2C_M" 
+
+PRINT(".\LST\I2C_M.map") DISABLEWARNING (16) 
+REMOVEUNUSED 

@@ -10,7 +10,9 @@
 ************************************************************************************************************/
 
 #include "MS51_32K.h"
-unsigned char xdata DIDBuffer[4];
+
+unsigned char xdata DIDBuffer[2];
+unsigned char xdata PIDBuffer[2];
 unsigned char xdata UIDBuffer[12];
 unsigned char xdata UCIDBuffer[12];
 unsigned char xdata IAPDataBuf[128];
@@ -417,13 +419,13 @@ void Read_UCID(void)
 }
 
 /**
- * @brief       Read UID loop
+ * @brief       Read DID loop
  * @param       none
  * @return      none
  * @details     IAP command read UID area storage data in XRAM LIB_UIDBuffer[0:8]
  * @example      UID_Read();
 */
-void Read_DID(void)
+void DID_Read(void)
 {   
     unsigned char u8Count;
 
@@ -431,11 +433,36 @@ void Read_DID(void)
     IAPAL = 0x00;
     IAPAH = 0x00;
     IAPCN = READ_DID;
-    for(u8Count=0;u8Count<4;u8Count++)
+    for(u8Count=0;u8Count<2;u8Count++)
     {   
         IAPFD = 0x00;
         set_IAPTRG_IAPGO;
         DIDBuffer[u8Count] = IAPFD ;
+        IAPAL++;
+    } 
+    clr_CHPCON_IAPEN;
+}
+
+/**
+ * @brief       Read UID loop
+ * @param       none
+ * @return      none
+ * @details     IAP command read UID area storage data in XRAM LIB_UIDBuffer[0:8]
+ * @example      UID_Read();
+*/
+void PID_Read(void)
+{   
+    unsigned char u8Count;
+
+    set_CHPCON_IAPEN;
+    IAPAL = 0x02;
+    IAPAH = 0x00;
+    IAPCN = READ_DID;
+    for(u8Count=0;u8Count<2;u8Count++)
+    {   
+        IAPFD = 0x00;
+        set_IAPTRG_IAPGO;
+        PIDBuffer[u8Count] = IAPFD ;
         IAPAL++;
     } 
     clr_CHPCON_IAPEN;

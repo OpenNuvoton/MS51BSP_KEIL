@@ -1,4 +1,5 @@
-extern unsigned char xdata DIDBuffer[4];
+extern unsigned char xdata DIDBuffer[2];
+extern unsigned char xdata PIDBuffer[2];
 extern unsigned char xdata UIDBuffer[12];
 extern unsigned char xdata UCIDBuffer[12];
 extern unsigned char xdata IAPDataBuf[128];
@@ -17,3 +18,4 @@ void Modify_CONFIG(unsigned char u8CF0,unsigned char u8CF1,unsigned char u8CF2,u
 void Read_UID(void);
 void Read_UCID(void);
 void Read_DID(void);
+void Read_PID(void);

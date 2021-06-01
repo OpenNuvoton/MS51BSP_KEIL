@@ -15,34 +15,24 @@
 //***********************************************************************************************************
 #include "MS51_8K.H"
 
-/* For printf code only. Disable this define to reduce code size. */
-//#define print_function 
 
 /***********************/
 /* main loop           */
 /***********************/ 
 void main(void)
 {
+  unsigned char u8Counter;
 
-#ifdef print_function
-  unsigned char READ1;
-/* Modify HIRC to 24MHz for UART printf function only */
-    MODIFY_HIRC(HIRC_24);
-    P06_PUSHPULL_MODE;
-    UART_Open(24000000,UART0_Timer3,115200);
-    ENABLE_UART0_PRINTF;
-#endif 
-    
+  MODIFY_HIRC(HIRC_24);
+
   Read_UCID();
   
-#ifdef print_function
   printf ("\n UCID = ");
-  for(READ1=0;READ1<12;READ1++)
+  for(u8Counter=0;u8Counter<12;u8Counter++)
   {
-    printf (" 0x%bx",UCIDBuffer[READ1]);
+    printf (" 0x%bx",UCIDBuffer[u8Counter]);
   }
   DISABLE_UART0_PRINTF;
-#endif
 
   while(1);
 

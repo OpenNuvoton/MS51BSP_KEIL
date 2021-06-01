@@ -11,3 +11,4 @@ void UART_Open(unsigned long u32SysClock, unsigned char u8UARTPort,unsigned long
 void UART_Send_Data(unsigned char UARTPort, unsigned char c);
 unsigned char Receive_Data(unsigned char UARTPort);
 void UART_Interrupt_Enable(unsigned char u8UARTPort, unsigned char u8UARTINTStatus);
+void Enable_UART0_VCOM_printf_24M_115200(void);

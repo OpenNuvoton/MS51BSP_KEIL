@@ -138,3 +138,10 @@ void UART_Send_Data(unsigned char UARTPort, unsigned char c)
     _pop_(SFRS);
 }
 
+
+void Enable_UART0_VCOM_printf_24M_115200(void)
+{
+    P06_QUASI_MODE;
+    UART_Open(24000000,UART0_Timer1,115200);
+    ENABLE_UART0_PRINTF;
+}

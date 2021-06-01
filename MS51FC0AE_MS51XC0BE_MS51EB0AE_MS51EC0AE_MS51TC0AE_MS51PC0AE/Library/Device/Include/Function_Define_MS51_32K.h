@@ -17,7 +17,11 @@ extern bit BIT_TMP;
 #define Disable  0
 #define Enable   1
 
-#define nop _nop_();
+#define DISABLE  0
+#define ENABLE   1
+
+#define FAIL            1
+#define PASS            0
 
 //16 --> 8 x 2
 #define HIBYTE(v1)              ((UINT8)((v1)>>8))                      //v1 is UINT16
@@ -69,10 +73,6 @@ extern bit BIT_TMP;
 #define CLR_BIT14       0xBFFF
 #define CLR_BIT15       0x7FFF
 
-
-#define FAIL            1
-#define PASS            0
-
 #define nop _nop_();
 
 /****************************************************************************/
@@ -80,7 +80,7 @@ extern bit BIT_TMP;
 /****************************************************************************/
 #define _delay_()                      \
 {                                      \
-  unsigned char data i,j;             \
+  unsigned char data i,j;              \
     for (j=0;j<0x1A;j++)               \
     {                                  \
        for (i=0;i<0xff;i++)            \
@@ -123,7 +123,7 @@ extern bit BIT_TMP;
 /*****************************************************************************************/
 #define    ENABLE_GLOBAL_INTERRUPT       EA=1            //Check
 #define    DISABLE_GLOBAL_INTERRUPT      EA=0
-/*ENABLE INTERRUPT*/                     
+/*ENABLE INTERRUPT*/
 #define    ENABLE_ADC_INTERRUPT          set_IE_EADC
 #define    ENABLE_BOD_INTERRUPT          set_IE_EBOD
 #define    ENABLE_UART0_INTERRUPT        set_IE_ES

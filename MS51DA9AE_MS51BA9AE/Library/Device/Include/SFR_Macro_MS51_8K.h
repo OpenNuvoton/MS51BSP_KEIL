@@ -20,6 +20,7 @@
 #include "Delay.h"
 #include "eeprom.h"
 #include "eeprom_sprom.h"
+#include "i2c.h"
 #include "IAP.h"
 #include "IAP_SPROM.h"
 #include "pwm.h"

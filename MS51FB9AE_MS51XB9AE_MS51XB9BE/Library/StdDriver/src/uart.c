@@ -14,6 +14,7 @@ bit PRINTFG = 0, uart0_receive_flag = 0, uart1_receive_flag;
 unsigned char uart0_receive_data, uart1_receive_data;
 
 
+
 void Serial_ISR(void) interrupt 4
 {
     _push_(SFRS);
@@ -59,8 +60,6 @@ void SerialPort1_ISR(void) interrupt 15
 
     _pop_(SFRS);
 }
-
-
 
 /*MS51 new version buadrate */
 void UART_Open(unsigned long u32SysClock, unsigned char u8UARTPort,unsigned long u32Baudrate)
@@ -131,3 +130,9 @@ void UART_Send_Data(UINT8 UARTPort, UINT8 c)
     }
 }
 
+void Enable_UART0_VCOM_printf_24M_115200(void)
+{
+    P06_QUASI_MODE;
+    UART_Open(24000000,UART0_Timer1,115200);
+    ENABLE_UART0_PRINTF;
+}

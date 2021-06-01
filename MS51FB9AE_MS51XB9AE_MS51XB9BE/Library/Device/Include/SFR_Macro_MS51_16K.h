@@ -16,8 +16,10 @@
 /******************************************************************************/
 #include "Function_define_MS51_16K.h"
 #include "bod.h"
+#include "common.h"
 #include "Delay.h"
 #include "eeprom.h"
+#include "i2c.h"
 #include "IAP.h"
 #include "IAP_SPROM.h"
 #include "eeprom_sprom.h"

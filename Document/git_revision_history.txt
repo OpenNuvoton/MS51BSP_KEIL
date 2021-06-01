@@ -11,3 +11,7 @@
 1. \library\include\ function_define_ms51_32k.h     Added Pin interrupt both edge define
    \Regbased\Pin_Interrupt -> GPIO_Pin_Interrupt    Added both edge sample.
 2. adc.c                                            Modified ADCDIV from ADCSR to ADCCON1
+
+2021/5
+1  DID                           modify iap.c  read DID -> read DID + read PID
+2. I2C interrupt               add project I2C master/slave with interrupt and slave as eeprom mode.

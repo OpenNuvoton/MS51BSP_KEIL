@@ -14,9 +14,12 @@ typedef unsigned char         uint8_t;
 typedef unsigned int          uint16_t;
 typedef unsigned long         uint32_t;
 
-#define Disable  0  
-#define Enable   1  
-                    
+#define Disable  0
+#define Enable   1
+
+#define DISABLE  0
+#define ENABLE   1 
+
 #define TRUE     1  
 #define FALSE    0  
                     
