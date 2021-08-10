@@ -1,9 +1,0 @@
-".\Output\UCID_check.obj",
-".\Output\sys.obj",
-".\Output\uart.obj",
-".\Output\IAP.obj",
-".\Output\STARTUP.obj" 
-TO ".\Output\IAP_Read_UID" 
-
-PRINT(".\List\IAP_Read_UID.map") DISABLEWARNING (16) 
-REMOVEUNUSED 

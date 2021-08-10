@@ -40,10 +40,9 @@ void main (void)
 
 while(1)
 {
-        //if(bUartDataReady == TRUE)
         if(bI2CDataReady == TRUE)
         {
-          EA=0; //DISABLE ALL INTERRUPT
+          EA=0; /*Disable all interrupt */
           if(g_progarmflag==1)
           {
             for(count=8;count<64;count++)
@@ -55,7 +54,7 @@ while(1)
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
           
               IAPCN = BYTE_READ_AP;              //program byte verify
@@ -137,10 +136,10 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
-              }            
-              
+              }
+
               Package_checksum();
               bISPDataReady = 1; 
               break;
@@ -168,7 +167,7 @@ END_2:
               recv_CONF2 = rx_buf[10];
               recv_CONF4 = rx_buf[12];
 /*Erase CONFIG */              
-//              set_CHPCON_IAPEN;
+              set_CHPCON_IAPEN;
               set_IAPUEN_CFUEN;
               IAPCN = PAGE_ERASE_CONFIG;
               IAPAL = 0x00;
@@ -210,12 +209,12 @@ END_2:
               READ_CONFIG();
               
               Package_checksum();
-              tx_buf[8]=CONF0;  
-              tx_buf[9]=CONF1;  
-              tx_buf[10]=CONF2;  
-              tx_buf[11]=0xff;  
-              tx_buf[12]=CONF4;  
-              tx_buf[13]=0xff;  
+              tx_buf[8]=CONF0;
+              tx_buf[9]=CONF1;
+              tx_buf[10]=CONF2;
+              tx_buf[11]=0xff;
+              tx_buf[12]=CONF4;
+              tx_buf[13]=0xff;
               tx_buf[14]=0xff;
               tx_buf[15]=0xff;
               bISPDataReady = 1;
@@ -224,10 +223,21 @@ END_2:
             
             case CMD_UPDATE_APROM:
             {
-//              set_CHPCON_IAPEN;
+              set_CHPCON_IAPEN;
               set_IAPUEN_APUEN;
               IAPFD = 0xFF;          //Erase must set IAPFD = 0xFF
               IAPCN = PAGE_ERASE_AP;
+
+              for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+              {        
+                IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+                IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+#ifdef isp_with_wdt
+              set_IAPTRG_IAPGO_WDCLR;
+#else
+              trig_IAPGO;
+#endif
+              }
 
               g_totalchecksum=0;
               flash_address=0;
@@ -246,7 +256,7 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
       
                 IAPCN = BYTE_READ_AP;                //program byte verify

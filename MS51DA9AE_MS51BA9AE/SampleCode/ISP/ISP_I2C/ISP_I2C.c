@@ -41,16 +41,16 @@ void READ_ID(void)
     IAPCN = READ_DID;
     IAPAH = 0x00;
     IAPAL = 0x00;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     DID_lowB = IAPFD;
     IAPAL = 0x01;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     DID_highB = IAPFD;
     IAPAL = 0x02;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     PID_lowB = IAPFD;
     IAPAL = 0x03;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     PID_highB = IAPFD;
 }
 void READ_CONFIG(void)
@@ -58,16 +58,16 @@ void READ_CONFIG(void)
     IAPCN = BYTE_READ_CONFIG;
     IAPAL = 0x00;
     IAPAH = 0x00;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     CONF0 = IAPFD;
     IAPAL = 0x01;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     CONF1 = IAPFD;
     IAPAL = 0x02;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     CONF2 = IAPFD;
     IAPAL = 0x04;
-    set_IAPTRG_IAPGO;
+    trig_IAPGO;
     CONF4 = IAPFD;
     clr_CHPCON_IAPEN;
 }

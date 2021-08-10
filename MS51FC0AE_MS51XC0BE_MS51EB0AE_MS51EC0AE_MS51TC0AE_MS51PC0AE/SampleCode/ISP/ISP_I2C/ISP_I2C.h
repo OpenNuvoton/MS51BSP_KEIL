@@ -1,3 +1,5 @@
+#define trig_IAPGO           SFRS=0;TA=0xAA;TA=0x55;IAPTRG|=0x01
+
 #define TRUE       1
 #define FALSE     0
 

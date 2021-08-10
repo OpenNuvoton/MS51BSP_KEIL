@@ -55,7 +55,7 @@ while(1)
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
           
               IAPCN = BYTE_READ_AP;              //program byte verify
@@ -126,7 +126,7 @@ END_2:
             }
             case CMD_ERASE_ALL:
             {
-//              set_CHPCON_IAPEN;
+              set_CHPCON_IAPEN;
               set_IAPUEN_APUEN;
               IAPFD = 0xFF;          //Erase must set IAPFD = 0xFF
               IAPCN = PAGE_ERASE_AP;
@@ -138,10 +138,10 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
-              }            
-              
+              }
+
               Package_checksum();
               bISPDataReady = 1; 
               break;
@@ -169,7 +169,7 @@ END_2:
               recv_CONF2 = rx_buf[10];
               recv_CONF4 = rx_buf[12];
 /*Erase CONFIG */              
-//              set_CHPCON_IAPEN;
+              set_CHPCON_IAPEN;
               set_IAPUEN_CFUEN;
               IAPCN = PAGE_ERASE_CONFIG;
               IAPAL = 0x00;
@@ -178,7 +178,7 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
 
 /*Program CONFIG*/  
@@ -190,21 +190,21 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
               IAPAL = 0x02;
               IAPFD = recv_CONF2;
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
               IAPAL = 0x04;
               IAPFD = recv_CONF4;
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
               clr_IAPUEN_CFUEN;
 /*Read new CONFIG*/  
@@ -225,10 +225,21 @@ END_2:
             
             case CMD_UPDATE_APROM:
             {
-//              set_CHPCON_IAPEN;
+              set_CHPCON_IAPEN;
               set_IAPUEN_APUEN;
               IAPFD = 0xFF;          //Erase must set IAPFD = 0xFF
               IAPCN = PAGE_ERASE_AP;
+
+              for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+              {        
+                IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+                IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+#ifdef isp_with_wdt
+              set_IAPTRG_IAPGO_WDCLR;
+#else
+              trig_IAPGO;
+#endif
+              }
 
               g_totalchecksum=0;
               flash_address=0;
@@ -247,7 +258,7 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              trig_IAPGO;
 #endif
       
                 IAPCN = BYTE_READ_AP;                //program byte verify

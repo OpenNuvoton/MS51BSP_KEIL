@@ -18,12 +18,9 @@
 bit bodflag=0;
 void BOD_ISR (void) interrupt 8           // Vector @  0x43
 {
-    _push_(SFRS);
- 
+    clr_CHPCON_IAPEN; 
     clr_BODCON0_BOF;
     bodflag=0;
-
-    _pop_(SFRS);
 }
 
 //----------------------------------------------------------------------------------------------//
