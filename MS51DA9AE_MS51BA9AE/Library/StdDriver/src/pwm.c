@@ -77,8 +77,8 @@ void PWM0_ConfigOutputChannel(unsigned char u8PWM0ChannelNum,
       case 1:  PWM1H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM1L=(u32PWM0Frequency*u16PWM0DutyCycle/100);break;
       case 2:  PWM2H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM2L=(u32PWM0Frequency*u16PWM0DutyCycle/100);break;
       case 3:  PWM3H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM3L=(u32PWM0Frequency*u16PWM0DutyCycle/100);break;
-      case 4:  PWM4H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM4L=(u32PWM0Frequency*u16PWM0DutyCycle/100);break;
-      case 5:  PWM5H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM5L=(u32PWM0Frequency*u16PWM0DutyCycle/100);break;
+      case 4:  set_SFRS_SFRPAGE;PWM4H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM4L=(u32PWM0Frequency*u16PWM0DutyCycle/100);clr_SFRS_SFRPAGE; break;
+      case 5:  set_SFRS_SFRPAGE;PWM5H=(u32PWM0Frequency*u16PWM0DutyCycle/100)>>8;PWM5L=(u32PWM0Frequency*u16PWM0DutyCycle/100);clr_SFRS_SFRPAGE; break;
   }
   PWMPH = u32PWM0Frequency>>8;
   PWMPL = u32PWM0Frequency;
