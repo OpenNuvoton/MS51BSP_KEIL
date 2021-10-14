@@ -10,8 +10,6 @@
 //  Date   : June/21/2020
 //***********************************************************************************************************
 #include "MS51_32K.h"
-bit BIT_TMP;
-unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
 
   /**
   * @brief This API configures modify system HIRC value
@@ -24,8 +22,8 @@ unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
   */
 void MODIFY_HIRC(unsigned char u8HIRCSEL)
 {
-    unsigned char data hircmap0,hircmap1;
-    unsigned int trimvalue16bit,offset;
+    unsigned char data hircmap0,hircmap1,offset,judge;
+    unsigned int trimvalue16bit;
     /* Check if power on reset, modify HIRC */
     SFRS = 0 ;
     switch (u8HIRCSEL)
@@ -48,31 +46,35 @@ void MODIFY_HIRC(unsigned char u8HIRCSEL)
     IAPAL++;
     set_IAPTRG_IAPGO;
     hircmap1 = IAPFD;
-    clr_CHPCON_IAPEN;
+
     switch (u8HIRCSEL)
     {
       case HIRC_166:
         trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
+        judge = trimvalue16bit&0xC0;
+        offset = trimvalue16bit&0x3F;
         trimvalue16bit -= 14;
 
         IAPCN = READ_DID;
         IAPAL = 1;
         IAPAH = 0;
         set_IAPTRG_IAPGO;
-        if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))
+        if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))    /* MS51 process */
         {
-          offset = hircmap0&0x3F;
-          if (offset<7)
-            trimvalue16bit -= 10;
+          if (offset<15)
+          {
+              if ((judge==0x40)||(judge==0x80)||(judge==0xC0))
+              trimvalue16bit -= 14;
+          }
           else 
-            trimvalue16bit -= 1;
+            trimvalue16bit -= 4;
         }
-        hircmap1 = trimvalue16bit & 0x01;
         hircmap0 = trimvalue16bit >> 1;
 
       break;
       default: break;
     }
+
     TA = 0xAA;
     TA = 0x55;
     RCTRIM0 = hircmap0;

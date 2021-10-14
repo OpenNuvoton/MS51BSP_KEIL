@@ -50,13 +50,13 @@ bit I2C_Reset_Flag;
 //========================================================================================================
 void Init_I2C(void)
 {
-      P03_OPENDRAIN_MODE;     /*I2C_SCL*/
-      P04_OPENDRAIN_MODE;     /*I2C_SDA*/
+      P13_OPENDRAIN_MODE;     /*I2C_SCL*/
+      P14_OPENDRAIN_MODE;     /*I2C_SDA*/
     /* Set I2C clock rate */
     I2CLK = I2C_CLOCK; 
 
     /* Enable I2C */
-    set_I2CON_I2CEN;                                   
+    set_I2CON_I2CEN;
 }
 //========================================================================================================
 void I2C_SI_Check(void)

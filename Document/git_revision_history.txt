@@ -15,3 +15,6 @@
 2021/5
 1  DID                           modify iap.c  read DID -> read DID + read PID
 2. I2C interrupt               add project I2C master/slave with interrupt and slave as eeprom mode.
+
+2021/11
+1. sys.c                        Optimizer HIRC adjust 16.6MHz method.

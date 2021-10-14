@@ -49,30 +49,35 @@ unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
     IAPAL++;
     set_IAPTRG_IAPGO;
     hircmap1 = IAPFD;
+    
     switch (u8HIRCSEL)
-    {
+    { 
       case HIRC_166:
         trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
+        judge = trimvalue16bit&0xC0;
+        offset = trimvalue16bit&0x3F;
         trimvalue16bit -= 14;
-
         IAPCN = READ_DID;
         IAPAL = 1;
         IAPAH = 0;
-        set_IAPTRG_IAPGO;
-        if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))
-        {
-          offset = hircmap0&0x3F;
-          if (offset<7)
-            trimvalue16bit -= 10;
-          else 
-            trimvalue16bit -= 1;
-        }
-        hircmap1 = trimvalue16bit & 0x01;
-        hircmap0 = trimvalue16bit >> 1;
+        set_IAPGO;
 
+        if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))    /* MS51 process */
+        {
+          if (offset<15)
+            {
+              if ((judge==0x40)||(judge==0x80)||(judge==0xC0))
+              trimvalue16bit -= 14;
+            }
+          else
+              trimvalue16bit -= 4;
+        }
+        hircmap0 = (trimvalue16bit >> 1);
       break;
-      default: break;
+
+        default: break;                                       /*N76E003 process */
     }
+    
     TA = 0xAA;
     TA = 0x55;
     RCTRIM0 = hircmap0;
