@@ -567,9 +567,9 @@ typedef unsigned long         uint32_t;
 #define    IC6_P05_CAP3_BOTHEDGE_CAPTURE       CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x07;CAPCON0|=0x40;CAPCON2|=0x40;
 #define    IC7_P15_CAP3_BOTHEDGE_CAPTURE       CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x08;CAPCON0|=0x40;CAPCON2|=0x40;
 
-#define    TIMER2_IC2_DISABLE                  CAPCON0&=0xBF       
-#define    TIMER2_IC1_DISABLE                  CAPCON0&=0xDF      
-#define    TIMER2_IC0_DISABLE                  CAPCON0&=0xEF  
+#define    TIMER2_CAP2_DISABLE                 CAPCON0&=0xBF       
+#define    TIMER2_CAP1_DISABLE                 CAPCON0&=0xDF      
+#define    TIMER2_CAP0_DISABLE                 CAPCON0&=0xEF  
 
 /*****************************************************************************************
 * For PWM setting (From N76E00)

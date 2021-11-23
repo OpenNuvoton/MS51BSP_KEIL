@@ -316,10 +316,10 @@ typedef unsigned long         uint32_t;
     #define TIMER_DIV4_VALUE_1ms         65536-4150  //4150*4/16600000 = 1 mS,       // Timer divider = 4
     #define TIMER_DIV16_VALUE_10ms       65536-10375  //10375*16/16600000 = 10 ms      // Timer  divider = 16
     #define TIMER_DIV64_VALUE_30ms       65536-7781  //7781*64/16600000 = 30 ms      // Timer divider = 64
-    #define  TIMER_DIV128_VALUE_100ms    65536-12969  //12969*128/16600000 = 100 ms    // Timer divider = 128
-    #define  TIMER_DIV128_VALUE_200ms    65536-25937  //25937*128/16600000 = 200 ms    // Timer divider = 128
+    #define TIMER_DIV128_VALUE_100ms    65536-12969  //12969*128/16600000 = 100 ms    // Timer divider = 128
+    #define TIMER_DIV128_VALUE_200ms    65536-25937  //25937*128/16600000 = 200 ms    // Timer divider = 128
     #define TIMER_DIV256_VALUE_500ms     65536-32422  //32422*256/16600000 = 500 ms   // Timer divider = 256
-    #define  TIMER_DIV512_VALUE_1s       65536-32421  //32421*512/16600000 = 1 s.      // Timer Divider = 512
+    #define TIMER_DIV512_VALUE_1s       65536-32421  //32421*512/16600000 = 1 s.      // Timer Divider = 512
 #endif
 #ifdef FOSC_240000    // if Fsys = 24MHz 
     #define TIMER_DIV12_VALUE_10us       65536-14    //14*12/16600000 = 10 uS,        // Timer divider = 12 for TM0/TM1
@@ -547,6 +547,10 @@ typedef unsigned long         uint32_t;
 #define    IC5_P03_CAP3_BOTHEDGE_CAPTURE            CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x06;CAPCON0|=0x40;CAPCON2|=0x40;
 #define    IC6_P05_CAP3_BOTHEDGE_CAPTURE            CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x07;CAPCON0|=0x40;CAPCON2|=0x40;
 #define    IC7_P15_CAP3_BOTHEDGE_CAPTURE            CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x08;CAPCON0|=0x40;CAPCON2|=0x40;
+
+#define    TIMER2_CAP2_DISABLE                     SFRS=0;CAPCON0&=0xBF
+#define    TIMER2_CAP1_DISABLE                     SFRS=0;CAPCON0&=0xDF
+#define    TIMER2_CAP0_DISABLE                     SFRS=0;CAPCON0&=0xEF
           
 /*****************************************************************************************
 * For PWM setting 

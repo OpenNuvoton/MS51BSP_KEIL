@@ -5,7 +5,8 @@
 /*---------------------------------------------------------------------------------------------------------*/
 
 #include "MS51_32K.h"
-
+bit BIT_TMP;
+unsigned char data  TA_REG_TMP,BYTE_TMP;
 
 /**
  * @brief       Read Dataflash

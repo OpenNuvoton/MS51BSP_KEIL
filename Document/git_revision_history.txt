@@ -14,7 +14,9 @@
 
 2021/5
 1  DID                           modify iap.c  read DID -> read DID + read PID
-2. I2C interrupt               add project I2C master/slave with interrupt and slave as eeprom mode.
+2. I2C interrupt             add project I2C master/slave with interrupt and slave as eeprom mode.
 
 2021/11
 1. sys.c                        Optimizer HIRC adjust 16.6MHz method.
+2. function_defien.h     added DISABLE_PIT function.
+                                     Modified DISABLE_IC0 ~ IC2 to DISABLE_CAP0 ~ CAP2

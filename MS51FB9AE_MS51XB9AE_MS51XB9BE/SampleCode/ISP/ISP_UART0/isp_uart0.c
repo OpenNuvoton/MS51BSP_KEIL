@@ -121,7 +121,7 @@ void TM0_ini(void)
 void UART0_ini_115200_24MHz(void)
 {
     P06_QUASI_MODE;    //Setting UART pin as Quasi mode for transmit
-//    P07_INPUT_MODE;    //Setting UART pin as Quasi mode for transmit  
+    P07_INPUT_MODE;    //Setting UART pin as Quasi mode for transmit  
     SCON = 0x50;            /*UART0 Mode1,REN=1,TI=1*/
     set_PCON_SMOD;          /*UART0 Double Rate Enable*/
     T3CON &= 0xF8;           /*T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)*/
@@ -132,7 +132,6 @@ void UART0_ini_115200_24MHz(void)
     ES=1;
     EA=1;
 }
-
 
 void Package_checksum(void)
 {

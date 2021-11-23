@@ -15,6 +15,8 @@
 /************************************************************************************************************/
 #include "MS51_32K.h"
 
+bit  stopflag=0;
+
 void PinInterrupt_ISR (void) interrupt 7
 {
     _push_(SFRS);
@@ -26,11 +28,12 @@ void PinInterrupt_ISR (void) interrupt 7
   if ((PIF|CLR_BIT1)==0xFF)
   {
     P35 = 0;
+    stopflag =1;
   }
   PIF = 0;
   
     _pop_(SFRS);
-}	
+}  
 /******************************************************************************
 The main C function.  Program execution starts
 here after stack initialization.
@@ -53,9 +56,9 @@ void main (void)
     ENABLE_PIN_INTERRUPT;                   // Enable pin interrupt
     ENABLE_GLOBAL_INTERRUPT;                // global enable bit
     set_PCON_PD;
+    while(!stopflag);
+    DISABLE_PIT1_P32_BOTHEDGE;
     while(1);
-
-
 }
 
 
