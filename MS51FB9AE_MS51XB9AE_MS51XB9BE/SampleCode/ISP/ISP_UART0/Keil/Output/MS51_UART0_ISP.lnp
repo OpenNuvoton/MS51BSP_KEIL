@@ -1,6 +1,0 @@
-".\Output\main_autosize_wdtdis.obj",
-".\Output\isp_uart0.obj",
-".\Output\STARTUP.obj" 
-TO ".\Output\MS51_UART0_ISP" 
-PRINT(".\LST\MS51_UART0_ISP.m51") RAMSIZE(256) 
-DISABLEWARNING (16) 

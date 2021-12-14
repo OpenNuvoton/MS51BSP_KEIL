@@ -23,7 +23,7 @@ void SMC0_ISR(void) interrupt 21          // Vector @  0x9B
         SFRS = 2;
         uart2rvflag = 1;
         uart2rvbuffer = SC0DR;
-        
+
     _pop_(SFRS);
 }
 /**
@@ -50,27 +50,6 @@ void UART2_Open(unsigned long u32SysClock, unsigned long u32Baudrate)
     set_SC0CR0_NSB;      //stop bit = 1bit
 }
 
-/****************************************************************************************************************/  
-/**** UART Receive data without interrupt                                                                       */
-/**** For example: UART_Open(UART0_Timer1,1200)                                                                 */
-/****************************************************************************************************************/ 
-//void UART2_Receive_10byte(void)
-//{  
-//  set_SC0IE_RDAIEN;
-//  BIT_TMP = EA;
-//  EA = 1;
-//  while (uart2rvlength!=10)
-//  {
-//    if (uart2rvflag)
-//    {
-//      uart2buffer[uart2rvlength]= SC0DR;
-//    }
-//    uart2rvflag=0;
-//  }
-//  uart2rvlength = 0;
-//  EA = BIT_TMP;
-//}
-
 /**
  * @brief       UART2 receive data without interrupt 
  * @param       baudrate value
@@ -82,7 +61,7 @@ unsigned char UART2_Receive_One_Byte()
 {
     unsigned char c;
     clr_SC0CR0_RXOFF;
-    while((SC0TSR&SET_BIT1)==SET_BIT1);
+    while(SC0TSR&SET_BIT1);
     c = SC0DR;
     return (c);
 }
@@ -98,39 +77,8 @@ void UART2_Send_Data(unsigned char c)
 {
       clr_SC0CR0_TXOFF;
       SC0DR = c;
-      while(!(SC0TSR|SET_BIT3));
+      while(!(SC0TSR&SET_BIT3));
       clr_SC0CR0_TXOFF;
 }
-
-
-/**
- * @brief       UART interrupt enable setting 
- * @param       u8UARTPort: UART0/UART1/UART2/UART2 baudrate value
- * @param       u8UARTINTStatus: Disable/Enable
- * @return      none
- * @details     none
- * @note        max baud rate = 1.5MHz when Fsys = 24MHz
- * @example:    UART2_Interrupt(UART2_TXD,Enable)
- */
-//void UART2_Interrupt(unsigned char u8UART2INTSel,unsigned char u8UART2INTStatus)
-//{
-//        switch (u8UART2INTSel)
-//        {
-//          case UART2_TXD:
-//            switch(u8UART2INTStatus)
-//            {
-//              case Disable: clr_SC0IE_TBEIEN;   break;
-//              case Enable: set_SC0IE_TBEIEN;    break;
-//            }break;
-//            case UART2_RXD:
-//            switch(u8UART2INTStatus)
-//            {
-//              case Disable:  clr_SC0IE_RDAIEN;   break;
-//              case Enable:   set_SC0IE_RDAIEN;   break;
-//            }break;
-//        }
-
-//}
-
 
 

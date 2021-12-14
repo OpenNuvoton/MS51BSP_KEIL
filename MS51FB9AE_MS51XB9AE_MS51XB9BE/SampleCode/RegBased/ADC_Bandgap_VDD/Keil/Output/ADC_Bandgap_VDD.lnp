@@ -1,7 +1,0 @@
-".\Output\ADC_BG_VDD.obj",
-".\Output\sys.obj",
-".\Output\uart.obj",
-".\Output\STARTUP.obj" 
-TO ".\Output\ADC_Bandgap_VDD" 
-PRINT(".\LST\ADC_Bandgap_VDD.m51") RAMSIZE(256) 
-DISABLEWARNING (16) 

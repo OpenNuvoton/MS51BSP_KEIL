@@ -59,7 +59,7 @@ unsigned char UART4_Receive_Data()
     unsigned char c;
 
     clr_SC2CR0_RXOFF;
-    while((SC2TSR&&SET_BIT1)==SET_BIT1);
+    while(SC2TSR&SET_BIT1);
     c = SC1DR;
     return (c);
 }
@@ -78,34 +78,4 @@ void UART4_Send_Data(unsigned char c)
     while(!(SC2TSR&SET_BIT3));
     clr_SC2CR0_TXOFF;
 }
-
-
-/**
- * @brief       UART interrupt enable setting 
- * @param       u8UARTPort: UART0/UART1/UART2/UART3 baudrate value
- * @param       u8UARTINTStatus: Disable/Enable
- * @return      none
- * @details     none
- * @note        max baud rate = 1.5MHz when Fsys = 24MHz
- * @example:    UART3_Interrupt(UART3_TXD,Enable)
- */
-//void UART4_Interrupt(unsigned char u8UART4INTSel,unsigned char u8UART4INTStatus)
-//{
-//        switch (u8UART4INTSel)
-//        {
-//          case UART3_TXD:
-//            switch(u8UART4INTStatus)
-//            {
-//              case Disable: DISABLE_SC2_TRASMIT_BUFFER_EMPTY_INTERRUPT;   break;
-//              case Enable: ENABLE_SC2_TRASMIT_BUFFER_EMPTY_INTERRUPT;    break;
-//            }break;
-//          case UART3_RXD:
-//            switch(u8UART4INTStatus)
-//            {
-//              case Disable:  DISABLE_SC2_RECEIVE_DATA_REACH_INTERRUPT;   break;
-//              case Enable:   ENABLE_SC2_RECEIVE_DATA_REACH_INTERRUPT;   break;
-//            }break;
-//        }
-//}
-
 
