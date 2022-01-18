@@ -59,7 +59,7 @@ void PWM0_ConfigOutputChannel(unsigned char u8PWM0ChannelNum,
                               unsigned long u32PWM0Frequency,
                               unsigned int u16PWM0DutyCycle)
 {
-  SFRS = 0x01;
+      set_SFRS_SFRPAGE;
   switch (u8PWM0OPMode)
   {
       case Independent:    PWMCON1&=0x3F;break;
@@ -82,7 +82,7 @@ void PWM0_ConfigOutputChannel(unsigned char u8PWM0ChannelNum,
   }
   PWMPH = u32PWM0Frequency>>8;
   PWMPL = u32PWM0Frequency;
-}
+	    clr_SFRS_SFRPAGE;}
 
  /**
  * @brief This function config PWM Complementary pair inset dead zone time 

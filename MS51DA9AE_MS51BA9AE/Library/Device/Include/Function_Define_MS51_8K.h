@@ -563,14 +563,14 @@ typedef unsigned long         uint32_t;
 #define    PWM0_CLOCK_DIV_64                       PWMCON1&=0xF8;PWMCON1|=0x06
 #define    PWM0_CLOCK_DIV_128                      PWMCON1|=0x07
 /*--------- PWM I/O select define ------------------------------  */
-#define    ENABLE_ALL_PWM0_OUTPUT                  PIOCON0=0xFF;PIOCON1=0xFF
-#define    ENABLE_PWM0_CH5_P03_OUTPUT              PIOCON0|=0x20                                                //P0.3 as PWM5
-#define    ENABLE_PWM0_CH4_P01_OUTPUT              PIOCON0|=0x10                                                //P0.1 as PWM4 output enable
+#define    ENABLE_ALL_PWM0_OUTPUT                  clr_SFRS_SFRPAGE;PIOCON0=0xFF;PIOCON1=0xFF
+#define    ENABLE_PWM0_CH5_P03_OUTPUT              clr_SFRS_SFRPAGE;PIOCON0|=0x20                                                //P0.3 as PWM5
+#define    ENABLE_PWM0_CH4_P01_OUTPUT              clr_SFRS_SFRPAGE;PIOCON0|=0x10                                                //P0.1 as PWM4 output enable
 #define    ENABLE_PWM0_CH3_P04_OUTPUT              set_SFRS_SFRPAGE;PIOCON1|=0x08;clr_SFRS_SFRPAGE              //P0.4 as PWM3 output enable
-#define    ENABLE_PWM0_CH3_P00_OUTPUT              PIOCON0|=0x08                                                //P0.0 as PWM3 
+#define    ENABLE_PWM0_CH3_P00_OUTPUT              clr_SFRS_SFRPAGE;PIOCON0|=0x08                                                //P0.0 as PWM3 
 #define    ENABLE_PWM0_CH2_P05_OUTPUT              set_SFRS_SFRPAGE;PIOCON1|=0x04;clr_SFRS_SFRPAGE              //P1.0 as PWM2 output enable
- #define   ENABLE_PWM0_CH2_P10_OUTPUT              PIOCON0|=0x04                                                //P1.0 as PWM2
-#define    ENABLE_PWM0_CH0_P02_OUTPUT              PIOCON0|=0x01 
+ #define   ENABLE_PWM0_CH2_P10_OUTPUT              clr_SFRS_SFRPAGE;PIOCON0|=0x04                                                //P1.0 as PWM2
+#define    ENABLE_PWM0_CH0_P02_OUTPUT              clr_SFRS_SFRPAGE;PIOCON0|=0x01 
                                                        //P1.2 as PWM0 output enable
 #define    DISABLE_ALL_PWM0_OUTPUT                 PIOCON0=0x00;PIOCON1=0x00
 #define    DISABLE_PWM0_CH5_P03_OUTPUT             PIOCON0&=0xDF                                                //P0.3 as PWM5
