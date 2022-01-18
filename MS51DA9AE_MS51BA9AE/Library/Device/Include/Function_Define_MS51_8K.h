@@ -448,13 +448,12 @@ typedef unsigned long         uint32_t;
 #define    TIMER2_CAP0_RELOAD_Mode                  T2CON&=0xFE;T2MOD=0x89
 #define    TIMER2_CAP1_RELOAD_Mode                  T2CON&=0xFE;T2MOD=0x8A
 #define    TIMER2_CAP2_RELOAD_Mode                  T2CON&=0xFE;T2MOD=0x8B
-                                                  
-#define    TIMER2_CAP0_DISABLE                      CAPCON0&=0xBF 
-#define    TIMER2_CAP1_DISABLE                      CAPCON0&=0xDF 
-#define    TIMER2_CAP2_DISABLE                      CAPCON0&=0xEF 
+
+#define    TIMER2_CAP2_DISABLE                      SFRS=0;CAPCON0&=0xBF
+#define    TIMER2_CAP1_DISABLE                      SFRS=0;CAPCON0&=0xDF
+#define    TIMER2_CAP0_DISABLE                      SFRS=0;CAPCON0&=0xEF
 
 //-------------------- Timer2 Capture define --------------------*/
-
 //--- Falling Edge -----
 #define    IC0_P12_CAP0_FALLINGEDGE_CAPTURE         CAPCON1&=0xFC;CAPCON3&=0xF0;CAPCON0|=0x10;CAPCON2|=0x10
 #define    IC1_P11_CAP0_FALLINGEDGE_CAPTURE         CAPCON1&=0xFC;CAPCON3&=0xF0;CAPCON3|=0x01;CAPCON0|=0x10;CAPCON2|=0x10
@@ -548,10 +547,6 @@ typedef unsigned long         uint32_t;
 #define    IC6_P05_CAP3_BOTHEDGE_CAPTURE            CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x07;CAPCON0|=0x40;CAPCON2|=0x40
 #define    IC7_P15_CAP3_BOTHEDGE_CAPTURE            CAPCON1&=0x0F;CAPCON1|=0x20;CAPCON4&=0xF0;CAPCON4|=0x08;CAPCON0|=0x40;CAPCON2|=0x40
 
-#define    TIMER2_CAP2_DISABLE                     SFRS=0;CAPCON0&=0xBF
-#define    TIMER2_CAP1_DISABLE                     SFRS=0;CAPCON0&=0xDF
-#define    TIMER2_CAP0_DISABLE                     SFRS=0;CAPCON0&=0xEF
-          
 /*****************************************************************************************
 * For PWM setting 
 *****************************************************************************************/
@@ -574,7 +569,7 @@ typedef unsigned long         uint32_t;
 #define    ENABLE_PWM0_CH3_P04_OUTPUT              set_SFRS_SFRPAGE;PIOCON1|=0x08;clr_SFRS_SFRPAGE              //P0.4 as PWM3 output enable
 #define    ENABLE_PWM0_CH3_P00_OUTPUT              PIOCON0|=0x08                                                //P0.0 as PWM3 
 #define    ENABLE_PWM0_CH2_P05_OUTPUT              set_SFRS_SFRPAGE;PIOCON1|=0x04;clr_SFRS_SFRPAGE              //P1.0 as PWM2 output enable
-#define    ENABLE_PWM0_CH2_P10_OUTPUT              PIOCON0|=0x04                                                //P1.0 as PWM2
+ #define   ENABLE_PWM0_CH2_P10_OUTPUT              PIOCON0|=0x04                                                //P1.0 as PWM2
 #define    ENABLE_PWM0_CH0_P02_OUTPUT              PIOCON0|=0x01 
                                                        //P1.2 as PWM0 output enable
 #define    DISABLE_ALL_PWM0_OUTPUT                 PIOCON0=0x00;PIOCON1=0x00
@@ -589,19 +584,19 @@ typedef unsigned long         uint32_t;
 #define    PWM0_OUTPUT_ALL_INVERSE                 PNP=0xFF
 #define    PWM0_OUTPUT_ALL_NORMAL                  PNP=0x00
                                                    
-#define    PWM0_CH5_OUTPUT_INVERSE                 PNP|=0x20        
-#define    PWM0_CH4_OUTPUT_INVERSE                 PNP|=0x10        
-#define    PWM0_CH3_OUTPUT_INVERSE                 PNP|=0x08        
-#define    PWM0_CH2_OUTPUT_INVERSE                 PNP|=0x04        
-#define    PWM0_CH1_OUTPUT_INVERSE                 PNP|=0x02        
-#define    PWM0_CH0_OUTPUT_INVERSE                 PNP|=0x01        
+#define    PWM0_CH5_OUTPUT_INVERSE                 PNP|=0x20
+#define    PWM0_CH4_OUTPUT_INVERSE                 PNP|=0x10
+#define    PWM0_CH3_OUTPUT_INVERSE                 PNP|=0x08
+#define    PWM0_CH2_OUTPUT_INVERSE                 PNP|=0x04
+#define    PWM0_CH1_OUTPUT_INVERSE                 PNP|=0x02
+#define    PWM0_CH0_OUTPUT_INVERSE                 PNP|=0x01
                                                    
-#define    PWM0_CH5_OUTPUT_NORMAL                  PNP&=0xDF        
-#define    PWM0_CH4_OUTPUT_NORMAL                  PNP&=0xEF        
-#define    PWM0_CH3_OUTPUT_NORMAL                  PNP&=0xF7        
-#define    PWM0_CH2_OUTPUT_NORMAL                  PNP&=0xFB        
-#define    PWM0_CH1_OUTPUT_NORMAL                  PNP&=0xFD        
-#define    PWM0_CH0_OUTPUT_NORMAL                  PNP&=0xFE        
+#define    PWM0_CH5_OUTPUT_NORMAL                  PNP&=0xDF
+#define    PWM0_CH4_OUTPUT_NORMAL                  PNP&=0xEF
+#define    PWM0_CH3_OUTPUT_NORMAL                  PNP&=0xF7
+#define    PWM0_CH2_OUTPUT_NORMAL                  PNP&=0xFB
+#define    PWM0_CH1_OUTPUT_NORMAL                  PNP&=0xFD
+#define    PWM0_CH0_OUTPUT_NORMAL                  PNP&=0xFE
 /*--------- PWM type define ------------------------------------*/
 #define    PWM0_EDGE_TYPE                          PWMCON1&=0xEF
 #define    PWM0_CENTER_TYPE                        PWMCON1|=0x10

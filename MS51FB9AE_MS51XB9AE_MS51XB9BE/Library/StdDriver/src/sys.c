@@ -60,7 +60,7 @@ unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
         IAPCN = READ_DID;
         IAPAL = 1;
         IAPAH = 0;
-        set_IAPGO;
+        set_IAPTRG_IAPGO_WDCLR;
 
         if ((IAPFD==0x4B)||(IAPFD==0x52)||(IAPFD==0x53))    /* MS51 process */
         {
