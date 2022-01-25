@@ -23,6 +23,7 @@
 #include "IAP.h"
 #include "IAP_SPROM.h"
 #include "eeprom_sprom.h"
+#include "pwm.h"
 #include "spi.h"
 #include "sys.h"
 #include "uart.h"
@@ -298,7 +299,7 @@
 #define set_IAPUEN_LDUEN         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN|=0x02;EA=BIT_TMP
 #define set_IAPUEN_APUEN         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN|=0x01;EA=BIT_TMP
                                  
-#define clr_IAPUEN_SPMEM         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=0xEF;EA=BIT_TMP
+#define clr_IAPUEN_SPMEN         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=0xEF;EA=BIT_TMP
 #define clr_IAPUEN_SPUEN         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=0xF7;EA=BIT_TMP
 #define clr_IAPUEN_CFUEN         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=0xFB;EA=BIT_TMP
 #define clr_IAPUEN_LDUEN         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN&=0xFD;EA=BIT_TMP

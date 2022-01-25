@@ -3,16 +3,23 @@
 /*  All IP function define for Nuvoton MS51FB9AE / MS51XB9AE / MS51XB9BE                */
 /*--------------------------------------------------------------------------------------*/
 
-extern bit BIT_TMP;
-
 typedef bit                   BIT;
+
 typedef unsigned char         UINT8;
 typedef unsigned int          UINT16;
 typedef unsigned long         UINT32;
 
+typedef signed char           INT8;
+typedef signed int            INT16;
+typedef signed long           INT32;
+
 typedef unsigned char         uint8_t;
 typedef unsigned int          uint16_t;
 typedef unsigned long         uint32_t;
+
+typedef signed char           int8_t;
+typedef signed int            int16_t;
+typedef signed long           int32_t;
 
 #define Disable  0
 #define Enable   1
@@ -579,12 +586,12 @@ typedef unsigned long         uint32_t;
 #define    PWM_CLOCK_TIMER1                  CKCON|=0x40
 /*--------- PWM type define ------------------------------------*/ 
 #define    PWM_EDGE_TYPE                     PWMCON1&=0xEF
-#define    PWM_CENTER_TYPE                   PWMCON1|=0x10      
+#define    PWM_CENTER_TYPE                   PWMCON1|=0x10
 /*--------- PWM mode define ------------------------------------*/ 
-#define    PWM_IMDEPENDENT_MODE              PWMCON1&=0x3F                
-#define    PWM_COMPLEMENTARY_MODE            PWMCON1&=0x3F;PWMCON1|=0x40 
-#define    PWM_SYNCHRONIZED_MODE             PWMCON1&=0x3F;PWMCON1|=0x80 
-#define    PWM_GP_MODE_ENABLE                PWMCON1|=0x20                
+#define    PWM_IMDEPENDENT_MODE              PWMCON1&=0x3F
+#define    PWM_COMPLEMENTARY_MODE            PWMCON1&=0x3F;PWMCON1|=0x40
+#define    PWM_SYNCHRONIZED_MODE             PWMCON1&=0x3F;PWMCON1|=0x80
+#define    PWM_GP_MODE_ENABLE                PWMCON1|=0x20
 #define    PWM_GP_MODE_DISABLE               PWMCON1&=0xDF
 //--------- PWM clock devide define ----------------------------
 #define    PWM_CLOCK_DIV_2                   PWMCON1&=0xF8;PWMCON1|=0x01
@@ -593,7 +600,7 @@ typedef unsigned long         uint32_t;
 #define    PWM_CLOCK_DIV_16                  PWMCON1&=0xF8;PWMCON1|=0x04
 #define    PWM_CLOCK_DIV_32                  PWMCON1&=0xF8;PWMCON1|=0x05
 #define    PWM_CLOCK_DIV_64                  PWMCON1&=0xF8;PWMCON1|=0x06
-#define    PWM_CLOCK_DIV_128                 PWMCON1|=0x07                                        
+#define    PWM_CLOCK_DIV_128                 PWMCON1|=0x07
 /* --------- PWM I/O select define ------------------------------*/ 
 #define    PWM5_P15_OUTPUT_ENABLE            set_SFRS_SFRPAGE;PIOCON1|=0x20;clr_SFRS_SFRPAGE        //P1.5 as PWM5 output enable
 #define    PWM5_P03_OUTPUT_ENABLE            PIOCON0|=0x20                                                                                 //P0.3 as PWM5
@@ -619,19 +626,19 @@ typedef unsigned long         uint32_t;
 #define    PWM0_P12_OUTPUT_DISABLE           PIOCON0&=0xFE                                                                                 //P1.2 as PWM0 output disable
 #define    ALL_PWM_OUTPUT_DISABLE            PIOCON0=0x00;PIOCON1=0x00
 //--------- PWM I/O Polarity Control ---------------------------
-#define    PWM5_OUTPUT_INVERSE               PNP|=0x20        
-#define    PWM4_OUTPUT_INVERSE               PNP|=0x10        
-#define    PWM3_OUTPUT_INVERSE               PNP|=0x08        
-#define    PWM2_OUTPUT_INVERSE               PNP|=0x04        
-#define    PWM1_OUTPUT_INVERSE               PNP|=0x02        
-#define    PWM0_OUTPUT_INVERSE               PNP|=0x01        
+#define    PWM5_OUTPUT_INVERSE               PNP|=0x20
+#define    PWM4_OUTPUT_INVERSE               PNP|=0x10
+#define    PWM3_OUTPUT_INVERSE               PNP|=0x08
+#define    PWM2_OUTPUT_INVERSE               PNP|=0x04
+#define    PWM1_OUTPUT_INVERSE               PNP|=0x02
+#define    PWM0_OUTPUT_INVERSE               PNP|=0x01
 #define    PWM_OUTPUT_ALL_INVERSE            PNP|=0xFF
-#define    PWM5_OUTPUT_NORMAL                PNP&=0xDF        
-#define    PWM4_OUTPUT_NORMAL                PNP&=0xEF        
-#define    PWM3_OUTPUT_NORMAL                PNP&=0xF7        
-#define    PWM2_OUTPUT_NORMAL                PNP&=0xFB        
-#define    PWM1_OUTPUT_NORMAL                PNP&=0xFD        
-#define    PWM0_OUTPUT_NORMAL                PNP&=0xFE        
+#define    PWM5_OUTPUT_NORMAL                PNP&=0xDF
+#define    PWM4_OUTPUT_NORMAL                PNP&=0xEF
+#define    PWM3_OUTPUT_NORMAL                PNP&=0xF7
+#define    PWM2_OUTPUT_NORMAL                PNP&=0xFB
+#define    PWM1_OUTPUT_NORMAL                PNP&=0xFD
+#define    PWM0_OUTPUT_NORMAL                PNP&=0xFE
 #define    PWM_OUTPUT_ALL_NORMAL             PNP&=0x00
 
 //--------- PMW interrupt setting ------------------------------
@@ -657,23 +664,24 @@ typedef unsigned long         uint32_t;
 //--------- PMW0 clock source select define ---------------------
 #define    PWM0_CLOCK_FSYS                   CKCON&=0xBF
 #define    PWM0_CLOCK_TIMER1                 CKCON|=0x40
-/*--------- PWM type define ------------------------------------*/ 
+/*--------- PWM type define ------------------------------------*/
 #define    PWM0_EDGE_TYPE                    PWMCON1&=0xEF
 #define    PWM0_CENTER_TYPE                  PWMCON1|=0x10      
-/*--------- PWM mode define ------------------------------------*/ 
-#define    PWM0_IMDEPENDENT_MODE             PWMCON1&=0x3F                
+/*--------- PWM mode define ------------------------------------*/
+#define    PWM0_IMDEPENDENT_MODE             PWMCON1&=0x3F
 #define    PWM0_COMPLEMENTARY_MODE           PWMCON1&=0x3F;PWMCON1|=0x40 
 #define    PWM0_SYNCHRONIZED_MODE            PWMCON1&=0x3F;PWMCON1|=0x80 
-#define    PWM0_GP_MODE_ENABLE               PWMCON1|=0x20                
+#define    PWM0_GP_MODE_ENABLE               PWMCON1|=0x20
 #define    PWM0_GP_MODE_DISABLE              PWMCON1&=0xDF
 //--------- PWM0 clock devide define ----------------------------
-#define    PWM0_CLOCK_DIV_2                  PWMCON1|=0x01;PWMCON1&=0xF9
-#define    PWM0_CLOCK_DIV_4                  PWMCON1|=0x02;PWMCON1&=0xFA
-#define    PWM0_CLOCK_DIV_8                  PWMCON1|=0x03;PWMCON1&=0xFB
-#define    PWM0_CLOCK_DIV_16                 PWMCON1|=0x04;PWMCON1&=0xFC
-#define    PWM0_CLOCK_DIV_32                 PWMCON1|=0x05;PWMCON1&=0xFD
-#define    PWM0_CLOCK_DIV_64                 PWMCON1|=0x06;PWMCON1&=0xFE
-#define    PWM0_CLOCK_DIV_128                PWMCON1|=0x07
+#define    PWM0_CLOCK_DIV_1                  PWMCON1&=0xF8;PWMCON1|=0x00
+#define    PWM0_CLOCK_DIV_2                  PWMCON1&=0xF8;PWMCON1|=0x01
+#define    PWM0_CLOCK_DIV_4                  PWMCON1&=0xF8;PWMCON1|=0x02
+#define    PWM0_CLOCK_DIV_8                  PWMCON1&=0xF8;PWMCON1|=0x03
+#define    PWM0_CLOCK_DIV_16                 PWMCON1&=0xF8;PWMCON1|=0x04
+#define    PWM0_CLOCK_DIV_32                 PWMCON1&=0xF8;PWMCON1|=0x05
+#define    PWM0_CLOCK_DIV_64                 PWMCON1&=0xF8;PWMCON1|=0x06
+#define    PWM0_CLOCK_DIV_128                PWMCON1&=0xF8;PWMCON1|=0x07
 /* --------- PWM0 I/O select define ------------------------------*/ 
 #define    ENABLE_PWM0_CH5_P15_OUTPUT        set_SFRS_SFRPAGE;PIOCON1|=0x20;clr_SFRS_SFRPAGE        //P1.5 as PWM5 output enable 
 #define    ENABLE_PWM0_CH5_P03_OUTPUT        PIOCON0|=0x20                                                                                 //P0.3 as PWM5               
@@ -686,7 +694,7 @@ typedef unsigned long         uint32_t;
 #define    ENABLE_PWM0_CH1_P11_OUTPUT        PIOCON0|=0x02                                                                                 //P1.1 as PWM1               
 #define    ENABLE_PWM0_CH0_P12_OUTPUT        PIOCON0|=0x01                                                                                 //P1.2 as PWM0 output enable 
 #define    ENABLE_ALL_PWM0_OUTPUT            PIOCON0=0xFF;PIOCON1=0xFF
-                                                                                                  
+
 #define    DISABLE_PWM0_CH5_P15_OUTPUT       set_SFRS_SFRPAGE;PIOCON1&=0xDF;clr_SFRS_SFRPAGE        //P1.5 as PWM5 output disable
 #define    DISABLE_PWM0_CH5_P03_OUTPUT       PIOCON0&=0xDF                                                                                 //P0.3 as PWM5               
 #define    DISABLE_PWM0_CH4_P01_OUTPUT       PIOCON0&=0xEF                                                                                 //P0.1 as PWM4 output disable
@@ -697,21 +705,21 @@ typedef unsigned long         uint32_t;
 #define    DISABLE_PWM0_CH1_P14_OUTPUT       set_SFRS_SFRPAGE;PIOCON1&=0xFD;clr_SFRS_SFRPAGE        //P1.4 as PWM1 output disable
 #define    DISABLE_PWM0_CH1_P11_OUTPUT       PIOCON0&=0xFD                                                                                 //P1.1 as PWM1               
 #define    DISABLE_PWM0_CH0_P12_OUTPUT       PIOCON0&=0xFE                                                                                 //P1.2 as PWM0 output disable
-#define    DISABLE_ALL_PWM0_OUTPUT           PIOCON0=0x00;PIOCON1=0x00                                                                                                  
+#define    DISABLE_ALL_PWM0_OUTPUT           PIOCON0=0x00;PIOCON1=0x00
 //--------- PWM0 I/O Polarity Control ---------------------------
-#define    PWM0_CH5_OUTPUT_INVERSE           PNP|=0x20        
-#define    PWM0_CH4_OUTPUT_INVERSE           PNP|=0x10        
-#define    PWM0_CH3_OUTPUT_INVERSE           PNP|=0x08        
-#define    PWM0_CH2_OUTPUT_INVERSE           PNP|=0x04        
-#define    PWM0_CH1_OUTPUT_INVERSE           PNP|=0x02        
-#define    PWM0_CH0_OUTPUT_INVERSE           PNP|=0x01        
+#define    PWM0_CH5_OUTPUT_INVERSE           PNP|=0x20
+#define    PWM0_CH4_OUTPUT_INVERSE           PNP|=0x10
+#define    PWM0_CH3_OUTPUT_INVERSE           PNP|=0x08
+#define    PWM0_CH2_OUTPUT_INVERSE           PNP|=0x04
+#define    PWM0_CH1_OUTPUT_INVERSE           PNP|=0x02
+#define    PWM0_CH0_OUTPUT_INVERSE           PNP|=0x01
 #define    PWM0_OUTPUT_ALL_INVERSE           PNP|=0xFF
-#define    PWM0_CH5_OUTPUT_NORMAL            PNP&=0xDF        
-#define    PWM0_CH4_OUTPUT_NORMAL            PNP&=0xEF        
-#define    PWM0_CH3_OUTPUT_NORMAL            PNP&=0xF7        
-#define    PWM0_CH2_OUTPUT_NORMAL            PNP&=0xFB        
-#define    PWM0_CH1_OUTPUT_NORMAL            PNP&=0xFD        
-#define    PWM0_CH0_OUTPUT_NORMAL            PNP&=0xFE        
+#define    PWM0_CH5_OUTPUT_NORMAL            PNP&=0xDF
+#define    PWM0_CH4_OUTPUT_NORMAL            PNP&=0xEF
+#define    PWM0_CH3_OUTPUT_NORMAL            PNP&=0xF7
+#define    PWM0_CH2_OUTPUT_NORMAL            PNP&=0xFB
+#define    PWM0_CH1_OUTPUT_NORMAL            PNP&=0xFD
+#define    PWM0_CH0_OUTPUT_NORMAL            PNP&=0xFE
 #define    PWM0_OUTPUT_ALL_NORMAL            PNP&=0x00
 
 //--------- PMW0 interrupt setting ------------------------------
@@ -756,8 +764,6 @@ typedef unsigned long         uint32_t;
 #define    DISABLE_ADC                       clr_SFRS_SFRPAGE;ADCCON1&=0xFE;
 
 /* PWM trig ADC start define */ 
-
-/* PWM0 trig ADC start define */
 #define    PWM0_FALLINGEDGE_TRIG_ADC         clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x00;ADCCON1&=0xF3;ADCCON1|=0x00;ADCCON1|=0x02
 #define    PWM2_FALLINGEDGE_TRIG_ADC         clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x10;ADCCON1&=0xF3;ADCCON1|=0x00;ADCCON1|=0x02
 #define    PWM4_FALLINGEDGE_TRIG_ADC         clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x20;ADCCON1&=0xF3;ADCCON1|=0x04;ADCCON1|=0x02
@@ -770,7 +776,7 @@ typedef unsigned long         uint32_t;
 #define    PWM0_END_TRIG_ADC                 clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x00;ADCCON1&=0xF3;ADCCON1|=0x0C;ADCCON1|=0x02
 #define    PWM2_END_TRIG_ADC                 clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x10;ADCCON1&=0xF3;ADCCON1|=0x0C;ADCCON1|=0x02
 #define    PWM4_END_TRIG_ADC                 clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x20;ADCCON1&=0xF3;ADCCON1|=0x0C;ADCCON1|=0x02
-          
+
 #define    PWM0_CH0_FALLINGEDGE_TRIG_ADC     clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x00;ADCCON1&=0xF3;ADCCON1|=0x00;ADCCON1|=0x02
 #define    PWM0_CH2_FALLINGEDGE_TRIG_ADC     clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x10;ADCCON1&=0xF3;ADCCON1|=0x00;ADCCON1|=0x02
 #define    PWM0_CH4_FALLINGEDGE_TRIG_ADC     clr_SFRS_SFRPAGE;ADCCON0&=0xCF;ADCCON0|=0x20;ADCCON1&=0xF3;ADCCON1|=0x04;ADCCON1|=0x02
@@ -827,6 +833,6 @@ typedef unsigned long         uint32_t;
 /**********************************/
 #define    TIMER0_FSYS                        set_CKCON_T0M
 #define    TIMER0_FSYS_DIV12                  clr_CKCON_T0M
-                                              
+
 #define    TIMER1_FSYS                        set_CKCON_T1M
 #define    TIMER1_FSYS_DIV12                  clr_CKCON_T1M

@@ -31,7 +31,7 @@ void main(void)
   printf ("\n UID = ");
   for(READ1=0;READ1<12;READ1++)
   {
-    printf (" 0x%bx",UIDBuffer[READ1]);
+//    printf (" 0x%bx",UIDBuffer[READ1]);
   }
   
   while(1);

@@ -65,7 +65,7 @@ void main (void)
   
   
 /*call read byte */
-    system16highsite = ((read_APROM_BYTE(0x38FD)<<8)+read_APROM_BYTE(0x38FE));
+    system16highsite = ((Read_APROM_BYTE(0x38FD)<<8)+Read_APROM_BYTE(0x38FE));
 
 #ifdef print_function
     printf ("\n system16highsite = 0x%X", system16highsite);

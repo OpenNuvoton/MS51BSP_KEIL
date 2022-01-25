@@ -6,6 +6,7 @@
 
 #include "MS51_16K.h"
 
+bit BIT_TMP;
 /**
  * @brief       Read Dataflash
  * @param       Dataflash start address

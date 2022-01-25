@@ -384,7 +384,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Common</GroupName>
+          <GroupName>Library</GroupName>
           <Files>
             <File>
               <FileName>sys.c</FileName>

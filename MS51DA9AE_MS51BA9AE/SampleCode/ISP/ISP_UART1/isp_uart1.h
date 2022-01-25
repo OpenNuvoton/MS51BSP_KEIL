@@ -1,7 +1,3 @@
- 
-#define TRUE       (1)
-#define FALSE     (0)
-
 #define CMD_CONNECT          0xAE
 #define CMD_SYNC_PACKNO      0xA4
 #define CMD_GET_FWVER        0xA6

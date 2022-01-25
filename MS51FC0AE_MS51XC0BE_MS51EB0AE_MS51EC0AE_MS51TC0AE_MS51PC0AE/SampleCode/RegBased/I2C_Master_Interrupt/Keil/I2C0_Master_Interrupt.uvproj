@@ -389,7 +389,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Common</GroupName>
+          <GroupName>Library</GroupName>
           <Files>
             <File>
               <FileName>uart.c</FileName>
@@ -405,6 +405,11 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Library\StdDriver\src\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Library\StdDriver\src\common.c</FilePath>
             </File>
             <File>
               <FileName>sys.c</FileName>

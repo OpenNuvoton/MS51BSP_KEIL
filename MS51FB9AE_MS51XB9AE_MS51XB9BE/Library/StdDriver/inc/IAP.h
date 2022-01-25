@@ -12,6 +12,7 @@
 
 extern unsigned char xdata DIDBuffer[2];
 extern unsigned char xdata PIDBuffer[2];
+extern unsigned char xdata UIDBuffer[12];
 extern unsigned char xdata UCIDBuffer[12];
 extern unsigned char xdata IAPDataBuf[128];
 extern unsigned char xdata IAPCFBuf[5];

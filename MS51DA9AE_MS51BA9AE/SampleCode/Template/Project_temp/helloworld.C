@@ -4,39 +4,34 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//  Date   : Jan/21/2020
-//***********************************************************************************************************
+/***********************************************************************************************************/
+/* Website: http://www.nuvoton.com                                                                         */
+/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
+/*  Date   : June/21/2020                                                                                   */
+/***********************************************************************************************************/
 
-//***********************************************************************************************************
-//  File Function: ML51 GPIO toggle demo code
-//***********************************************************************************************************
-#include "MS51_8K_IAR.h"
+/************************************************************************************************************/
+/*  File Function: MS51 DEMO project                                                                        */
+/************************************************************************************************************/
 
-unsigned char temp ;
-unsigned char __idata itemp ;
-unsigned char __xdata xtemp ;
+#include "MS51_8K.h"
 
-//----------------------------------------------------------------------------------------------//
-void main (void)
+
+void main (void) 
 {
-/* As defaut all multi function define as GPIO */ 
-  MODIFY_HIRC_24();
-  ALL_GPIO_QUASI_MODE;
-  P06_PUSHPULL_MODE;
-  UART_Open(24000000,UART0_Timer1,115200);
-  ENABLE_UART0_PRINTF;
-  
-  while(1)
-  {
-    P1 = 0xff;
-    Timer3_Delay(24000000,16,200,1000);
-    P1 = 0x00;
-    Timer3_Delay(24000000,16,200,1000);
-    printf_UART("\n hello world ");
-  }
+/* UART0 initial setting
+  * include sys.c in Library for modify HIRC value to 24MHz
+  * include uart.c in Library for UART initial setting
+*/
+    MODIFY_HIRC(HIRC_24);
+    P06_PUSHPULL_MODE;
+    UART_Open(24000000,UART0_Timer3,115200);
+    ENABLE_UART0_PRINTF;
+
+    printf("\n Hello world!");
+    while(1);
+
+
 }
 
 

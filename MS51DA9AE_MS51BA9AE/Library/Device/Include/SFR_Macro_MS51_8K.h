@@ -17,6 +17,7 @@
 /******************************************************************************/
 #include "Function_define_MS51_8K.h"
 #include "bod.h"
+#include "Common.h"
 #include "Delay.h"
 #include "eeprom.h"
 #include "eeprom_sprom.h"

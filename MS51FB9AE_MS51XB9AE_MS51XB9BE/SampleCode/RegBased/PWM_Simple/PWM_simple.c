@@ -37,18 +37,18 @@ void main(void)
                 = (16MHz/8)/(0x7CF + 1)
                 = 1KHz (1ms)
 ***********************************************************************/
-  
-    PWM2H = 0x10;          
+
+    PWM2H = 0x10;
     PWM2L = 0x08;
-    PWM2H = 0x00;            
+    PWM2H = 0x00;
     PWM2L = 0x25;
     
     set_SFRS_SFRPAGE;            //PWM4 and PWM5 duty seting is in SFP page 1
-    PWM4H = 0x03;            
+    PWM4H = 0x03;
     PWM4L = 0xCF;
-    PWM5H = 0x05;            
+    PWM5H = 0x05;
     PWM5L = 0xCF;
-    clr_SFRS_SFRPAGE;                      
+    clr_SFRS_SFRPAGE;
 /* PWM output inversly enable */
     PWM2_OUTPUT_INVERSE;
 

@@ -2,16 +2,24 @@
 /*  Function_Define_MS51_8K.H                                                           */
 /*  All IP Function Define for Nuvoton MS51DA9AE / MS51BA9AE                            */
 /*--------------------------------------------------------------------------------------*/
-extern   bit BIT_TMP;
 
 typedef bit                   BIT;
+
 typedef unsigned char         UINT8;
 typedef unsigned int          UINT16;
 typedef unsigned long         UINT32;
 
+typedef signed char           INT8;
+typedef signed int            INT16;
+typedef signed long           INT32;
+
 typedef unsigned char         uint8_t;
 typedef unsigned int          uint16_t;
 typedef unsigned long         uint32_t;
+
+typedef signed char           int8_t;
+typedef signed int            int16_t;
+typedef signed long           int32_t;
 
 #define Disable  0
 #define Enable   1

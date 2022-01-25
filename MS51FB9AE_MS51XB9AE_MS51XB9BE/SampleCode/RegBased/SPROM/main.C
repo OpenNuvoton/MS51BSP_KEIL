@@ -24,7 +24,7 @@ void main (void)
     UART_Open(24000000,UART0_Timer1,115200);
     ENABLE_UART0_PRINTF;
     
-    set_IAPUEN_SPMEM;             //Enable SPROM memory mapping only for check SPROM in memory window
+    set_IAPUEN_SPMEN;             //Enable SPROM memory mapping only for check SPROM in memory window
     while(1)
     {
       SPROM_CODE();
