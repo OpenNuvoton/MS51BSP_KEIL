@@ -32,7 +32,7 @@ void main (void)
   /* ADC Low speed initial*/  
     ADCCON1|=0X30;            /* clock divider */
     ADCCON2|=0X0E;            /* AQT time */
-    AUXR1|=SET_BIT4;          /* ADC clock low speed */
+
     P12_PUSHPULL_MODE;
  
     while(1)

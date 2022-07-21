@@ -37,7 +37,6 @@ void main (void)
       ENABLE_ADC_CH5;
       ADCCON1|=0X30;            /* clock divider */
       ADCCON2|=0X0E;            /* AQT time */
-      AUXR1|=SET_BIT4;          /* ADC clock low speed */
       clr_ADCCON0_ADCF;
       set_ADCCON0_ADCS;                                
       while(ADCF == 0);
@@ -52,7 +51,6 @@ void main (void)
       ENABLE_ADC_BANDGAP;
       ADCCON1|=0X30;            /* clock divider */
       ADCCON2|=0X0E;            /* AQT time */
-      AUXR1|=SET_BIT4;          /* ADC clock low speed */
       clr_ADCCON0_ADCF;
       set_ADCCON0_ADCS;                                
       while(ADCF == 0);

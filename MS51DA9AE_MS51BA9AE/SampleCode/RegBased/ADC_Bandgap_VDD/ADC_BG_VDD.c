@@ -63,7 +63,6 @@ void main (void)
     ENABLE_ADC_BANDGAP;
     ADCCON1|=0x30;            /* clock divider */
     ADCCON2|=0x0E;            /* AQT time */
-    AUXR1|=SET_BIT4;          /* ADC clock low speed */
 /*start bandgap ADC */
     clr_ADCCON0_ADCF;
     set_ADCCON0_ADCS;                                
