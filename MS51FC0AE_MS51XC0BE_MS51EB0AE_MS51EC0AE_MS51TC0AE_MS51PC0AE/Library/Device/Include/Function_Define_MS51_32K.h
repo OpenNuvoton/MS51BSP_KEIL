@@ -184,7 +184,6 @@ extern bit BIT_TMP;
 #define    DISABLE_TIMER0_INTERRUPT      clr_IE_ET0 
 #define    DISABLE_INT0_INTERRUPT        clr_IE_EX0
 
-//ERROR EIE0 -> EIE
 #define    DISABLE_TIMER2_INTERRUPT      clr_EIE_ET2         //clr_EIE0_ET2 
 #define    DISABLE_SPI0_INTERRUPT        clr_EIE_ESPI        //clr_EIE0_ESPI 
 #define    DISABLE_PWM0_FB_INTERRUPT     clr_EIE_EFB         //clr_EIE0_EFB  
@@ -218,6 +217,157 @@ extern bit BIT_TMP;
 #define    DISABLE_SC2_TRANSFER_ERROR_INTERRUPT           SFRS=2;SC2IE&=0xFB;SFRS=0
 #define    DISABLE_SC2_TRASMIT_BUFFER_EMPTY_INTERRUPT     SFRS=2;SC2IE&=0xFD;SFRS=0
 #define    DISABLE_SC2_RECEIVE_DATA_REACH_INTERRUPT       SFRS=2;SC2IE&=0xFE;SFRS=0
+
+/* Setting Interrupt Priority */
+#define   SET_INT_INT0_LEVEL0          clr_IP_PX0; clr_IPH_PX0H
+#define   SET_INT_INT0_LEVEL1          clr_IP_PX0; set_IPH_PX0H
+#define   SET_INT_INT0_LEVEL2          set_IP_PX0; clr_IPH_PX0H
+#define   SET_INT_INT0_LEVEL3          set_IP_PX0; set_IPH_PX0H
+
+#define   SET_INT_BOD_LEVEL0           clr_IP_PBOD; clr_IPH_PBODH
+#define   SET_INT_BOD_LEVEL1           clr_IP_PBOD; set_IPH_PBODH
+#define   SET_INT_BOD_LEVEL2           set_IP_PBOD; clr_IPH_PBODH
+#define   SET_INT_BOD_LEVEL3           set_IP_PBOD; set_IPH_PBODH
+
+#define   SET_INT_WDT_LEVEL0           clr_EIP_PWDT; clr_EIPH_PWDTH
+#define   SET_INT_WDT_LEVEL1           clr_EIP_PWDT; set_EIPH_PWDTH
+#define   SET_INT_WDT_LEVEL2           set_EIP_PWDT; clr_EIPH_PWDTH
+#define   SET_INT_WDT_LEVEL3           set_EIP_PWDT; set_EIPH_PWDTH
+
+#define   SET_INT_TIMER0_LEVEL0        clr_IP_PT0; clr_IPH_PT0H
+#define   SET_INT_TIMER0_LEVEL1        clr_IP_PT0; set_IPH_PT0H
+#define   SET_INT_TIMER0_LEVEL2        set_IP_PT0; clr_IPH_PT0H
+#define   SET_INT_TIMER0_LEVEL3        set_IP_PT0; set_IPH_PT0H
+
+#define   SET_INT_I2C0_LEVEL0          clr_EIP_PI2C; clr_EIPH_PI2CH
+#define   SET_INT_I2C0_LEVEL1          clr_EIP_PI2C; set_EIPH_PI2CH
+#define   SET_INT_I2C0_LEVEL2          set_EIP_PI2C; clr_EIPH_PI2CH
+#define   SET_INT_I2C0_LEVEL3          set_EIP_PI2C; set_EIPH_PI2CH
+
+#define   SET_INT_ADC_LEVEL0           clr_IP_PADC; clr_IPH_PADCH
+#define   SET_INT_ADC_LEVEL1           clr_IP_PADC; set_IPH_PADCH
+#define   SET_INT_ADC_LEVEL2           set_IP_PADC; clr_IPH_PADCH
+#define   SET_INT_ADC_LEVEL3           set_IP_PADC; set_IPH_PADCH
+
+#define   SET_INT_INT1_LEVEL0          clr_IP_PX1; clr_IPH_PX1H
+#define   SET_INT_INT1_LEVEL1          clr_IP_PX1; set_IPH_PX1H
+#define   SET_INT_INT1_LEVEL2          set_IP_PX1; clr_IPH_PX1H
+#define   SET_INT_INT1_LEVEL3          set_IP_PX1; set_IPH_PX1H
+
+#define   SET_INT_PIT_LEVEL0           clr_EIP_PPI; clr_EIPH_PPIH
+#define   SET_INT_PIT_LEVEL1           clr_EIP_PPI; set_EIPH_PPIH
+#define   SET_INT_PIT_LEVEL2           set_EIP_PPI; clr_EIPH_PPIH
+#define   SET_INT_PIT_LEVEL3           set_EIP_PPI; set_EIPH_PPIH
+
+#define   SET_INT_Timer1_LEVEL0        clr_IP_PT1; clr_IPH_PT1H
+#define   SET_INT_Timer1_LEVEL1        clr_IP_PT1; set_IPH_PT1H
+#define   SET_INT_Timer1_LEVEL2        set_IP_PT1; clr_IPH_PT1H
+#define   SET_INT_Timer1_LEVEL3        set_IP_PT1; set_IPH_PT1H
+
+#define   SET_INT_UART0_LEVEL0         clr_IP_PS; clr_IPH_PSH
+#define   SET_INT_UART0_LEVEL1         clr_IP_PS; set_IPH_PSH
+#define   SET_INT_UART0_LEVEL2         set_IP_PS; clr_IPH_PSH
+#define   SET_INT_UART0_LEVEL3         set_IP_PS; set_IPH_PSH
+
+#define   SET_INT_PWM0_BRAKE_LEVEL0    clr_EIP_PFB; clr_EIPH_PFBH
+#define   SET_INT_PWM0_BRAKE_LEVEL1    clr_EIP_PFB; set_EIPH_PFBH
+#define   SET_INT_PWM0_BRAKE_LEVEL2    set_EIP_PFB; clr_EIPH_PFBH
+#define   SET_INT_PWM0_BRAKE_LEVEL3    set_EIP_PFB; set_EIPH_PFBH
+
+#define   SET_INT_SPI_LEVEL0           clr_EIP_PSPI; clr_EIPH_PSPIH
+#define   SET_INT_SPI_LEVEL1           clr_EIP_PSPI; set_EIPH_PSPIH
+#define   SET_INT_SPI_LEVEL2           set_EIP_PSPI; clr_EIPH_PSPIH
+#define   SET_INT_SPI_LEVEL3           set_EIP_PSPI; set_EIPH_PSPIH
+
+#define   SET_INT_Timer2_LEVEL0        clr_EIP_PT2; clr_EIPH_PT2H
+#define   SET_INT_Timer2_LEVEL1        clr_EIP_PT2; set_EIPH_PT2H
+#define   SET_INT_Timer2_LEVEL2        set_EIP_PT2; clr_EIPH_PT2H
+#define   SET_INT_Timer2_LEVEL3        set_EIP_PT2; set_EIPH_PT2H
+
+#define   SET_INT_CAPTURE_LEVEL0       clr_EIP_PCAP; clr_EIPH_PCAPH
+#define   SET_INT_Capture_LEVEL1       clr_EIP_PCAP; set_EIPH_PCAPH
+#define   SET_INT_Capture_LEVEL2       set_EIP_PCAP; clr_EIPH_PCAPH
+#define   SET_INT_Capture_LEVEL3       set_EIP_PCAP; set_EIPH_PCAPH
+
+#define   SET_INT_PWM_LEVEL0           clr_EIP_PPWM; clr_EIPH_PPWMH
+#define   SET_INT_PWM_LEVEL1           clr_EIP_PPWM; set_EIPH_PPWMH
+#define   SET_INT_PWM_LEVEL2           set_EIP_PPWM; clr_EIPH_PPWMH
+#define   SET_INT_PWM_LEVEL3           set_EIP_PPWM; set_EIPH_PPWMH
+
+#define   SET_INT_UART1_LEVEL0         clr_EIP1_PS_1; clr_EIPH1_PSH_1
+#define   SET_INT_UART1_LEVEL1         clr_EIP1_PS_1; set_EIPH1_PSH_1
+#define   SET_INT_UART1_LEVEL2         set_EIP1_PS_1; clr_EIPH1_PSH_1
+#define   SET_INT_UART1_LEVEL3         set_EIP1_PS_1; set_EIPH1_PSH_1
+
+#define   SET_INT_Timer3_LEVEL0        clr_EIP1_PT3; clr_EIPH1_PT3H
+#define   SET_INT_Timer3_LEVEL1        clr_EIP1_PT3; set_EIPH1_PT3H
+#define   SET_INT_Timer3_LEVEL2        set_EIP1_PT3; clr_EIPH1_PT3H
+#define   SET_INT_Timer3_LEVEL3        set_EIP1_PT3; set_EIPH1_PT3H
+
+#define   SET_INT_WKT_LEVEL0           clr_EIP1_PWKT; clr_EIPH1_PWKTH
+#define   SET_INT_WKT_LEVEL1           clr_EIP1_PWKT; set_EIPH1_PWKTH
+#define   SET_INT_WKT_LEVEL2           set_EIP1_PWKT; clr_EIPH1_PWKTH
+#define   SET_INT_WKT_LEVEL3           set_EIP1_PWKT; set_EIPH1_PWKTH
+
+#define   SET_INT_PWM1_LEVEL0          clr_EIP1_PPWM1; clr_EIPH1_PPWM1H
+#define   SET_INT_PWM1_LEVEL1          clr_EIP1_PPWM1; set_EIPH1_PPWM1H
+#define   SET_INT_PWM1_LEVEL2          set_EIP1_PPWM1; clr_EIPH1_PPWM1H
+#define   SET_INT_PWM1_LEVEL3          set_EIP1_PPWM1; set_EIPH1_PPWM1H
+
+#define   SET_INT_PWM2_LEVEL0          clr_EIP1_PPWM2; clr_EIPH1_PPWM2H
+#define   SET_INT_PWM2_LEVEL1          clr_EIP1_PPWM2; set_EIPH1_PPWM2H
+#define   SET_INT_PWM2_LEVEL2          set_EIP1_PPWM2; clr_EIPH1_PPWM2H
+#define   SET_INT_PWM2_LEVEL3          set_EIP1_PPWM2; set_EIPH1_PPWM2H
+
+#define   SET_INT_PWM3_LEVEL0          clr_EIP1_PPWM3; clr_EIPH1_PPWM3H
+#define   SET_INT_PWM3_LEVEL1          clr_EIP1_PPWM3; set_EIPH1_PPWM3H
+#define   SET_INT_PWM3_LEVEL2          set_EIP1_PPWM3; clr_EIPH1_PPWM3H
+#define   SET_INT_PWM3_LEVEL3          set_EIP1_PPWM3; set_EIPH1_PPWM3H
+
+#define   SET_INT_SMC0_LEVEL0          clr_EIP2_PSC0; clr_EIPH2_PSC0H
+#define   SET_INT_SMC0_LEVEL1          clr_EIP2_PSC0; set_EIPH2_PSC0H
+#define   SET_INT_SMC0_LEVEL2          set_EIP2_PSC0; clr_EIPH2_PSC0H
+#define   SET_INT_SMC0_LEVEL3          set_EIP2_PSC0; set_EIPH2_PSC0H
+ 
+#define   SET_INT_SMC1_LEVEL0          clr_EIP2_PSC1; clr_EIPH2_PSC1H
+#define   SET_INT_SMC1_LEVEL1          clr_EIP2_PSC1; set_EIPH2_PSC1H
+#define   SET_INT_SMC1_LEVEL2          set_EIP2_PSC1; clr_EIPH2_PSC1H
+#define   SET_INT_SMC1_LEVEL3          set_EIP2_PSC1; set_EIPH2_PSC1H
+
+#define   SET_INT_SMC2_LEVEL0          clr_EIP2_PSC2; clr_EIPH2_PSC2H
+#define   SET_INT_SMC2_LEVEL1          clr_EIP2_PSC2; set_EIPH2_PSC2H
+#define   SET_INT_SMC2_LEVEL2          set_EIP2_PSC2; clr_EIPH2_PSC2H
+#define   SET_INT_SMC2_LEVEL3          set_EIP2_PSC2; set_EIPH2_PSC2H
+
+#define   SET_INT_PWM1_LEVEL0          clr_EIP1_PPWM1; clr_EIPH1_PPWM1H
+#define   SET_INT_PWM1_LEVEL1          clr_EIP1_PPWM1; set_EIPH1_PPWM1H
+#define   SET_INT_PWM1_LEVEL2          set_EIP1_PPWM1; clr_EIPH1_PPWM1H
+#define   SET_INT_PWM1_LEVEL3          set_EIP1_PPWM1; set_EIPH1_PPWM1H
+
+#define   SET_INT_PWM2_LEVEL0          clr_EIP1_PPWM2; clr_EIPH1_PPWM2H
+#define   SET_INT_PWM2_LEVEL1          clr_EIP1_PPWM2; set_EIPH1_PPWM2H
+#define   SET_INT_PWM2_LEVEL2          set_EIP1_PPWM2; clr_EIPH1_PPWM2H
+#define   SET_INT_PWM2_LEVEL3          set_EIP1_PPWM2; set_EIPH1_PPWM2H
+
+#define   SET_INT_PWM3_LEVEL0          clr_EIP1_PPWM3; clr_EIPH1_PPWM3H
+#define   SET_INT_PWM3_LEVEL1          clr_EIP1_PPWM3; set_EIPH1_PPWM3H
+#define   SET_INT_PWM3_LEVEL2          set_EIP1_PPWM3; clr_EIPH1_PPWM3H
+#define   SET_INT_PWM3_LEVEL3          set_EIP1_PPWM3; set_EIPH1_PPWM3H
+
+#define   SET_INT_SMC0_LEVEL0          clr_EIP2_PSC0; clr_EIPH2_PSC0H
+#define   SET_INT_SMC0_LEVEL1          clr_EIP2_PSC0; set_EIPH2_PSC0H
+#define   SET_INT_SMC0_LEVEL2          set_EIP2_PSC0; clr_EIPH2_PSC0H
+#define   SET_INT_SMC0_LEVEL3          set_EIP2_PSC0; set_EIPH2_PSC0H
+ 
+#define   SET_INT_SMC1_LEVEL0          clr_EIP2_PSC1; clr_EIPH2_PSC1H
+#define   SET_INT_SMC1_LEVEL1          clr_EIP2_PSC1; set_EIPH2_PSC1H
+#define   SET_INT_SMC1_LEVEL2          set_EIP2_PSC1; clr_EIPH2_PSC1H
+#define   SET_INT_SMC1_LEVEL3          set_EIP2_PSC1; set_EIPH2_PSC1H
+
+#define   SET_INT_SMC2_LEVEL0          clr_EIP2_PSC2; clr_EIPH2_PSC2H
+#define   SET_INT_SMC2_LEVEL1          clr_EIP2_PSC2; set_EIPH2_PSC2H
+#define   SET_INT_SMC2_LEVEL2          set_EIP2_PSC2; clr_EIPH2_PSC2H
+#define   SET_INT_SMC2_LEVEL3          set_EIP2_PSC2; set_EIPH2_PSC2H
 
 /****************************************************************************************************************/
 /* Define TIMER VALUE setting is base on name with Fsys value

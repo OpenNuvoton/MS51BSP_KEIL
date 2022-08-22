@@ -24,6 +24,7 @@
 #include "i2c.h"
 #include "IAP.h"
 #include "IAP_SPROM.h"
+#include "isr.h"
 #include "pwm.h"
 #include "sys.h"
 #include "spi.h"
@@ -507,7 +508,7 @@
 #define set_IPH_PBODH            clr_SFRS_SFRPAGE;IPH|=0x20
 #define set_IPH_PSH              clr_SFRS_SFRPAGE;IPH|=0x10
 #define set_IPH_PT1H             clr_SFRS_SFRPAGE;IPH|=0x08
-#define set_IPH_PX11             clr_SFRS_SFRPAGE;IPH|=0x04
+#define set_IPH_PX1H             clr_SFRS_SFRPAGE;IPH|=0x04
 #define set_IPH_PT0H             clr_SFRS_SFRPAGE;IPH|=0x02
 #define set_IPH_PX0H             clr_SFRS_SFRPAGE;IPH|=0x01
                                     
@@ -515,7 +516,7 @@
 #define clr_IPH_PBODH            clr_SFRS_SFRPAGE;IPH&=0xDF
 #define clr_IPH_PSH              clr_SFRS_SFRPAGE;IPH&=0xEF
 #define clr_IPH_PT1H             clr_SFRS_SFRPAGE;IPH&=0xF7
-#define clr_IPH_PX11             clr_SFRS_SFRPAGE;IPH&=0xFB
+#define clr_IPH_PX1H             clr_SFRS_SFRPAGE;IPH&=0xFB
 #define clr_IPH_PT0H             clr_SFRS_SFRPAGE;IPH&=0xFD
 #define clr_IPH_PX0H             clr_SFRS_SFRPAGE;IPH&=0xFE
 

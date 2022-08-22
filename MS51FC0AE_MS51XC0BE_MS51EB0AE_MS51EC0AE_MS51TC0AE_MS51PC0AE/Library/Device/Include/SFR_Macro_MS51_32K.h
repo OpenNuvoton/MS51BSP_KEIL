@@ -23,6 +23,7 @@
 #include "timer.h"
 #include "I2C.h"
 #include "IAP.h"
+#include "isr.h"
 #include "watchdog.h"
 #include "pwm0.h"
 #include "pwm123.h"
@@ -1889,13 +1890,22 @@
 #define clr_PWM3MEN_PMEN0                SFRS=2;PWM3MEN&=0xFE
 
 /**** EIP2  CEH  PAGE 2 ****/
-#define set_EIP2_PUART4                  SFRS=2;EIP2|=0x04
-#define set_EIP2_PUART3                  SFRS=2;EIP2|=0x02
-#define set_EIP2_PUART2                  SFRS=2;EIP2|=0x01
+#define set_EIP2_PSC2                    SFRS=2;EIP2|=0x04
+#define set_EIP2_PSC1                    SFRS=2;EIP2|=0x02
+#define set_EIP2_PSC0                    SFRS=2;EIP2|=0x01
 
-#define clr_EIP2_PUART4                  SFRS=2;EIP2&=0xFB
-#define clr_EIP2_PUART3                  SFRS=2;EIP2&=0xFD
-#define clr_EIP2_PUART2                  SFRS=2;EIP2&=0xFE
+#define clr_EIP2_PSC2                    SFRS=2;EIP2&=0xFB
+#define clr_EIP2_PSC1                    SFRS=2;EIP2&=0xFD
+#define clr_EIP2_PSC0                    SFRS=2;EIP2&=0xFE
+
+/**** EIPH2  CFH  PAGE 2 ****/
+#define set_EIPH2_PSC2H                    SFRS=2;EIPH2|=0x04
+#define set_EIPH2_PSC1H                    SFRS=2;EIPH2|=0x02
+#define set_EIPH2_PSC0H                    SFRS=2;EIPH2|=0x01
+
+#define clr_EIPH2_PSC2H                    SFRS=2;EIPH2&=0xFB
+#define clr_EIPH2_PSC1H                    SFRS=2;EIPH2&=0xFD
+#define clr_EIPH2_PSC0H                    SFRS=2;EIPH2&=0xFE
 
 /**** PWM3CON0  D4H  PAGE 2 ****/
 #define set_PWM3CON0_PWMRUN              SFRS=2;PWM3CON0|=0x80
