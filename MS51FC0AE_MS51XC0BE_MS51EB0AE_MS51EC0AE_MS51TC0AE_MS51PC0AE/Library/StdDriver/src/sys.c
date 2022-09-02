@@ -174,11 +174,11 @@ void ClockEnable(unsigned char u8FsysMode)
         while((CKSWT|CLR_BIT3)==CLR_BIT3);      //step2: check clock source status and wait for ready
     break;
     
-    /***** ECLK P00 enable part ******/
+    /***** HXT P00 enable part ******/
     case FSYS_HXTIN_P00:
         set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
         clr_CKEN_EXTEN0;
-        while((CKSWT|CLR_BIT6)==CLR_BIT6);      //step2: check clock source status and wait for ready
+        while((CKSWT|CLR_BIT7)==CLR_BIT7);      //step2: check clock source status and wait for ready
     break;
   }
 }

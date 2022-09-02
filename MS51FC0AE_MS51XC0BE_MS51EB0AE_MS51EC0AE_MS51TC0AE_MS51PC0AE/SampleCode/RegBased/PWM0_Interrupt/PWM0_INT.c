@@ -37,7 +37,7 @@ void main(void)
 ***********************************************************************/
     ENABLE_PWM0_CH2_P05_OUTPUT;
     P05_PUSHPULL_MODE;
-    PWM0_CH2_INTERRUPT_SELECT;    
+    PWM0_CH2_INTERRUPT_SELECT;
 
     PWM0_CLOCK_DIV_8;
     PWM0PH = 0x03;                     /*Setting PWM period  */
