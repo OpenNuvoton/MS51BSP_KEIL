@@ -17,11 +17,11 @@ void PinInterrupt_ISR (void) interrupt 7
 {
     _push_(SFRS);
   
-  if ((PIF|CLR_BIT0)==0xFF)
+  if (PIF&SET_BIT0)
   {
     P35 = 1;
   }
-  if ((PIF|CLR_BIT1)==0xFF)
+  if (PIF&SET_BIT1)
   {
     P35 = 0;
     stopflag =1;

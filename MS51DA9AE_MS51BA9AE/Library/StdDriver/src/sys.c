@@ -131,12 +131,12 @@ void ClockEnable(unsigned char u8FsysMode)
     /***** HIRC enable part ******/
     case FSYS_HIRC:
         set_CKEN_HIRCEN;                        //step1: Enable extnal clock source.
-        while((CKSWT|CLR_BIT5)==CLR_BIT5);      //step2: check clock source status and wait for ready
+        while(!(CKSWT&SET_BIT5);                //step2: check clock source status and wait for ready
     break;
     /***** ECLK P30 enable part ******/
     case FSYS_OSCIN_P30:
-        TA=0xAA;TA=0x55;CKEN|=0xC0;                        //step1: Enable extnal clock source.
-        while((CKSWT|CLR_BIT3)==CLR_BIT3);      //step2: check clock source status and wait for ready
+        TA=0xAA;TA=0x55;CKEN|=0xC0;             //step1: Enable extnal clock source.
+        while(!(CKSWT&SET_BIT3);                //step2: check clock source status and wait for ready
     break;
   }
 }

@@ -22,9 +22,9 @@ void main (void)
   while(1)
   {
     P1 = 0xff;
-    Timer0_Delay(16000000,200,1000);;
+    Timer3_Delay(16000000,16,400,1000);
     P1=0x00;
-    Timer0_Delay(16000000,200,1000);;
+    Timer3_Delay(16000000,16,400,1000);
   }
 }
 
