@@ -27,3 +27,6 @@
 2022/07
 1. All                           Added Apache License in all lib .c file
 2. ADC                           Remove all adc slow speed code define.
+
+2022/09
+1. PWM                           Added PWM reload API
