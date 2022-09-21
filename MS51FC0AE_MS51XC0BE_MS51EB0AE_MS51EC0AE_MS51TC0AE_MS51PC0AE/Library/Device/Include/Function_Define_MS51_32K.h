@@ -369,71 +369,146 @@ extern bit BIT_TMP;
 #define   SET_INT_SMC2_LEVEL2          set_EIP2_PSC2; clr_EIPH2_PSC2H
 #define   SET_INT_SMC2_LEVEL3          set_EIP2_PSC2; set_EIPH2_PSC2H
 
-/****************************************************************************************************************/
-/* Define TIMER VALUE setting is base on name with Fsys value
-/****************************************************************************************************************/
-/* define timer base value Fsys = 16MHz */
-#define    TIMER_DIV12_VALUE_10us_FOSC_160000       65535-8        //13*12/16000000 = 10 uS,        // Timer divider = 12 for TM0/TM1 
-#define    TIMER_DIV12_VALUE_100us_FOSC_160000      65535-130      //130*12/16000000 = 10 uS,       // Timer divider = 12            
-#define    TIMER_DIV12_VALUE_1ms_FOSC_160000        65535-1334     //1334*12/16000000 = 1 mS,       // Timer divider = 12          
-#define    TIMER_DIV12_VALUE_10ms_FOSC_160000       65535-13334    //13334*12/16000000 = 10 mS      // Timer divider = 12          
-#define    TIMER_DIV12_VALUE_40ms_FOSC_160000       65535-53336    //53336*12/16000000 = 40 ms      // Timer divider = 12         
-#define    TIMER_DIV4_VALUE_10us_FOSC_160000        65535-30       //40*4/16000000 = 10 uS,         // Timer divider = 4  for TM2/TM3 
-#define    TIMER_DIV4_VALUE_100us_FOSC_160000       65535-400      //400*4/16000000 = 100 us        // Timer divider = 4            
-#define    TIMER_DIV4_VALUE_200us_FOSC_160000       65535-800      //800*4/16000000 = 200 us        // Timer divider = 4            
-#define    TIMER_DIV4_VALUE_416us_FOSC_160000       65535-1650
-#define    TIMER_DIV4_VALUE_500us_FOSC_160000       65535-2000     //2000*4/16000000 = 500 us       // Timer divider = 4            
-#define    TIMER_DIV4_VALUE_1ms_FOSC_160000         65535-4000     //4000*4/16000000 = 1 mS,        // Timer divider = 4            
-#define    TIMER_DIV4_VALUE_10ms_FOSC_160000        65535-40000    //40000*4/16000000 = 10 mS,      // Timer divider = 4         
-#define    TIMER_DIV16_VALUE_10ms_FOSC_160000       65535-10000    //10000*16/16000000 = 10 ms      // Timer  divider = 16        
-#define    TIMER_DIV64_VALUE_30ms_FOSC_160000       65535-7500     //7500*64/16000000 = 30 ms       // Timer divider = 64           
-#define    TIMER_DIV128_VALUE_1ms_FOSC_160000       65535-125      //125*128/16000000 = 1 ms        // Timer divider = 128            
-#define    TIMER_DIV128_VALUE_10ms_FOSC_160000      65535-1250     //1250*128/16000000 = 10 ms      // Timer divider = 128           
-#define    TIMER_DIV128_VALUE_100ms_FOSC_160000     65535-12500    //12500*128/16000000 = 100 ms    // Timer divider = 128        
-#define    TIMER_DIV128_VALUE_200ms_FOSC_160000     65535-25000    //25000*128/16000000 = 200 ms    // Timer divider = 128        
-#define    TIMER_DIV256_VALUE_500ms_FOSC_160000     65535-31250    //31250*256/16000000 = 500 ms    // Timer divider = 256         
-#define    TIMER_DIV512_VALUE_100ms_FOSC_160000     65535-3125     //3125*512/16000000 = 100ms.     // Timer Divider = 512        
-#define    TIMER_DIV512_VALUE_1s_FOSC_160000        65535-31250    //31250*512/16000000 = 1 s.      // Timer Divider = 512        
+/* ------------------------ TIMER Value define  ------------------------- */
+/* setting is base on " option -> C51 -> Preprocesser Symbols -> Define "  */
 
+/* define timer base value Fsys = 8MHz  */
+/* @note    Since 8M instruction and calculate speed limitaion. the timer counter value should be less than actullay. */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_7372800      65536-614        /* 614*12    /7372800= 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_7372800     65536-6144       /* 6144*12   /7372800= 10 mS   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_50ms_FOSC_7372800     65536-30720      /* 30720*12  /7372800= 40 ms   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_7372800     65536-368        /* 368*4     /7372800= 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_7372800     65536-922        /* 922*4     /7372800= 500 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_7372800       65536-1843       /* 1843*4    /7372800= 1 mS,   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_10ms_FOSC_7372800      65536-18432      /* 18432*4   /7372800= 10 mS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV16_VALUE_10ms_FOSC_7372800     65536-4608       /* 4608*16   /7372800= 10 ms   (Timer divider = 16  for TM2/TM3) */
+#define    TIMER_DIV64_VALUE_30ms_FOSC_7372800     65536-3456       /* 3456*64   /7372800= 30 ms   (Timer divider = 64  for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_1ms_FOSC_7372800     65536-57         /* 57*128    /7372800= 1 ms    (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_10ms_FOSC_7372800    65536-576        /* 576*128   /7372800= 10 ms   (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_7372800   65536-5760       /* 5760*128  /7372800= 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_7372800   65536-11520      /* 11520*128 /7372800= 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_7372800   65536-14400      /* 14400*256 /7372800= 500 ms  (Timer divider = 256 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_100ms_FOSC_7372800   65536-1440       /* 1440*512  /7372800= 100ms.  (Timer Divider = 512 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_1s_FOSC_7372800      65536-14400      /* 14400*512 /7372800= 1 s.    (Timer Divider = 512 for TM2/TM3) */
+/* define timer base value Fsys = 8MHz  */
+/* @note    Since 8M instruction and calculate speed limitaion. the timer counter value should be less than actullay. */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_8000000      65536-667        /* 667*12    /8000000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_8000000     65536-6667       /* 6667*12   /8000000 = 10 mS   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_50ms_FOSC_8000000     65536-33335      /* 33335*12  /8000000 = 40 ms   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_8000000     65536-400        /* 400*4     /8000000 = 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_8000000     65536-1000       /* 1000*4    /8000000 = 500 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_8000000       65536-2000       /* 2000*4    /8000000 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_10ms_FOSC_8000000      65536-20000      /* 20000*4   /8000000 = 10 mS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV16_VALUE_10ms_FOSC_8000000     65536-5000       /* 5000*16   /8000000 = 10 ms   (Timer divider = 16  for TM2/TM3) */
+#define    TIMER_DIV64_VALUE_30ms_FOSC_8000000     65536-3750       /* 3750*64   /8000000 = 30 ms   (Timer divider = 64  for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_1ms_FOSC_8000000     65536-60         /* 62*128    /8000000 = 1 ms    (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_10ms_FOSC_8000000    65536-625        /* 625*128   /8000000 = 10 ms   (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_8000000   65536-6250       /* 6250*128  /8000000 = 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_8000000   65536-12500      /* 12500*128 /8000000 = 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_8000000   65536-15625      /* 15625*256 /8000000 = 500 ms  (Timer divider = 256 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_100ms_FOSC_8000000   65536-1562       /* 1562*512  /8000000 = 100ms.  (Timer Divider = 512 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_1s_FOSC_8000000      65536-15625      /* 15625*512 /8000000 = 1 s.    (Timer Divider = 512 for TM2/TM3) */
+/* define timer base value Fsys = 11.0592MHz  */
+#define    TIMER_DIV12_VALUE_10us_FOSC_11059200    65536-9          /* 9*12      /11059200 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_11059200     65536-923        /* 923*12    /11059200 = 1 mS    (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_11059200    65536-9216       /* 18432*12  /11059200 = 10 ms   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_11059200     65536-28         /* 28*4      /11059200 = 10 uS   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_11059200      65536-2765       /* 2765*4    /11059200 = 1 mS    (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_100us_FOSC_11059200    65536-277        /* 553*4     /11059200 = 100 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_11059200    65536-553        /* 1106*4    /11059200 = 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_11059200    65536-1383       /* 2765*4    /11059200 = 500 us  (Timer divider = 4   for TM2/TM3) */  
+#define    TIMER_DIV16_VALUE_10ms_FOSC_11059200    65536-6912       /* 1500*16   /11059200 = 10 ms   (Timer divider = 16  for TM2/TM3) */
+#define    TIMER_DIV64_VALUE_30ms_FOSC_11059200    65536-5184       /* 10368*64  /11059200 = 30 ms   (Timer divider = 64  for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_11059200  65536-8640       /* 17280*128 /11059200 = 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_11059200  65536-17280      /* 34560*128 /11059200 = 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_11059200  65536-21600      /* 43200*256 /11059200 = 500 ms  (Timer divider = 256 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_1s_FOSC_11059200     65536-21600      /* 43200*512 /11059200 = 1 s     (Timer divider = 512 for TM2/TM3) */
+/* define timer base value Fsys = 16MHz */                       
+#define    TIMER_DIV12_VALUE_10us_FOSC_16000000    65536-8          /* 13*12     /16000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_100us_FOSC_16000000   65536-130        /* 130*12    /16000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_16000000     65536-1334       /* 1334*12   /16000000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_16000000    65536-13334      /* 13334*12  /16000000 = 10 mS   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_40ms_FOSC_16000000    65536-53336      /* 53336*12  /16000000 = 40 ms   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_16000000     65536-30         /* 40*4      /16000000 = 10 uS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_100us_FOSC_16000000    65536-400        /* 400*4     /16000000 = 100 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_16000000    65536-800        /* 800*4     /16000000 = 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_16000000    65536-2000       /* 2000*4    /16000000 = 500 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_16000000      65536-4000       /* 4000*4    /16000000 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_10ms_FOSC_16000000     65536-40000      /* 40000*4   /16000000 = 10 mS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV16_VALUE_10ms_FOSC_16000000    65536-10000      /* 10000*16  /16000000 = 10 ms   (Timer divider = 16  for TM2/TM3) */
+#define    TIMER_DIV64_VALUE_30ms_FOSC_16000000    65536-7500       /* 7500*64   /16000000 = 30 ms   (Timer divider = 64  for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_1ms_FOSC_16000000    65536-125        /* 125*128   /16000000 = 1 ms    (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_10ms_FOSC_16000000   65536-1250       /* 1250*128  /16000000 = 10 ms   (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_16000000  65536-12500      /* 12500*128 /16000000 = 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_16000000  65536-25000      /* 25000*128 /16000000 = 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_16000000  65536-31250      /* 31250*256 /16000000 = 500 ms  (Timer divider = 256 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_100ms_FOSC_16000000  65536-3125       /* 3125*512  /16000000 = 100ms.  (Timer divider = 512 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_1s_FOSC_16000000     65536-31250      /* 31250*512 /16000000 = 1 s.    (Timer divider = 512 for TM2/TM3) */
 /* define timer base value Fsys = 16.6MHz */
-#define    TIMER_DIV12_VALUE_10us_FOSC_166000       65535-14       //14*12/16600000 = 10 uS,        // Timer divider = 12 for TM0/TM1
-#define    TIMER_DIV12_VALUE_100us_FOSC_166000      65535-138      //138*12/16600000 = 100 uS,      // Timer divider = 12           
-#define    TIMER_DIV12_VALUE_1ms_FOSC_166000        65535-1384     //1384*12/16600000 = 1 mS,       // Timer divider = 12            
-#define    TIMER_DIV12_VALUE_10ms_FOSC_166000       65535-13834    //13834*12/16600000 = 10 mS      // Timer divider = 12            
-#define    TIMER_DIV12_VALUE_40ms_FOSC_166000       65535-55333    //55333*12/16600000 = 40 ms      // Timer divider = 12           
-#define    TIMER_DIV4_VALUE_10us_FOSC_166000        65535-41       //41*4/16600000 = 10 uS,         // Timer divider = 4  for TM2/TM3 
-#define    TIMER_DIV4_VALUE_100us_FOSC_166000       65535-415      //415*4/16600000 = 100 us        // Timer divider = 4            
-#define    TIMER_DIV4_VALUE_200us_FOSC_166000       65535-830      //830*4/16600000 = 200 us        // Timer divider = 4            
-#define    TIMER_DIV4_VALUE_500us_FOSC_166000       65535-2075     //2075*4/16600000 = 500 us       // Timer divider = 4              
-#define    TIMER_DIV4_VALUE_1ms_FOSC_166000         65535-4150     //4150*4/16600000 = 1 mS,        // Timer divider = 4              
-#define    TIMER_DIV16_VALUE_10ms_FOSC_166000       65535-10375    //10375*16/16600000 = 10 ms      // Timer  divider = 16          
-#define    TIMER_DIV64_VALUE_30ms_FOSC_166000       65535-7781     //7781*64/16600000 = 30 ms       // Timer divider = 64             
-#define    TIMER_DIV128_VALUE_100ms_FOSC_166000     65535-12969    //12969*128/16600000 = 100 ms    // Timer divider = 128          
-#define    TIMER_DIV128_VALUE_200ms_FOSC_166000     65535-25937    //25937*128/16600000 = 200 ms    // Timer divider = 128          
-#define    TIMER_DIV256_VALUE_500ms_FOSC_166000     65535-32422    //32422*256/16600000 = 500 ms    // Timer divider = 256           
-#define    TIMER_DIV512_VALUE_1s_FOSC_166000        65535-32421    //32421*512/16600000 = 1 s.      // Timer Divider = 512          
+#define    TIMER_DIV12_VALUE_10us_FOSC_16600000      65536-14       /* 14*12     /16600000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_100us_FOSC_16600000     65536-138      /* 138*12    /16600000 = 100 uS, (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_16600000       65536-1384     /* 1384*12   /16600000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_16600000      65536-13834    /* 13834*12  /16600000 = 10 mS   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_40ms_FOSC_16600000      65536-55333    /* 55333*12  /16600000 = 40 ms   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_16600000       65536-41       /* 41*4      /16600000 = 10 uS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_100us_FOSC_16600000      65536-415      /* 415*4     /16600000 = 100 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_16600000      65536-830      /* 830*4     /16600000 = 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_16600000      65536-2075     /* 2075*4    /16600000 = 500 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_16600000        65536-4150     /* 4150*4    /16600000 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV16_VALUE_10ms_FOSC_16600000      65536-10375    /* 10375*16  /16600000 = 10 ms   (Timer divider = 16  for TM2/TM3) */
+#define    TIMER_DIV64_VALUE_30ms_FOSC_16600000      65536-7781     /* 7781*64   /16600000 = 30 ms   (Timer divider = 64  for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_16600000    65536-12969    /* 12969*128 /16600000 = 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_16600000    65536-25937    /* 25937*128 /16600000 = 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_16600000    65536-32422    /* 32422*256 /16600000 = 500 ms  (Timer divider = 256 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_1s_FOSC_16600000       65536-32421    /* 32421*512 /16600000 = 1 s.    (Timer divider = 512 for TM2/TM3) */
+/* define timer base value Fsys = 18.432MHz */
+#define    TIMER_DIV12_VALUE_10us_FOSC_18432000      65536-15       /* 15*12      /18432000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_18432000       65536-1536     /* 1536*12    /18432000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_18432000       65536-46       /* 46*4       /18432000 = 10 uS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_18432000        65536-4608     /* 4608*4     /18432000 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+/* define timer base value Fsys = 20 MHz*/
+#define    TIMER_DIV12_VALUE_10us_FOSC_20000000      65536-17       /* 17*12      /20000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_20000000       65536-1667     /* 1667*12    /20000000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_20000000       65536-50       /* 50*4       /20000000 = 10 uS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_20000000        65536-5000     /* 5000*4     /20000000 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+/* define timer base value Fsys = 22.1184 MHz  */
+#define    TIMER_DIV12_VALUE_10us_FOSC_22118400      65536-18       /* 18*12      /22118400 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_100us_FOSC_22118400     65536-184      /* 184*12     /22118400 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_22118400       65536-1843     /* 1843*12    /22118400 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_22118400      65536-18432    /* 18432*12   /22118400 = 10 ms   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_22118400       65536-56       /* 9*4        /22118400 = 10 uS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_22118400        65536-5530     /* 923*4      /22118400 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_100us_FOSC_22118400      65536-553      /* 553*4      /22118400 = 100 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_22118400      65536-1106     /* 1106*4     /22118400 = 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_22118400      65536-2765     /* 2765*4     /22118400 = 500 us  (Timer divider = 4   for TM2/TM3) */    
+#define    TIMER_DIV16_VALUE_10ms_FOSC_22118400      65536-13824    /* 1500*16    /22118400 = 10 ms   (Timer divider = 16  for TM2/TM3) */
+#define    TIMER_DIV64_VALUE_30ms_FOSC_22118400      65536-10368    /* 10368*64   /22118400 = 30 ms   (Timer divider = 64  for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_22118400    65536-17280    /* 17280*128  /22118400 = 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_22118400    65536-34560    /* 34560*128  /22118400 = 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_22118400    65536-43200    /* 43200*256  /22118400 = 500 ms  (Timer divider = 256 for TM2/TM3) */
+#define    TIMER_DIV512_VALUE_1s_FOSC_22118400       65536-43200    /* 43200*512  /22118400 = 1 s     (Timer divider = 512 for TM2/TM3) */
 /* define timer base value Fsys = 24 MHz*/
-#define    TIMER_DIV12_VALUE_10us_FOSC_240000       65535-20       //20*12/24000000 = 10 uS,        // Timer divider = 12        
-#define    TIMER_DIV12_VALUE_100us_FOSC_240000      65535-200      //130*12/16000000 = 10 uS,       // Timer divider = 12        
-#define    TIMER_DIV12_VALUE_1ms_FOSC_240000        65535-2000     //2000*12/24000000 = 1 mS,       // Timer divider = 12        
-#define    TIMER_DIV12_VALUE_10ms_FOSC_240000       65535-20000    //2000*12/24000000 = 10 mS       // Timer divider = 12       
-#define    TIMER_DIV4_VALUE_10us_FOSC_240000        65535-60       //60*4/24000000 = 10 uS,         // Timer divider = 4        
-#define    TIMER_DIV4_VALUE_100us_FOSC_240000       65535-600      //600*4/24000000 = 100 us        // Timer divider = 4          
-#define    TIMER_DIV4_VALUE_200us_FOSC_240000       65535-1200     //1200*4/24000000 = 200 us       // Timer divider = 4          
-#define    TIMER_DIV4_VALUE_500us_FOSC_240000       65535-3000     //3000*4/24000000 = 500 us       // Timer divider = 4          
-#define    TIMER_DIV4_VALUE_1ms_FOSC_240000         65535-6000     //6000*4/24000000 = 1 mS,        // Timer divider = 4        
-#define    TIMER_DIV4_VALUE_10ms_FOSC_240000        65535-60000    //60000*4/2400000 = 10 ms                                    
-#define    TIMER_DIV16_VALUE_10ms_FOSC_240000       65535-15000    //15000*16/24000000 = 10 ms      // Timer divider = 16       
-#define    TIMER_DIV64_VALUE_30ms_FOSC_240000       65535-11250    //11250*64/24000000 = 30 ms      // Timer divider = 64       
-#define    TIMER_DIV128_VALUE_1ms_FOSC_240000       65535-187      //187*128/24000000 = 1 ms        // Timer divider = 128        
-#define    TIMER_DIV128_VALUE_10ms_FOSC_240000      65535-1875     //1875*128/24000000 = 10 ms      // Timer divider = 128       
-#define    TIMER_DIV128_VALUE_100ms_FOSC_240000     65535-18750    //18750*128/24000000 = 100 ms    // Timer divider = 128    
-#define    TIMER_DIV128_VALUE_200ms_FOSC_240000     65535-37500    //37500*128/24000000 = 200 ms    // Timer divider = 128    
-#define    TIMER_DIV256_VALUE_500ms_FOSC_240000     65535-46875    //46875*256/24000000 = 500 ms    // Timer divider = 256   
-#define    TIMER_DIV512_VALUE_10ms_FOSC_240000      65535-468      //468*512/24000000 = 100 ms      // Timer divider = 512     
-#define    TIMER_DIV512_VALUE_100ms_FOSC_240000     65535-4687     //4687*512/24000000 = 100 ms     // Timer divider = 512     
-#define    TIMER_DIV512_VALUE_500ms_FOSC_240000     65535-23437    //4687*512/24000000 = 500 ms     // Timer divider = 512    
-#define    TIMER_DIV512_VALUE_1s_FOSC_240000        65535-46875    //46875*512/24000000 = 1 s.      // Timer Divider = 512    
+#define    TIMER_DIV12_VALUE_10us_FOSC_24000000      65536-20       /* 20*12      /24000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_100us_FOSC_24000000     65536-200      /* 130*12     /16000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_1ms_FOSC_24000000       65536-2000     /* 2000*12    /24000000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV12_VALUE_10ms_FOSC_24000000      65536-20000    /* 2000*12    /24000000 = 10 mS   (Timer divider = 12  for TM0/TM1) */
+#define    TIMER_DIV4_VALUE_10us_FOSC_24000000       65536-60       /* 60*4       /24000000 = 10 uS,  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_100us_FOSC_24000000      65536-600      /* 600*4      /24000000 = 100 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_200us_FOSC_24000000      65536-1200     /* 1200*4     /24000000 = 200 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_500us_FOSC_24000000      65536-3000     /* 3000*4     /24000000 = 500 us  (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_1ms_FOSC_24000000        65536-6000     /* 6000*4     /24000000 = 1 mS,   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV4_VALUE_10ms_FOSC_24000000       65536-60000    /* 60000*4    /24000000 = 10 ms   (Timer divider = 4   for TM2/TM3) */
+#define    TIMER_DIV16_VALUE_10ms_FOSC_24000000      65536-15000    /* 15000*16   /24000000 = 10 ms   (Timer divider = 16  for TM2/TM3) */ 
+#define    TIMER_DIV64_VALUE_30ms_FOSC_24000000      65536-11250    /* 11250*64   /24000000 = 30 ms   (Timer divider = 64  for TM2/TM3) */ 
+#define    TIMER_DIV128_VALUE_1ms_FOSC_24000000      65536-187      /* 187*128    /24000000 = 1 ms    (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_10ms_FOSC_24000000     65536-1875     /* 1875*128   /24000000 = 10 ms   (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_100ms_FOSC_24000000    65536-18750    /* 18750*128  /24000000 = 100 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV128_VALUE_200ms_FOSC_24000000    65536-37500    /* 37500*128  /24000000 = 200 ms  (Timer divider = 128 for TM2/TM3) */
+#define    TIMER_DIV256_VALUE_500ms_FOSC_24000000    65536-46875    /* 46875*256  /24000000 = 500 ms  (Timer divider = 256 for TM2/TM3) */ 
+#define    TIMER_DIV512_VALUE_10ms_FOSC_24000000     65536-468      /* 468*512    /24000000 = 100 ms  (Timer divider = 512 for TM2/TM3) */ 
+#define    TIMER_DIV512_VALUE_100ms_FOSC_24000000    65536-4687     /* 4687*512   /24000000 = 100 ms  (Timer divider = 512 for TM2/TM3) */ 
+#define    TIMER_DIV512_VALUE_500ms_FOSC_24000000    65536-23437    /* 4687*512   /24000000 = 500 ms  (Timer divider = 512 for TM2/TM3) */ 
+#define    TIMER_DIV512_VALUE_1s_FOSC_24000000       65536-46875    /* 46875*512  /24000000 = 1 s.    (Timer divider = 512 for TM2/TM3) */ 
 
 /*******************************************************************************
 *   TIMER Function Define
@@ -3617,126 +3692,245 @@ extern bit BIT_TMP;
 /* For GPIO internal pull up/pull down setting                                           */
 /*****************************************************************************************/
 /*------------------- GPIO pull up enable -------------------*/  
-#define    ENABLE_P00_PULLUP       set_P0UP_0
-#define    ENABLE_P01_PULLUP       set_P0UP_1
-#define    ENABLE_P02_PULLUP       set_P0UP_2
-#define    ENABLE_P03_PULLUP       set_P0UP_3
-#define    ENABLE_P04_PULLUP       set_P0UP_4
-#define    ENABLE_P05_PULLUP       set_P0UP_5
-#define    ENABLE_P06_PULLUP       set_P0UP_6
-#define    ENABLE_P07_PULLUP       set_P0UP_7
-#define    ENABLE_P10_PULLUP       set_P1UP_0
-#define    ENABLE_P11_PULLUP       set_P1UP_1
-#define    ENABLE_P12_PULLUP       set_P1UP_2
-#define    ENABLE_P13_PULLUP       set_P1UP_3
-#define    ENABLE_P14_PULLUP       set_P1UP_4
-#define    ENABLE_P15_PULLUP       set_P1UP_5
-#define    ENABLE_P16_PULLUP       set_P1UP_6
-#define    ENABLE_P17_PULLUP       set_P1UP_7
-#define    ENABLE_P20_PULLUP       set_P2UP_0
-#define    ENABLE_P21_PULLUP       set_P2UP_1
-#define    ENABLE_P22_PULLUP       set_P2UP_2
-#define    ENABLE_P23_PULLUP       set_P2UP_3
-#define    ENABLE_P24_PULLUP       set_P2UP_4
-#define    ENABLE_P25_PULLUP       set_P2UP_5
-#define    ENABLE_P30_PULLUP       set_P3UP_0
-#define    ENABLE_P31_PULLUP       set_P3UP_1
-#define    ENABLE_P32_PULLUP       set_P3UP_2
-#define    ENABLE_P33_PULLUP       set_P3UP_3
-#define    ENABLE_P34_PULLUP       set_P3UP_4
-#define    ENABLE_P35_PULLUP       set_P3UP_5
-#define    ENABLE_P36_PULLUP       set_P3UP_6
-#define    ENABLE_P37_PULLUP       set_P3UP_7
+#define    P00_PULLUP_ENABLE       set_P0UP_0
+#define    P01_PULLUP_ENABLE       set_P0UP_1
+#define    P02_PULLUP_ENABLE       set_P0UP_2
+#define    P03_PULLUP_ENABLE       set_P0UP_3
+#define    P04_PULLUP_ENABLE       set_P0UP_4
+#define    P05_PULLUP_ENABLE       set_P0UP_5
+#define    P06_PULLUP_ENABLE       set_P0UP_6
+#define    P07_PULLUP_ENABLE       set_P0UP_7
+#define    P10_PULLUP_ENABLE       set_P1UP_0
+#define    P11_PULLUP_ENABLE       set_P1UP_1
+#define    P12_PULLUP_ENABLE       set_P1UP_2
+#define    P13_PULLUP_ENABLE       set_P1UP_3
+#define    P14_PULLUP_ENABLE       set_P1UP_4
+#define    P15_PULLUP_ENABLE       set_P1UP_5
+#define    P16_PULLUP_ENABLE       set_P1UP_6
+#define    P17_PULLUP_ENABLE       set_P1UP_7
+#define    P20_PULLUP_ENABLE       set_P2UP_0
+#define    P21_PULLUP_ENABLE       set_P2UP_1
+#define    P22_PULLUP_ENABLE       set_P2UP_2
+#define    P23_PULLUP_ENABLE       set_P2UP_3
+#define    P24_PULLUP_ENABLE       set_P2UP_4
+#define    P25_PULLUP_ENABLE       set_P2UP_5
+#define    P30_PULLUP_ENABLE       set_P3UP_0
+#define    P31_PULLUP_ENABLE       set_P3UP_1
+#define    P32_PULLUP_ENABLE       set_P3UP_2
+#define    P33_PULLUP_ENABLE       set_P3UP_3
+#define    P34_PULLUP_ENABLE       set_P3UP_4
+#define    P35_PULLUP_ENABLE       set_P3UP_5
+#define    P36_PULLUP_ENABLE       set_P3UP_6
+#define    P37_PULLUP_ENABLE       set_P3UP_7
 /*------------------- GPIO pull up disable -------------------*/                              
-#define    DISABLE_P00_PULLUP      clr_P0UP_0
-#define    DISABLE_P01_PULLUP      clr_P0UP_1
-#define    DISABLE_P02_PULLUP      clr_P0UP_2
-#define    DISABLE_P03_PULLUP      clr_P0UP_3
-#define    DISABLE_P04_PULLUP      clr_P0UP_4
-#define    DISABLE_P05_PULLUP      clr_P0UP_5
-#define    DISABLE_P06_PULLUP      clr_P0UP_6
-#define    DISABLE_P07_PULLUP      clr_P0UP_7
-#define    DISABLE_P10_PULLUP      clr_P1UP_0
-#define    DISABLE_P11_PULLUP      clr_P1UP_1
-#define    DISABLE_P12_PULLUP      clr_P1UP_2
-#define    DISABLE_P13_PULLUP      clr_P1UP_3
-#define    DISABLE_P14_PULLUP      clr_P1UP_4
-#define    DISABLE_P15_PULLUP      clr_P1UP_5
-#define    DISABLE_P16_PULLUP      clr_P1UP_6
-#define    DISABLE_P17_PULLUP      clr_P1UP_7
-#define    DISABLE_P20_PULLUP      clr_P2UP_0
-#define    DISABLE_P21_PULLUP      clr_P2UP_1
-#define    DISABLE_P22_PULLUP      clr_P2UP_2
-#define    DISABLE_P23_PULLUP      clr_P2UP_3
-#define    DISABLE_P24_PULLUP      clr_P2UP_4
-#define    DISABLE_P25_PULLUP      clr_P2UP_5
-#define    DISABLE_P30_PULLUP      clr_P3UP_0
-#define    DISABLE_P31_PULLUP      clr_P3UP_1
-#define    DISABLE_P32_PULLUP      clr_P3UP_2
-#define    DISABLE_P33_PULLUP      clr_P3UP_3
-#define    DISABLE_P34_PULLUP      clr_P3UP_4
-#define    DISABLE_P35_PULLUP      clr_P3UP_5
-#define    DISABLE_P36_PULLUP      clr_P3UP_6
-#define    DISABLE_P37_PULLUP      clr_P3UP_7
+#define    P00_PULLUP_DISABLE      clr_P0UP_0
+#define    P01_PULLUP_DISABLE      clr_P0UP_1
+#define    P02_PULLUP_DISABLE      clr_P0UP_2
+#define    P03_PULLUP_DISABLE      clr_P0UP_3
+#define    P04_PULLUP_DISABLE      clr_P0UP_4
+#define    P05_PULLUP_DISABLE      clr_P0UP_5
+#define    P06_PULLUP_DISABLE      clr_P0UP_6
+#define    P07_PULLUP_DISABLE      clr_P0UP_7
+#define    P10_PULLUP_DISABLE      clr_P1UP_0
+#define    P11_PULLUP_DISABLE      clr_P1UP_1
+#define    P12_PULLUP_DISABLE      clr_P1UP_2
+#define    P13_PULLUP_DISABLE      clr_P1UP_3
+#define    P14_PULLUP_DISABLE      clr_P1UP_4
+#define    P15_PULLUP_DISABLE      clr_P1UP_5
+#define    P16_PULLUP_DISABLE      clr_P1UP_6
+#define    P17_PULLUP_DISABLE      clr_P1UP_7
+#define    P20_PULLUP_DISABLE      clr_P2UP_0
+#define    P21_PULLUP_DISABLE      clr_P2UP_1
+#define    P22_PULLUP_DISABLE      clr_P2UP_2
+#define    P23_PULLUP_DISABLE      clr_P2UP_3
+#define    P24_PULLUP_DISABLE      clr_P2UP_4
+#define    P25_PULLUP_DISABLE      clr_P2UP_5
+#define    P30_PULLUP_DISABLE      clr_P3UP_0
+#define    P31_PULLUP_DISABLE      clr_P3UP_1
+#define    P32_PULLUP_DISABLE      clr_P3UP_2
+#define    P33_PULLUP_DISABLE      clr_P3UP_3
+#define    P34_PULLUP_DISABLE      clr_P3UP_4
+#define    P35_PULLUP_DISABLE      clr_P3UP_5
+#define    P36_PULLUP_DISABLE      clr_P3UP_6
+#define    P37_PULLUP_DISABLE      clr_P3UP_7
 /*------------------- GPIO pull down enable -------------------*/  
-#define    ENABLE_P00_PULLDOWN     set_P0DW_0
-#define    ENABLE_P01_PULLDOWN     set_P0DW_1
-#define    ENABLE_P02_PULLDOWN     set_P0DW_2
-#define    ENABLE_P03_PULLDOWN     set_P0DW_3
-#define    ENABLE_P04_PULLDOWN     set_P0DW_4
-#define    ENABLE_P05_PULLDOWN     set_P0DW_5
-#define    ENABLE_P06_PULLDOWN     set_P0DW_6
-#define    ENABLE_P07_PULLDOWN     set_P0DW_7
-#define    ENABLE_P10_PULLDOWN     set_P1DW_0
-#define    ENABLE_P11_PULLDOWN     set_P1DW_1
-#define    ENABLE_P12_PULLDOWN     set_P1DW_2
-#define    ENABLE_P13_PULLDOWN     set_P1DW_3
-#define    ENABLE_P14_PULLDOWN     set_P1DW_4
-#define    ENABLE_P15_PULLDOWN     set_P1DW_5
-#define    ENABLE_P16_PULLDOWN     set_P1DW_6
-#define    ENABLE_P17_PULLDOWN     set_P1DW_7
-#define    ENABLE_P20_PULLDOWN     set_P2DW_0
-#define    ENABLE_P21_PULLDOWN     set_P2DW_1
-#define    ENABLE_P22_PULLDOWN     set_P2DW_2
-#define    ENABLE_P23_PULLDOWN     set_P2DW_3
-#define    ENABLE_P24_PULLDOWN     set_P2DW_4
-#define    ENABLE_P25_PULLDOWN     set_P2DW_5
-#define    ENABLE_P30_PULLDOWN     set_P3DW_0
-#define    ENABLE_P31_PULLDOWN     set_P3DW_1
-#define    ENABLE_P32_PULLDOWN     set_P3DW_2
-#define    ENABLE_P33_PULLDOWN     set_P3DW_3
-#define    ENABLE_P34_PULLDOWN     set_P3DW_4
-#define    ENABLE_P35_PULLDOWN     set_P3DW_5
-#define    ENABLE_P36_PULLDOWN     set_P3DW_6
-#define    ENABLE_P37_PULLDOWN     set_P3DW_7
+#define    P00_PULLDOWN_ENABLE     set_P0DW_0
+#define    P01_PULLDOWN_ENABLE     set_P0DW_1
+#define    P02_PULLDOWN_ENABLE     set_P0DW_2
+#define    P03_PULLDOWN_ENABLE     set_P0DW_3
+#define    P04_PULLDOWN_ENABLE     set_P0DW_4
+#define    P05_PULLDOWN_ENABLE     set_P0DW_5
+#define    P06_PULLDOWN_ENABLE     set_P0DW_6
+#define    P07_PULLDOWN_ENABLE     set_P0DW_7
+#define    P10_PULLDOWN_ENABLE     set_P1DW_0
+#define    P11_PULLDOWN_ENABLE     set_P1DW_1
+#define    P12_PULLDOWN_ENABLE     set_P1DW_2
+#define    P13_PULLDOWN_ENABLE     set_P1DW_3
+#define    P14_PULLDOWN_ENABLE     set_P1DW_4
+#define    P15_PULLDOWN_ENABLE     set_P1DW_5
+#define    P16_PULLDOWN_ENABLE     set_P1DW_6
+#define    P17_PULLDOWN_ENABLE     set_P1DW_7
+#define    P20_PULLDOWN_ENABLE     set_P2DW_0
+#define    P21_PULLDOWN_ENABLE     set_P2DW_1
+#define    P22_PULLDOWN_ENABLE     set_P2DW_2
+#define    P23_PULLDOWN_ENABLE     set_P2DW_3
+#define    P24_PULLDOWN_ENABLE     set_P2DW_4
+#define    P25_PULLDOWN_ENABLE     set_P2DW_5
+#define    P30_PULLDOWN_ENABLE     set_P3DW_0
+#define    P31_PULLDOWN_ENABLE     set_P3DW_1
+#define    P32_PULLDOWN_ENABLE     set_P3DW_2
+#define    P33_PULLDOWN_ENABLE     set_P3DW_3
+#define    P34_PULLDOWN_ENABLE     set_P3DW_4
+#define    P35_PULLDOWN_ENABLE     set_P3DW_5
+#define    P36_PULLDOWN_ENABLE     set_P3DW_6
+#define    P37_PULLDOWN_ENABLE     set_P3DW_7
 /*------------------ GPIO pull down disable -------------------*/
-#define    DISABLE_P00_PULLDOWN    clr_P0DW_0
-#define    DISABLE_P01_PULLDOWN    clr_P0DW_1
-#define    DISABLE_P02_PULLDOWN    clr_P0DW_2
-#define    DISABLE_P03_PULLDOWN    clr_P0DW_3
-#define    DISABLE_P04_PULLDOWN    clr_P0DW_4
-#define    DISABLE_P05_PULLDOWN    clr_P0DW_5
-#define    DISABLE_P06_PULLDOWN    clr_P0DW_6
-#define    DISABLE_P07_PULLDOWN    clr_P0DW_7
-#define    DISABLE_P10_PULLDOWN    clr_P1DW_0
-#define    DISABLE_P11_PULLDOWN    clr_P1DW_1
-#define    DISABLE_P12_PULLDOWN    clr_P1DW_2
-#define    DISABLE_P13_PULLDOWN    clr_P1DW_3
-#define    DISABLE_P14_PULLDOWN    clr_P1DW_4
-#define    DISABLE_P15_PULLDOWN    clr_P1DW_5
-#define    DISABLE_P16_PULLDOWN    clr_P1DW_6
-#define    DISABLE_P17_PULLDOWN    clr_P1DW_7
-#define    DISABLE_P20_PULLDOWN    clr_P2DW_0
-#define    DISABLE_P21_PULLDOWN    clr_P2DW_1
-#define    DISABLE_P22_PULLDOWN    clr_P2DW_2
-#define    DISABLE_P23_PULLDOWN    clr_P2DW_3
-#define    DISABLE_P24_PULLDOWN    clr_P2DW_4
-#define    DISABLE_P25_PULLDOWN    clr_P2DW_5
-#define    DISABLE_P30_PULLDOWN    clr_P3DW_0
-#define    DISABLE_P31_PULLDOWN    clr_P3DW_1
-#define    DISABLE_P32_PULLDOWN    clr_P3DW_2
-#define    DISABLE_P33_PULLDOWN    clr_P3DW_3
-#define    DISABLE_P34_PULLDOWN    clr_P3DW_4
-#define    DISABLE_P35_PULLDOWN    clr_P3DW_5
-#define    DISABLE_P36_PULLDOWN    clr_P3DW_6
-#define    DISABLE_P37_PULLDOWN    clr_P3DW_7
+#define    P00_PULLDOWN_DISABLE    clr_P0DW_0
+#define    P01_PULLDOWN_DISABLE    clr_P0DW_1
+#define    P02_PULLDOWN_DISABLE    clr_P0DW_2
+#define    P03_PULLDOWN_DISABLE    clr_P0DW_3
+#define    P04_PULLDOWN_DISABLE    clr_P0DW_4
+#define    P05_PULLDOWN_DISABLE    clr_P0DW_5
+#define    P06_PULLDOWN_DISABLE    clr_P0DW_6
+#define    P07_PULLDOWN_DISABLE    clr_P0DW_7
+#define    P10_PULLDOWN_DISABLE    clr_P1DW_0
+#define    P11_PULLDOWN_DISABLE    clr_P1DW_1
+#define    P12_PULLDOWN_DISABLE    clr_P1DW_2
+#define    P13_PULLDOWN_DISABLE    clr_P1DW_3
+#define    P14_PULLDOWN_DISABLE    clr_P1DW_4
+#define    P15_PULLDOWN_DISABLE    clr_P1DW_5
+#define    P16_PULLDOWN_DISABLE    clr_P1DW_6
+#define    P17_PULLDOWN_DISABLE    clr_P1DW_7
+#define    P20_PULLDOWN_DISABLE    clr_P2DW_0
+#define    P21_PULLDOWN_DISABLE    clr_P2DW_1
+#define    P22_PULLDOWN_DISABLE    clr_P2DW_2
+#define    P23_PULLDOWN_DISABLE    clr_P2DW_3
+#define    P24_PULLDOWN_DISABLE    clr_P2DW_4
+#define    P25_PULLDOWN_DISABLE    clr_P2DW_5
+#define    P30_PULLDOWN_DISABLE    clr_P3DW_0
+#define    P31_PULLDOWN_DISABLE    clr_P3DW_1
+#define    P32_PULLDOWN_DISABLE    clr_P3DW_2
+#define    P33_PULLDOWN_DISABLE    clr_P3DW_3
+#define    P34_PULLDOWN_DISABLE    clr_P3DW_4
+#define    P35_PULLDOWN_DISABLE    clr_P3DW_5
+#define    P36_PULLDOWN_DISABLE    clr_P3DW_6
+#define    P37_PULLDOWN_DISABLE    clr_P3DW_7
+
+/*****************************************************************************************
+*  GPIO TTL/Schmitt Trig Type Define
+*****************************************************************************************/
+//------------------- Enable GPIO Schmitt Trigger Mode  -------------------
+#define    P00_ST_ENABLE          SFRS=1;P0S|=0x01
+#define    P01_ST_ENABLE          SFRS=1;P0S|=0x02
+#define    P02_ST_ENABLE          SFRS=1;P0S|=0x04
+#define    P03_ST_ENABLE          SFRS=1;P0S|=0x08
+#define    P04_ST_ENABLE          SFRS=1;P0S|=0x10
+#define    P05_ST_ENABLE          SFRS=1;P0S|=0x20
+#define    P06_ST_ENABLE          SFRS=1;P0S|=0x40
+#define    P07_ST_ENABLE          SFRS=1;P0S|=0x80
+#define    P10_ST_ENABLE          SFRS=1;P1S|=0x01
+#define    P11_ST_ENABLE          SFRS=1;P1S|=0x02
+#define    P12_ST_ENABLE          SFRS=1;P1S|=0x04
+#define    P13_ST_ENABLE          SFRS=1;P1S|=0x08
+#define    P14_ST_ENABLE          SFRS=1;P1S|=0x10
+#define    P15_ST_ENABLE          SFRS=1;P1S|=0x20
+#define    P16_ST_ENABLE          SFRS=1;P1S|=0x40
+#define    P17_ST_ENABLE          SFRS=1;P1S|=0x80
+#define    P20_ST_ENABLE          SFRS=1;P2S|=0x01
+#define    P21_ST_ENABLE          SFRS=1;P2S|=0x02
+#define    P22_ST_ENABLE          SFRS=1;P2S|=0x04
+#define    P23_ST_ENABLE          SFRS=1;P2S|=0x08
+#define    P24_ST_ENABLE          SFRS=1;P2S|=0x10
+#define    P25_ST_ENABLE          SFRS=1;P2S|=0x20
+#define    P26_ST_ENABLE          SFRS=1;P2S|=0x40
+#define    P27_ST_ENABLE          SFRS=1;P2S|=0x80
+#define    P30_ST_ENABLE          SFRS=1;P3S|=0x01
+#define    P31_ST_ENABLE          SFRS=1;P3S|=0x02
+#define    P32_ST_ENABLE          SFRS=1;P3S|=0x04
+#define    P33_ST_ENABLE          SFRS=1;P3S|=0x08
+#define    P34_ST_ENABLE          SFRS=1;P3S|=0x10
+#define    P35_ST_ENABLE          SFRS=1;P3S|=0x20
+#define    P36_ST_ENABLE          SFRS=1;P3S|=0x40
+#define    P37_ST_ENABLE          SFRS=1;P3S|=0x80
+#define    P40_ST_ENABLE          SFRS=1;P4S|=0x01
+#define    P41_ST_ENABLE          SFRS=1;P4S|=0x02
+#define    P42_ST_ENABLE          SFRS=1;P4S|=0x04
+#define    P43_ST_ENABLE          SFRS=1;P4S|=0x08
+#define    P44_ST_ENABLE          SFRS=1;P4S|=0x10
+#define    P45_ST_ENABLE          SFRS=1;P4S|=0x20
+#define    P46_ST_ENABLE          SFRS=1;P4S|=0x40
+#define    P47_ST_ENABLE          SFRS=1;P4S|=0x80
+#define    P50_ST_ENABLE          SFRS=1;P5S|=0x01
+#define    P51_ST_ENABLE          SFRS=1;P5S|=0x02
+#define    P52_ST_ENABLE          SFRS=1;P5S|=0x04
+#define    P53_ST_ENABLE          SFRS=1;P5S|=0x08
+#define    P54_ST_ENABLE          SFRS=1;P5S|=0x10
+#define    P55_ST_ENABLE          SFRS=1;P5S|=0x20
+#define    P56_ST_ENABLE          SFRS=1;P5S|=0x40
+#define    P57_ST_ENABLE          SFRS=1;P5S|=0x80
+#define    P60_ST_ENABLE          SFRS=2;P6S|=0x01
+#define    P61_ST_ENABLE          SFRS=2;P6S|=0x02
+#define    P62_ST_ENABLE          SFRS=2;P6S|=0x04
+#define    P63_ST_ENABLE          SFRS=2;P6S|=0x08
+#define    P64_ST_ENABLE          SFRS=2;P6S|=0x10
+#define    P65_ST_ENABLE          SFRS=2;P6S|=0x20
+#define    P66_ST_ENABLE          SFRS=2;P6S|=0x40
+#define    P67_ST_ENABLE          SFRS=2;P6S|=0x80
+
+//------------------- Enable GPIO TTL Mode  -------------------
+#define    P00_TTL_ENABLE          SFRS=1;P0S&=0xFE
+#define    P01_TTL_ENABLE          SFRS=1;P0S&=0xFD
+#define    P02_TTL_ENABLE          SFRS=1;P0S&=0xFB
+#define    P03_TTL_ENABLE          SFRS=1;P0S&=0xF7
+#define    P04_TTL_ENABLE          SFRS=1;P0S&=0xEF
+#define    P05_TTL_ENABLE          SFRS=1;P0S&=0xDF
+#define    P06_TTL_ENABLE          SFRS=1;P0S&=0xBF
+#define    P07_TTL_ENABLE          SFRS=1;P0S&=0x7F
+#define    P10_TTL_ENABLE          SFRS=1;P1S&=0xFE
+#define    P11_TTL_ENABLE          SFRS=1;P1S&=0xFD
+#define    P12_TTL_ENABLE          SFRS=1;P1S&=0xFB
+#define    P13_TTL_ENABLE          SFRS=1;P1S&=0xF7
+#define    P14_TTL_ENABLE          SFRS=1;P1S&=0xEF
+#define    P15_TTL_ENABLE          SFRS=1;P1S&=0xDF
+#define    P16_TTL_ENABLE          SFRS=1;P1S&=0xBF
+#define    P17_TTL_ENABLE          SFRS=1;P1S&=0x7F
+#define    P20_TTL_ENABLE          SFRS=1;P2S&=0xFE
+#define    P21_TTL_ENABLE          SFRS=1;P2S&=0xFD
+#define    P22_TTL_ENABLE          SFRS=1;P2S&=0xFB
+#define    P23_TTL_ENABLE          SFRS=1;P2S&=0xF7
+#define    P24_TTL_ENABLE          SFRS=1;P2S&=0xEF
+#define    P25_TTL_ENABLE          SFRS=1;P2S&=0xDF
+#define    P26_TTL_ENABLE          SFRS=1;P2S&=0xBF
+#define    P27_TTL_ENABLE          SFRS=1;P2S&=0x7F
+#define    P30_TTL_ENABLE          SFRS=1;P3S&=0xFE
+#define    P31_TTL_ENABLE          SFRS=1;P3S&=0xFD
+#define    P32_TTL_ENABLE          SFRS=1;P3S&=0xFB
+#define    P33_TTL_ENABLE          SFRS=1;P3S&=0xF7
+#define    P34_TTL_ENABLE          SFRS=1;P3S&=0xEF
+#define    P35_TTL_ENABLE          SFRS=1;P3S&=0xDF
+#define    P36_TTL_ENABLE          SFRS=1;P3S&=0xBF
+#define    P37_TTL_ENABLE          SFRS=1;P3S&=0x7F
+#define    P40_TTL_ENABLE          SFRS=1;P4S&=0xFE
+#define    P41_TTL_ENABLE          SFRS=1;P4S&=0xFD
+#define    P42_TTL_ENABLE          SFRS=1;P4S&=0xFB
+#define    P43_TTL_ENABLE          SFRS=1;P4S&=0xF7
+#define    P44_TTL_ENABLE          SFRS=1;P4S&=0xEF
+#define    P45_TTL_ENABLE          SFRS=1;P4S&=0xDF
+#define    P46_TTL_ENABLE          SFRS=1;P4S&=0xBF
+#define    P47_TTL_ENABLE          SFRS=1;P4S&=0x7F
+#define    P50_TTL_ENABLE          SFRS=1;P5S&=0xFE
+#define    P51_TTL_ENABLE          SFRS=1;P5S&=0xFD
+#define    P52_TTL_ENABLE          SFRS=1;P5S&=0xFB
+#define    P53_TTL_ENABLE          SFRS=1;P5S&=0xF7
+#define    P54_TTL_ENABLE          SFRS=1;P5S&=0xEF
+#define    P55_TTL_ENABLE          SFRS=1;P5S&=0xDF
+#define    P56_TTL_ENABLE          SFRS=1;P5S&=0xBF
+#define    P57_TTL_ENABLE          SFRS=1;P5S&=0x7F
+#define    P60_TTL_ENABLE          SFRS=2;P6S&=0xFE
+#define    P61_TTL_ENABLE          SFRS=2;P6S&=0xFD
+#define    P62_TTL_ENABLE          SFRS=2;P6S&=0xFB
+#define    P63_TTL_ENABLE          SFRS=2;P6S&=0xF7
+#define    P64_TTL_ENABLE          SFRS=2;P6S&=0xEF
+#define    P65_TTL_ENABLE          SFRS=2;P6S&=0xDF
+#define    P66_TTL_ENABLE          SFRS=2;P6S&=0xBF
+#define    P67_TTL_ENABLE          SFRS=2;P6S&=0x7F

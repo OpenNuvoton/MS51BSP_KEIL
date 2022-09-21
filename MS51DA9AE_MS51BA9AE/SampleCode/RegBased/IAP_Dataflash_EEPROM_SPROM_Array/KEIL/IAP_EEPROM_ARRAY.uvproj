@@ -13,14 +13,14 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>MS51FB9AE</Device>
+          <Device>MS51DA9AE</Device>
           <Vendor>Nuvoton</Vendor>
           <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x3FFF)  XRAM(0 - 0x3FF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll></FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>MS51.H</RegisterFile>
+          <RegisterFile>MS51_8K.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>

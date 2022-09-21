@@ -13,7 +13,7 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>MS51FB9AE</Device>
+          <Device>MS51DA9AE</Device>
           <Vendor>Nuvoton</Vendor>
           <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x3FFF)  XRAM(0 - 0x3FF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>

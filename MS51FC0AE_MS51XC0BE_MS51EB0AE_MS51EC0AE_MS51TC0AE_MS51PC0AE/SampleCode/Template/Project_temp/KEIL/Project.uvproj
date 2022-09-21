@@ -12,7 +12,7 @@
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>MS51FB9AE</Device>
+          <Device>MS51PC0AE</Device>
           <Vendor>Nuvoton</Vendor>
           <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x3FFF)  XRAM(0 - 0x3FF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>

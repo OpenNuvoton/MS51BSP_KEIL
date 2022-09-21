@@ -30,3 +30,4 @@
 
 2022/09
 1. PWM                           Added PWM reload API
+2. GPIO                          Added GPIO TTL/Schimtt Trig in function define.

@@ -7,7 +7,7 @@
 
 
 /************************************************************************************************************/
-/*  File Function: MS51 pin interrupt demo                                                                  */
+/*  File Function: MS51 pin interrupt wakeup power down modee                                               */
 /************************************************************************************************************/
 #include "MS51_16K.H"
 
@@ -16,13 +16,13 @@ void PinInterrupt_ISR (void) interrupt 7
 {
 _push_(SFRS);
   
-     if (PIF&=SET_BIT2)
+     if (PIF&=SET_BIT0)
      {
-       P02 ^= 1;
+       P12 ^= 1;
      }
-     if (PIF&=SET_BIT2)
+     if (PIF&=SET_BIT3)
      {
-       P03 ^= 1;
+       P12 ^= 1;
      }
 
 _pop_(SFRS);
@@ -33,24 +33,25 @@ here after stack initialization.
 ******************************************************************************/
 void main (void) 
 {
-    P02_QUASI_MODE;
-    P03_QUASI_MODE;
-  
-    P12_QUASI_MODE;
-    P13_INPUT_MODE;
-/*----------------------------------------------------*/
-/*  P1.3 set as highlevel trig pin interrupt function */
-/*  otherwise, MCU into idle mode.                    */
-/*----------------------------------------------------*/
-    ENABLE_INT_PORT1;
-    ENABLE_BIT2_BOTHEDGE_TRIG;
-    ENABLE_BIT3_FALLINGEDGE_TRIG;
-    set_EIE_EPI;                            // Enable pin interrupt
-    ENABLE_GLOBAL_INTERRUPT;                // global enable bit
-    set_PCON_IDLE;
-    while(1);
+    BOD_DISABLE;            /* Disable BOD for less power consumption*/
 
+    P12_QUASI_MODE;
+  
+    P00_QUASI_MODE;
+    P03_INPUT_MODE;
+
+/*----------------------------------------------------*/
+/*  Keep in power down mode unless trig setting GPIO  */
+/*----------------------------------------------------*/
+    ENABLE_INT_PORT0;
+    ENABLE_BIT0_FALLINGEDGE_TRIG;
+    ENABLE_BIT3_BOTHEDGE_TRIG;
+    ENABLE_PIN_INTERRUPT;
+    ENABLE_GLOBAL_INTERRUPT;
+
+    while(1) 
+    {
+       set_PCON_PD;
+    }
 
 }
-
-

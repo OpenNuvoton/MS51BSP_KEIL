@@ -5,18 +5,17 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
+/************************************************************************************************************/
+/*  File Function: MS51 pin interrupt wakeup power down modee                                               */
+/************************************************************************************************************/
 
-/************************************************************************************************************/
-/*  File Function: MS51 pin interrupt demo                                                                  */
-/************************************************************************************************************/
 #include "MS51_8K.H"
-
 
 void PinInterrupt_ISR (void) interrupt 7
 {
 _push_(SFRS);
 
-  if (PIF&SET_BIT3)
+  if (PIF&SET_BIT0)
   {
     P17 ^= 1;
   }
@@ -28,33 +27,33 @@ _push_(SFRS);
 
 _pop_(SFRS);
 }
-  
+
+
 /******************************************************************************
 The main C function.  Program execution starts
 here after stack initialization.
 ******************************************************************************/
 void main (void) 
 {
+    BOD_DISABLE;            /* Disable BOD for less power consumption*/
 
-    P03_QUASI_MODE;
-    P03 = 0;
-    P04_INPUT_MODE;
     P17_QUASI_MODE;
-
+  
+    P00_QUASI_MODE;
+    P03_INPUT_MODE;
 
 /*----------------------------------------------------*/
-/*  P1.3 set as highlevel trig pin interrupt function */
-/*  otherwise, MCU into idle mode.                    */
+/*  Keep in power down mode unless trig setting GPIO  */
 /*----------------------------------------------------*/
     ENABLE_INT_PORT0;
-    ENABLE_BIT3_RISINGEDGE_TRIG;
-    ENABLE_BIT4_BOTHEDGE_TRIG;
-    set_EIE_EPI;                            // Enable pin interrupt
-    ENABLE_GLOBAL_INTERRUPT;                // global enable bit
-    set_PCON_IDLE;
-    while(1);
+    ENABLE_BIT0_FALLINGEDGE_TRIG;
+    ENABLE_BIT3_BOTHEDGE_TRIG;
+    ENABLE_PIN_INTERRUPT;
+    ENABLE_GLOBAL_INTERRUPT;
 
+    while(1) 
+    {
+       set_PCON_PD;
+    }
 
 }
-
-
