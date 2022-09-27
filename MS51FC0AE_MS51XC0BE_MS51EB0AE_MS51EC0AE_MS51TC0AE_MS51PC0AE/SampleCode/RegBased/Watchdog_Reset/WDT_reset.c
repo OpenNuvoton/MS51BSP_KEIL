@@ -21,7 +21,7 @@ void main (void)
     unsigned char i;
     P35_QUASI_MODE;
     P00_INPUT_MODE;
-    ENABLE_P00_PULLUP;
+    P00_PULLUP_ENABLE;
     Disable_WDT_Reset_Config();
 /*----------------------------------------------------------------------------------------------*/
 /* WDT Init !!! ENABLE CONFIG WDT FIRST !!!                                                     */

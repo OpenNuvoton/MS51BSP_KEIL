@@ -261,6 +261,38 @@ typedef signed long           int32_t;
 #define   SET_INT_WKT_LEVEL1           clr_EIP1_PWKT; set_EIPH1_PWKTH
 #define   SET_INT_WKT_LEVEL2           set_EIP1_PWKT; clr_EIPH1_PWKTH
 #define   SET_INT_WKT_LEVEL3           set_EIP1_PWKT; set_EIPH1_PWKTH
+
+/* Clear Interrupt Flag */
+#define    CLEAR_ADC_INTERRUPT_FLAG          clr_ADCCON0_ADCF
+#define    CLEAR_BOD_INTERRUPT_FLAG          clr_BODCON0_BOF
+#define    CLEAR_BOD_RESET_FLAG              clr_BODCON0_BORF
+#define    CLEAR_UART0_INTERRUPT_TX_FLAG     clr_SCON_TI
+#define    CLEAR_UART0_INTERRUPT_RX_FLAG     clr_SCON_RI
+#define    CLEAR_TIMER1_INTERRUPT_FLAG       clr_TCON_TF1
+#define    CLEAR_INT1_INTERRUPT_FLAG         clr_TCON_IE1
+#define    CLEAR_TIMER0_INTERRUPT_FLAG       clr_TCON_TF0
+#define    CLEAR_INT0_INTERRUPT_FLAG         clr_TCON_IE0
+#define    CLEAR_TIMER2_INTERRUPT_FLAG       clr_T2CON_TF2
+#define    CLEAR_SPI0_INTERRUPT_FLAG         clr_SPSR_SPIF
+#define    CLEAR_PWM0_FB_INTERRUPT_FLAG      clr_PWM0FBD_FBF
+#define    CLEAR_WDT_INTERRUPT_FLAG          clr_WKCON_WKTF
+#define    CLEAR_PWM0_INTERRUPT_FLAG         clr_PWM1CON0_PWMF
+#define    CLEAR_CAPTURE_INTERRUPT_IC0_FLAG  clr_CAPCON0_CAPF0
+#define    CLEAR_CAPTURE_INTERRUPT_IC1_FLAG  clr_CAPCON0_CAPF1
+#define    CLEAR_CAPTURE_INTERRUPT_IC2_FLAG  clr_CAPCON0_CAPF2
+#define    CLEAR_PIN_INTERRUPT_PIT0_FLAG     clr_PIF_PIF0
+#define    CLEAR_PIN_INTERRUPT_PIT1_FLAG     clr_PIF_PIF1
+#define    CLEAR_PIN_INTERRUPT_PIT2_FLAG     clr_PIF_PIF2
+#define    CLEAR_PIN_INTERRUPT_PIT3_FLAG     clr_PIF_PIF3
+#define    CLEAR_PIN_INTERRUPT_PIT4_FLAG     clr_PIF_PIF4
+#define    CLEAR_PIN_INTERRUPT_PIT5_FLAG     clr_PIF_PIF5
+#define    CLEAR_PIN_INTERRUPT_PIT6_FLAG     clr_PIF_PIF6
+#define    CLEAR_PIN_INTERRUPT_PIT7_FLAG     clr_PIF_PIF7
+#define    CLEAR_I2C_TIMEOUT_INTERRUPT_FLAG  clr_I2TOC_I2TOF
+#define    CLEAR_WKT_INTERRUPT_FLAG          clr_WKCON_WKTF
+#define    CLEAR_TIMER3_INTERRUPT_FLAG       clr_T3CON_TF3
+#define    CLEAR_UART1_INTERRUPT_FLAG        clr_EIE1_ES_1 
+
 /*****************************************************************************************
 * For GPIO INIT setting 
 *****************************************************************************************/
@@ -629,6 +661,7 @@ typedef signed long           int32_t;
 #define    TIMER2_CAP0_Capture_Mode      T2CON&=0xFE;T2MOD=0x89
 #define    TIMER2_CAP1_Capture_Mode      T2CON&=0xFE;T2MOD=0x8A
 #define    TIMER2_CAP2_Capture_Mode      T2CON&=0xFE;T2MOD=0x8B
+
 //-------------------- Timer2 Capture define --------------------
 //--- Falling Edge -----
 #define    IC0_P12_CAP0_FALLINGEDGE_CAPTURE    CAPCON1&=0xFC;CAPCON3&=0xF0;CAPCON0|=0x10;CAPCON2|=0x10
@@ -979,9 +1012,19 @@ typedef signed long           int32_t;
 #define    INT1_FALLING_EDGE_TRIG             set_TCON_IT1
 #define    INT1_LOW_LEVEL_TRIG                clr_TCON_IT1
 
-/**********************************/
-#define    TIMER0_FSYS                        set_CKCON_T0M
-#define    TIMER0_FSYS_DIV12                  clr_CKCON_T0M
+/*****************************************************************************************
+* WDT setting
+*****************************************************************************************/
+#define    WDT_TIMEOUT_6MS                    TA=0xAA;TA=0x55;WDCON&=0xF8
+#define    WDT_TIMEOUT_25MS                   TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x01
+#define    WDT_TIMEOUT_50MS                   TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x02
+#define    WDT_TIMEOUT_100MS                  TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x03
+#define    WDT_TIMEOUT_200MS                  TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x04
+#define    WDT_TIMEOUT_400MS                  TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x05
+#define    WDT_TIMEOUT_800MS                  TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x06
+#define    WDT_TIMEOUT_1_6S                   TA=0xAA;TA=0x55;WDCON&=0xF8;WDCON|=0x07
 
-#define    TIMER1_FSYS                        set_CKCON_T1M
-#define    TIMER1_FSYS_DIV12                  clr_CKCON_T1M
+#define    WDT_RUN_IN_POWERDOWN_ENABLE        set_WDCON_WIDPD
+#define    WDT_RUN_IN_POWERDOWN_DISABLE       clr_WDCON_WIDPD
+#define    WDT_COUNTER_CLEAR                  set_WDCON_WDCLR
+#define    WDT_COUNTER_RUN                    set_WDCON_WDTR

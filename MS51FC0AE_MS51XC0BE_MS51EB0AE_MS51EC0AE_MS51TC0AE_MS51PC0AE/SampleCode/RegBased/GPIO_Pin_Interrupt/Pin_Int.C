@@ -20,13 +20,15 @@ void PinInterrupt_ISR (void) interrupt 7
   if (PIF&SET_BIT0)
   {
     P35 = 1;
+    CLEAR_PIN_INTERRUPT_PIT0_FLAG;
   }
   if (PIF&SET_BIT1)
   {
     P35 = 0;
     stopflag =1;
+    CLEAR_PIN_INTERRUPT_PIT1_FLAG;
   }
-  PIF = 0;
+  ;
   
     _pop_(SFRS);
 }  
@@ -36,11 +38,12 @@ here after stack initialization.
 ******************************************************************************/
 void main (void) 
 {
+    BOD_DISABLE;            /* Disable BOD for less power consumption*/
 
     P13_INPUT_MODE;
-    ENABLE_P13_PULLUP;
+    P13_PULLUP_ENABLE;
     P32_INPUT_MODE;
-    ENABLE_P32_PULLDOWN;
+    P32_PULLDOWN_ENABLE;
     P35_QUASI_MODE;
     P35 = 1;
 /*----------------------------------------------------*/

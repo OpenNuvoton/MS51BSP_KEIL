@@ -19,10 +19,12 @@ _push_(SFRS);
      if (PIF&=SET_BIT0)
      {
        P12 ^= 1;
+       CLEAR_PIN_INTERRUPT_PIT0_FLAG;
      }
      if (PIF&=SET_BIT3)
      {
        P12 ^= 1;
+       CLEAR_PIN_INTERRUPT_PIT3_FLAG;
      }
 
 _pop_(SFRS);

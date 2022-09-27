@@ -861,7 +861,27 @@
 #define clr_PIPEN_PIPEN1        PIPEN&=0xFD
 #define clr_PIPEN_PIPEN0        PIPEN&=0xFE
 
-/**** C2L  EDH ****/  
+/**** PIF ECH ****/
+#define set_PIF_PIF7             PIF|=0x80
+#define set_PIF_PIF6             PIF|=0x40
+#define set_PIF_PIF5             PIF|=0x20
+#define set_PIF_PIF4             PIF|=0x10
+#define set_PIF_PIF3             PIF|=0x08
+#define set_PIF_PIF2             PIF|=0x04
+#define set_PIF_PIF1             PIF|=0x02
+#define set_PIF_PIF0             PIF|=0x01
+                                 
+#define clr_PIF_PIF7             PIF&=0x7F
+#define clr_PIF_PIF6             PIF&=0xBF
+#define clr_PIF_PIF5             PIF&=0xDF
+#define clr_PIF_PIF4             PIF&=0xEF
+#define clr_PIF_PIF3             PIF&=0xF7
+#define clr_PIF_PIF2             PIF&=0xFB
+#define clr_PIF_PIF1             PIF&=0xFD
+#define clr_PIF_PIF0             PIF&=0xFE
+
+/**** C2L  EDH ****/
+
 /**** C2H  EEH ****/
 
 /**** EIP  EFH ****/                      

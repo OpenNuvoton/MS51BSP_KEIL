@@ -27,7 +27,7 @@ void main (void)
 {
     P35_PUSHPULL_MODE;
     P30_INPUT_MODE;                      //setting INT0 pin P3.0 as Quasi mode with internal pull high
-    ENABLE_P30_PULLUP;
+    P30_PULLUP_ENABLE;
     P30 = 1;
     INT0_FALLING_EDGE_TRIG;              //setting trig condition level or edge
      set_IE_EX0;                         //INT0_Enable;
