@@ -371,6 +371,11 @@ sbit EX0        = IE^0;
 
 /*  P2  */ 
 sbit P20        = P2^0;
+sbit P21        = P2^1;
+sbit P22        = P2^2;
+sbit P23        = P2^3;
+sbit P24        = P2^4;
+sbit P25        = P2^5;
 
 /*  SCON  */
 sbit SM0        = SCON^7;
