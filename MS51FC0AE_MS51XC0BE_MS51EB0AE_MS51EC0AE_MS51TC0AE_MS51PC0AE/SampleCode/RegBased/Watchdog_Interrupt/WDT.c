@@ -37,11 +37,11 @@ void main (void)
   WDT timer base is LIRC 10Khz
 */
     P35_QUASI_MODE;  
-//--------------------------------------------------------
-//Warning:
-//Pleaes always check CONFIG WDT disable first 
-//only when WDT reset disable, WDT use as pure timer
-//--------------------------------------------------------
+/*--------------------------------------------------------
+ * Notice:
+ * WDT MUST enable in CONFIG 
+ * only when WDT reset disable, WDT use as pure timer
+ *-------------------------------------------------------- */
     WDT_TIMEOUT_800MS;                     /* Setting WDT time out */
     WDT_RUN_IN_POWERDOWN_ENABLE;           /* WDT run in POWER DOWM mode setting if needed */
     ENABLE_WDT_INTERRUPT;

@@ -127,6 +127,28 @@ extern bit BIT_TMP;
 
 #define     PAGE_SIZE               128
 
+/*****************************************************************************/
+/*   POR/LVR/BOD Define                                                      */
+/*****************************************************************************/
+#define    BOD_ENABLE               BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
+#define    BOD_RESET_ENABLE         BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP
+#define    BOD_DISABLE              BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0&=0x7B;EA=BIT_TMP
+ 
+#define    LVR_ENABLE               BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x00;EA=BIT_TMP
+#define    LVR_DISABLE              BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x5A;TA=0xAA;TA=0x55;LVRDIS=0xA5;EA=BIT_TMP
+
+#define    POR_ENABLE               BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x00;EA=BIT_TMP;
+#define    POR_DISABLE              BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x5A;TA=0xAA;TA=0x55;PORDIS=0xA5;EA=BIT_TMP
+/****/
+#define    ENABLE_BOD               BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
+#define    ENABLE_BOD_RESET         BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP
+#define    DISABLE_BOD              BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0&=0x7B;EA=BIT_TMP
+ 
+#define    ENABLE_LVR               BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x00;EA=BIT_TMP
+#define    DISABLE_LVR              BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x5A;TA=0xAA;TA=0x55;LVRDIS=0xA5;EA=BIT_TMP
+
+#define    ENABLE_POR               BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x00;EA=BIT_TMP;
+#define    DISABLE_POR              BIT_TMP=EA;EA=0;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x5A;TA=0xAA;TA=0x55;PORDIS=0xA5;EA=BIT_TMP
 /*****************************************************************************************/
 /* Interrupt function process */
 /*****************************************************************************************/
@@ -457,7 +479,7 @@ extern bit BIT_TMP;
 #define    TIMER_DIV128_VALUE_200ms_FOSC_11059200  65536-17280      /* 34560*128 /11059200 = 200 ms  (Timer divider = 128 for TM2/TM3) */
 #define    TIMER_DIV256_VALUE_500ms_FOSC_11059200  65536-21600      /* 43200*256 /11059200 = 500 ms  (Timer divider = 256 for TM2/TM3) */
 #define    TIMER_DIV512_VALUE_1s_FOSC_11059200     65536-21600      /* 43200*512 /11059200 = 1 s     (Timer divider = 512 for TM2/TM3) */
-/* define timer base value Fsys = 16MHz */                       
+/* define timer base value Fsys = 16MHz */
 #define    TIMER_DIV12_VALUE_10us_FOSC_16000000    65536-8          /* 13*12     /16000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
 #define    TIMER_DIV12_VALUE_100us_FOSC_16000000   65536-130        /* 130*12    /16000000 = 10 uS,  (Timer divider = 12  for TM0/TM1) */
 #define    TIMER_DIV12_VALUE_1ms_FOSC_16000000     65536-1334       /* 1334*12   /16000000 = 1 mS,   (Timer divider = 12  for TM0/TM1) */
@@ -561,8 +583,8 @@ extern bit BIT_TMP;
 #define    ENABLE_TIMER1_MODE1                  SFRS=0;TMOD&=0x0F;TMOD|=0x10  
 #define    ENABLE_TIMER1_MODE2                  SFRS=0;TMOD&=0x0F;TMOD|=0x20  
 #define    ENABLE_TIMER1_MODE3                  SFRS=0;TMOD&=0x0F;TMOD|=0x30  
-#define    TIMER1_FSYS                          set_CKCON_T1M                 
-#define    TIMER1_FSYS_DIV12                    clr_CKCON_T1M                 
+#define    TIMER1_FSYS                          set_CKCON_T1M
+#define    TIMER1_FSYS_DIV12                    clr_CKCON_T1M
 
 //-------------------- Timer2 function define --------------------
 #define    TIMER2_DIV_4                         SFRS=0;T2MOD|=0x10;T2MOD&=0x9F
@@ -578,14 +600,14 @@ extern bit BIT_TMP;
 #define    TIMER2_CAP0_Capture_Mode             SFRS=0;T2CON&=0xFE;T2MOD=0x89 
 #define    TIMER2_CAP1_Capture_Mode             SFRS=0;T2CON&=0xFE;T2MOD=0x8A 
 #define    TIMER2_CAP2_Capture_Mode             SFRS=0;T2CON&=0xFE;T2MOD=0x8B 
-/*-------------------- Timer3 basic define --------------------*/                      
-#define    TIMER3_DIV_1                         SFRS=0;T3CON&=0xF8;                                             
-#define    TIMER3_DIV_2                         SFRS=0;T3CON&=0xF8;T3CON|=0x0                        
-#define    TIMER3_DIV_4                         SFRS=0;T3CON&=0xF8;T3CON|=0x0                          
-#define    TIMER3_DIV_8                         SFRS=0;T3CON&=0xF8;T3CON|=0x0                         
-#define    TIMER3_DIV_16                        SFRS=0;T3CON&=0xF8;T3CON|=0x0                         
-#define    TIMER3_DIV_32                        SFRS=0;T3CON&=0xF8;T3CON|=0x0                         
-#define    TIMER3_DIV_64                        SFRS=0;T3CON&=0xF8;T3CON|=0x0                         
+/*-------------------- Timer3 basic define --------------------*/
+#define    TIMER3_DIV_1                         SFRS=0;T3CON&=0xF8;
+#define    TIMER3_DIV_2                         SFRS=0;T3CON&=0xF8;T3CON|=0x0
+#define    TIMER3_DIV_4                         SFRS=0;T3CON&=0xF8;T3CON|=0x0
+#define    TIMER3_DIV_8                         SFRS=0;T3CON&=0xF8;T3CON|=0x0
+#define    TIMER3_DIV_16                        SFRS=0;T3CON&=0xF8;T3CON|=0x0
+#define    TIMER3_DIV_32                        SFRS=0;T3CON&=0xF8;T3CON|=0x0
+#define    TIMER3_DIV_64                        SFRS=0;T3CON&=0xF8;T3CON|=0x0
 #define    TIMER3_DIV_128                       SFRS=0;T3CON|=0x07
 //-------------------- Timer2 Capture define --------------------
 //--- Falling Edge -----
@@ -743,14 +765,14 @@ extern bit BIT_TMP;
 #define    PWM0_CH2_OUTPUT_INVERSE              SFRS=0;PNP|=0x04
 #define    PWM0_CH1_OUTPUT_INVERSE              SFRS=0;PNP|=0x02
 #define    PWM0_CH0_OUTPUT_INVERSE              SFRS=0;PNP|=0x01
-#define    PWM0_OUTPUT_ALL_INVERSE              SFRS=0;PNP=0xFF 
+#define    PWM0_ALL_OUTPUT_INVERSE              SFRS=0;PNP=0xFF 
 #define    PWM0_CH5_OUTPUT_NORMAL               SFRS=0;PNP&=0xDF
 #define    PWM0_CH4_OUTPUT_NORMAL               SFRS=0;PNP&=0xEF
 #define    PWM0_CH3_OUTPUT_NORMAL               SFRS=0;PNP&=0xF7
 #define    PWM0_CH2_OUTPUT_NORMAL               SFRS=0;PNP&=0xFB
 #define    PWM0_CH1_OUTPUT_NORMAL               SFRS=0;PNP&=0xFD
 #define    PWM0_CH0_OUTPUT_NORMAL               SFRS=0;PNP&=0xFE
-#define    PWM0_OUTPUT_ALL_NORMAL               SFRS=0;PNP=0x00 
+#define    PWM0_ALL_OUTPUT_NORMAL               SFRS=0;PNP=0x00 
 /*--------- PMM0 Mask Output ENABLE -----------------------*/       
 #define    ENABLE_PWM0_CH0_MASK                 SFRS=0;PWM0MEN|=0x01
 #define    ENABLE_PWM0_CH1_MASK                 SFRS=0;PWM0MEN|=0x02
@@ -1013,13 +1035,6 @@ extern bit BIT_TMP;
 #define    ENABLE_SPI0_MISO_P25               set_AUXR7_SPI0MISOP                    
 #define    ENABLE_SPI0_CLK_P10                clr_AUXR7_SPI0CKP                      
 #define    ENABLE_SPI0_CLK_P17                set_AUXR7_SPI0CKP                      
-
-/*****************************************************************************************
-* For BOD enable/disable setting 
-*****************************************************************************************/
-#define    DISABLE_BOD                        SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;BODCON0&=0x7B;EA=BIT_TMP
-#define    ENABLE_BOD                         SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
-#define    ENABLE_BOD_RESET                   SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP
 
 /*****************************************************************************************
 * For UART0 and UART1 and printf funcion 
