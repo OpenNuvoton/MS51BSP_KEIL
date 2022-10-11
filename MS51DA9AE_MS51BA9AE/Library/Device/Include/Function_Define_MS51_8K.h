@@ -117,19 +117,11 @@ typedef signed long           int32_t;
 #define    BOD_ENABLE               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
 #define    BOD_RESET_ENABLE         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP
 #define    BOD_DISABLE              BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=0;TA=0xAA;TA=0x55;BODCON0&=0x7B;EA=BIT_TMP
+/****/
 #define    ENABLE_BOD               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
 #define    ENABLE_BOD_RESET         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP
 #define    DISABLE_BOD              BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=0;TA=0xAA;TA=0x55;BODCON0&=0x7B;EA=BIT_TMP
- 
-#define    LVR_ENABLE               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x00;EA=BIT_TMP
-#define    LVR_DISABLE              BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x5A;TA=0xAA;TA=0x55;LVRDIS=0xA5;EA=BIT_TMP
-#define    ENABLE_LVR               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x00;EA=BIT_TMP
-#define    DISABLE_LVR              BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;LVRDIS=0x5A;TA=0xAA;TA=0x55;LVRDIS=0xA5;EA=BIT_TMP
 
-#define    ENABLE_POR               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x00;EA=BIT_TMP;
-#define    DISABLE_POR              BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x5A;TA=0xAA;TA=0x55;PORDIS=0xA5;EA=BIT_TMP
-#define    POR_ENABLE               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x00;EA=BIT_TMP;
-#define    POR_DISABLE              BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=1;TA=0xAA;TA=0x55;PORDIS=0x5A;TA=0xAA;TA=0x55;PORDIS=0xA5;EA=BIT_TMP
 /*****************************************************************************/
 /*     interrupt function process                                            */
 /*****************************************************************************/

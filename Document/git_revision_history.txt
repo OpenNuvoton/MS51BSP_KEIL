@@ -31,3 +31,7 @@
 2022/09
 1. PWM                           Added PWM reload API
 2. GPIO                          Added GPIO TTL/Schimtt Trig in function define.
+
+2022/10
+1. WKT                           Added WKT ms/s level lib
+2. GPIO PIT                      PIT project optimize add printf

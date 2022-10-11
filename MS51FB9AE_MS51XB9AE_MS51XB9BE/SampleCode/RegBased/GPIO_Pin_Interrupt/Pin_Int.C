@@ -11,21 +11,22 @@
 /************************************************************************************************************/
 #include "MS51_16K.H"
 
+unsigned char PinIntFlag;
 
+/******************************************************************************
+Pin interrupt subroutine.
+******************************************************************************/
 void PinInterrupt_ISR (void) interrupt 7
 {
 _push_(SFRS);
   
-     if (PIF&=SET_BIT0)
-     {
-       P12 ^= 1;
-       CLEAR_PIN_INTERRUPT_PIT0_FLAG;
-     }
-     if (PIF&=SET_BIT3)
-     {
-       P12 ^= 1;
-       CLEAR_PIN_INTERRUPT_PIT3_FLAG;
-     }
+    SFRS = 0;
+    switch(PIF)
+    {
+      case (SET_BIT0): PinIntFlag = SET_BIT0; PIF&=CLR_BIT0; break;
+      case (SET_BIT3): PinIntFlag = SET_BIT3; PIF&=CLR_BIT3; break;
+      default: break;
+    }
 
 _pop_(SFRS);
 }
@@ -35,25 +36,28 @@ here after stack initialization.
 ******************************************************************************/
 void main (void) 
 {
-    BOD_DISABLE;            /* Disable BOD for less power consumption*/
+  /* UART0 initial for printf */
+    MODIFY_HIRC(HIRC_24);
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf("\n PIT test start!");
+  /* Disable BOD for power down current */
+    BOD_DISABLE;
 
-    P12_QUASI_MODE;
-  
+  /* PIT initial setting */
     P00_QUASI_MODE;
     P03_INPUT_MODE;
 
-/*----------------------------------------------------*/
-/*  Keep in power down mode unless trig setting GPIO  */
-/*----------------------------------------------------*/
     ENABLE_INT_PORT0;
     ENABLE_BIT0_FALLINGEDGE_TRIG;
     ENABLE_BIT3_BOTHEDGE_TRIG;
     ENABLE_PIN_INTERRUPT;
     ENABLE_GLOBAL_INTERRUPT;
 
-    while(1) 
+    switch(PinIntFlag)
     {
-       set_PCON_PD;
+      case (SET_BIT0): printf("\n PIT0 interrupt!"); PinIntFlag&=CLR_BIT0; break;
+      case (SET_BIT3): printf("\n PIT3 interrupt!"); PinIntFlag&=CLR_BIT2; break;
+      default: break;
     }
 
 }
