@@ -5,10 +5,6 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//***********************************************************************************************************
 
 #include "MS51_32K.h"
 
@@ -247,5 +243,17 @@ void PWM0_STOP(void)
     clr_PWM0CON0_PWM0RUN;
 }
 
+
+/**
+* @brief This function action PWM value reload
+* @param[in] none
+* @return none
+* @note        
+* @example PWM0_Reload();
+*/
+void PWM0_Reload(void)
+{
+    set_PWM0CON0_LOAD;
+}
 
 

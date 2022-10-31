@@ -9,15 +9,14 @@
 //***********************************************************************************************************
 //  File Function: MS51 locate data in APROM simple demo 
 //***********************************************************************************************************
-#include "MS51_32K.h"
+#include "MS51_32K.H"
 #include "SPROM.h"
 
 unsigned char  SPTEMP=1;
 
 void SPROM_CODE (void)
 {
-	P35_PUSHPULL_MODE;
-  P35 = ~P35;
+  P12 = ~P12;
   SPTEMP++;
 
 }

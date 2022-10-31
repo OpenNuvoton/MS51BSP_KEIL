@@ -64,7 +64,7 @@ void main (void)
     ADCCON2|=0x0E;            /* AQT time */
 /*start bandgap ADC */
     clr_ADCCON0_ADCF;
-    set_ADCCON0_ADCS;                                
+    set_ADCCON0_ADCS;
     while(ADCF == 0);
     ADCdataH[i] = ADCRH;
     ADCdataL[i] = ADCRL;

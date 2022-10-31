@@ -81,9 +81,15 @@ typedef signed long           int32_t;
           _nop_();                     \
        }                               \
     }                                  \
-}  
+}
+
 /*****************************************************************************/
-/*   BOD Define                                                      */
+/*   Software reset                                                          */
+/*****************************************************************************/
+#define    ENABLE_SOFTWARE_RESET_TO_APROM    clr_CHPCON_BS;set_CHPCON_SWRST
+#define    ENABLE_SOFTWARE_RESET_TO_LDROM    set_CHPCON_BS;set_CHPCON_SWRST
+/*****************************************************************************/
+/*   BOD Define                                                              */
 /*****************************************************************************/
 #define    BOD_ENABLE               BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
 #define    BOD_RESET_ENABLE         BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP

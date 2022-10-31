@@ -46,7 +46,6 @@ void main (void)
     BOD_DISABLE;
 
   /* PIT initial setting */
-
     P00_QUASI_MODE;
     P03_INPUT_MODE;
 

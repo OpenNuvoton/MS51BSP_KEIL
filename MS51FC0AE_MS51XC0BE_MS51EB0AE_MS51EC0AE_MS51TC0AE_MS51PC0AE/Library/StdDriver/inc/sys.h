@@ -1,4 +1,3 @@
-
 #define  FSYS_HXT   0
 #define  FSYS_LXT   1
 #define  FSYS_HIRC  2
@@ -9,8 +8,6 @@
 #define  HIRC_16        7
 #define  HIRC_166       8
 
-
-extern bit BIT_TMP;
 extern unsigned char data  TA_REG_TMP,BYTE_TMP;
 
 void FsysSelect(unsigned char u8FsysMode);

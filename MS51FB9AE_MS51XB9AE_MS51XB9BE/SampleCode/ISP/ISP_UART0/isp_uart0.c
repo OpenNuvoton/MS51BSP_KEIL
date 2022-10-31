@@ -34,15 +34,15 @@ unsigned char recv_CONF0,recv_CONF1,recv_CONF2,recv_CONF4;
 void MODIFY_HIRC_24(void)
 {
     unsigned char data hircmap0,hircmap1;
+    EA = 0;
 /* Check if power on reset, modify HIRC */
-//        set_CHPCON_IAPEN;
         IAPAH = 0x00;
         IAPAL = 0x38;
         IAPCN = READ_UID;
-        set_IAPTRG_IAPGO;
+        TA=0xAA;TA=0x55;IAPTRG|=0x01;
         hircmap0 = IAPFD;
         IAPAL = 0x39;
-        set_IAPTRG_IAPGO;
+        TA=0xAA;TA=0x55;IAPTRG|=0x01;
         hircmap1 = IAPFD;
 
         TA=0XAA;
@@ -51,20 +51,20 @@ void MODIFY_HIRC_24(void)
         TA=0XAA;
         TA=0X55;
         RCTRIM1 = hircmap1;
-//        clr_CHPCON_IAPEN;
+    EA = 1;
 }
 
 void MODIFY_HIRC_16(void)
 {
     unsigned char data hircmap0,hircmap1;
-//    set_CHPCON_IAPEN;
+  EA=0;
     IAPAH = 0x00;
     IAPAL = 0x30;
     IAPCN = READ_UID;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;
     hircmap0 = IAPFD;
     IAPAL = 0x31;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;
     hircmap1 = IAPFD;
 
     TA=0XAA;
@@ -73,42 +73,45 @@ void MODIFY_HIRC_16(void)
     TA=0XAA;
     TA=0X55;
     RCTRIM1 = hircmap1;
-//        clr_CHPCON_IAPEN;
+  EA=1;
 }
 void READ_ID(void)
 {
-//    set_CHPCON_IAPEN;
+  EA = 0;
     IAPCN = READ_DID;
     IAPAH = 0x00;
     IAPAL = 0x00;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;
     DID_lowB = IAPFD;
     IAPAL = 0x01;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;
     DID_highB = IAPFD;
     IAPAL = 0x02;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;
     PID_lowB = IAPFD;
     IAPAL = 0x03;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;
     PID_highB = IAPFD;
+  EA =1;
 }
 void READ_CONFIG(void)
 {
+  EA = 0;
     IAPCN = BYTE_READ_CONFIG;
     IAPAH = 0x00;
     IAPAL = 0x00;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;;
     CONF0 = IAPFD;
     IAPAL = 0x01;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;;
     CONF1 = IAPFD;
     IAPAL = 0x02;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;;
     CONF2 = IAPFD;
     IAPAL = 0x04;
-    set_IAPTRG_IAPGO;
+    TA=0xAA;TA=0x55;IAPTRG|=0x01;;
     CONF4 = IAPFD;
+  EA = 1;
 }
 
 void TM0_ini(void)
@@ -127,7 +130,7 @@ void UART0_ini_115200_24MHz(void)
     SCON = 0x50;            /*UART0 Mode1,REN=1,TI=1*/
     set_PCON_SMOD;          /*UART0 Double Rate Enable*/
     T3CON &= 0xF8;           /*T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)*/
-    set_T3CON_BRCK;          /*UART0 baud rate clock source = Timer3*/
+    T3CON|=0x20;        //set_T3CON_BRCK;          /*UART0 baud rate clock source = Timer3*/
     RH3    = 0xFF;   /* HIBYTE(65536 - 13)*/
     RL3    = 0xF3;   /* LOBYTE(65536 - 13); */
     set_T3CON_TR3;          /*Trigger Timer3*/
@@ -140,7 +143,7 @@ void Package_checksum(void)
   g_checksum=0;
    for(count=0;count<64;count++)
   {
-    g_checksum =g_checksum+ uart_rcvbuf[count];    
+    g_checksum =g_checksum+ uart_rcvbuf[count];
   }
   uart_txbuf[0]=g_checksum&0xff;
   uart_txbuf[1]=(g_checksum>>8)&0xff;
@@ -216,4 +219,4 @@ if(g_timer0Counter)
   }
 
 //    _pop_(SFRS);
-}	
+}  

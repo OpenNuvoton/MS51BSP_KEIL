@@ -12,7 +12,7 @@
 #include "MS51_16K.H"
 
  
-unsigned char code protect [] = { 
+unsigned char  code protect [] = { 
 0xFF                        //Setting for un lock status, mark it if need lock
 //0X00                      //Setting for Lock 
 };

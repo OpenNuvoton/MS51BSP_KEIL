@@ -15,12 +15,14 @@
 
 void main (void) 
 {
+
     MODIFY_HIRC(HIRC_24);
     P06_QUASI_MODE;
     UART_Open(24000000,UART0_Timer1,115200);
     ENABLE_UART0_PRINTF;
     
     set_IAPUEN_SPMEN;             //Enable SPROM memory mapping only for check SPROM in memory window
+    printf ("\n protect bit is 0x%BX", protect);
     while(1)
     {
       SPROM_CODE();

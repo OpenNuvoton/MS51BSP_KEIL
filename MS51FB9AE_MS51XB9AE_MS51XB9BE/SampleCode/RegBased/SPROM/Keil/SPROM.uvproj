@@ -173,7 +173,7 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4101</DriverSelection>
+            <DriverSelection>4103</DriverSelection>
           </Flash1>
           <bUseTDR>0</bUseTDR>
           <Flash2>BIN\Nuvoton_8051_Keil_uVision_Driver.dll</Flash2>
@@ -355,7 +355,9 @@
             <CClasses></CClasses>
             <UserClasses></UserClasses>
             <CSection></CSection>
-            <UserSection></UserSection>
+            <UserSection>?CO?PROTECTBIT(C:0xFFFF),
+?PR?SPROM_CODE?SPROM(C:0xFF80)
+</UserSection>
             <CodeBaseAddress></CodeBaseAddress>
             <XDataBaseAddress></XDataBaseAddress>
             <PDataBaseAddress></PDataBaseAddress>
