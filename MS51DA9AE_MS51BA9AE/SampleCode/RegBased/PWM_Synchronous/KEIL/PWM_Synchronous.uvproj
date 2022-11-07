@@ -52,7 +52,7 @@
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\LST\</ListingPath>
+          <ListingPath>.\lst\</ListingPath>
           <HexFormatSelection>0</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
