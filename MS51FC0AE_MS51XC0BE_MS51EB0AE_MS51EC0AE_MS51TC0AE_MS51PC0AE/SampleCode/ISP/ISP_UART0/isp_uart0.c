@@ -123,7 +123,6 @@ void TM0_ini(void)
 void UART0_ini_115200_24MHz(void)
 {
     P06_QUASI_MODE;
-//    P07_INPUT_MODE;
 
     SCON = 0x50;            /*UART0 Mode1,REN=1,TI=1*/
     set_PCON_SMOD;          /*UART0 Double Rate Enable*/

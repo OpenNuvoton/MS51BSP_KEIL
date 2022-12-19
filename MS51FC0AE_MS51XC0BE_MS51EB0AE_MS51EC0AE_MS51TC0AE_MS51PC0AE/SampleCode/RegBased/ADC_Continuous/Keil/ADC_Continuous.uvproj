@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>ADC</TargetName>
+      <TargetName>ADC_Continuous</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <uAC6>0</uAC6>

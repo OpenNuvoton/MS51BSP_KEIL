@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Timer01_M0</TargetName>
+      <TargetName>Timer0_mode_0_Interrupt</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <uAC6>0</uAC6>

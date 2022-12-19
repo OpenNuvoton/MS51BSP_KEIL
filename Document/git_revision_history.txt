@@ -35,3 +35,9 @@
 2022/10
 1. WKT                           Added WKT ms/s level lib
 2. GPIO PIT                      PIT project optimize add printf
+
+2022/11
+1. common.c                      Added software reset API
+
+2022/12
+1. I2C                           fix SI check flag in I2C EEPROM project.

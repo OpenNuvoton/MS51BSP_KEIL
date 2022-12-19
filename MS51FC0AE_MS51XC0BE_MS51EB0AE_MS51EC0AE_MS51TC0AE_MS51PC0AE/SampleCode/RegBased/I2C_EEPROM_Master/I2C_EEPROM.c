@@ -62,7 +62,7 @@ void I2C_SI_Check(void)
         I2C_Reset_Flag = 1;
         set_I2CON_STO;
         clr_I2CON_SI;
-        if(I2CON&SET_BIT3)
+        if(!(I2CON&SET_BIT3))
         {
             clr_I2CON_I2CEN;
             set_I2CON_I2CEN;

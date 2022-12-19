@@ -36,5 +36,5 @@ void Software_Reset(unsigned char u8Bootarea)
     boottemp = (0x80|u8Bootarea);
     TA = 0xAA;
     TA = 0x55;
-    CHPCON = 0x80;                   //software reset enable
+    CHPCON = boottemp;                   //software reset enable
 }

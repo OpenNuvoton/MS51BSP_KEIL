@@ -35,8 +35,7 @@ void main (void)
     UART_Open(24000000,UART0_Timer3,115200);
     ENABLE_UART0_PRINTF;
 
-/*Read bandgap value */
-//    READ1_BANDGAP();
+
 /* ADC Low speed initial*/  
     ENABLE_ADC_BANDGAP;
     ADCCON1|=0x30;            /* clock divider */
@@ -44,13 +43,13 @@ void main (void)
 
 /*start bandgap ADC */
     clr_ADCCON0_ADCF;
-    set_ADCCON0_ADCS;                                
+    set_ADCCON0_ADCS;
     while(ADCF == 0);
     ADCdataH = ADCRH;
     ADCdataL = ADCRL;
 /* to convert VDD value */
     bgvalue = (ADCRH<<4) + ADCRL;
-
+/*Read bandgap value */
     Bandgap_Voltage= READ_BANDGAP()*3/4;
     VDD_Voltage = (0x1000/bgvalue)*Bandgap_Voltage;
 
