@@ -26,13 +26,13 @@ bit receiveFlag,bufOverFlag;
     UART_Open(24000000,UART0_Timer3,115200);
     ENABLE_UART0_INTERRUPT;                                  /* Enable UART0 interrupt */
     ENABLE_GLOBAL_INTERRUPT;                                  /* Global interrupt enable */
-  
+
 /* while receive data from RXD, send this data to TXD */
   while(1)
   {
     if (uart0_receive_flag)
     {
-      P12 = ~P12;
+      P12 ^= 1;
       UART_Send_Data(UART0,uart0_receive_data);
       uart0_receive_flag = 0;
     }

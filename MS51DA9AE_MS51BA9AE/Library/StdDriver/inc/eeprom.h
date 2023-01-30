@@ -1,3 +1,9 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
 
 
 void Write_DATAFLASH_BYTE(unsigned int u16EPAddr,unsigned char u8EPData);

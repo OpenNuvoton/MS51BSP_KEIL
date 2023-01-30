@@ -1,3 +1,9 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
 #define     BYTE_READ_CID            0x0B
 #define     BYTE_READ_DID            0x0C
 #define     BYTE_READ_UID            0x04

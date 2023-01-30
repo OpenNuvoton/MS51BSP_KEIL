@@ -11,10 +11,12 @@
 
 #include "MS51_32K.H"
 
+bit  wktflag;
+
 void WKT_ISR (void) interrupt 17            /* Vector @  0x8B  */
 {
 _push_(SFRS);
-    P35^=1;
+    wktflag = 1;
     clr_WKCON_WKTF;
 _pop_(SFRS);
 }
@@ -23,6 +25,11 @@ _pop_(SFRS);
 void main (void)
 {
     P35_PUSHPULL_MODE;
+    MODIFY_HIRC(HIRC_24);
+    Enable_UART0_VCOM_printf_24M_115200();
+
+    printf ("\n Test start ...");
+    printf ("\n");
 /**----------------------------------------------------------------------------
  *  Note: Since the divider limiation. All value define is approximate value  
  *-----------------------------------------------------------------------------*/
@@ -32,7 +39,11 @@ void main (void)
 
     while(1)
     {
+      while (!wktflag);
+      SFRS = 0; printf (" WKT interrupt! \n");
+      wktflag = 0;
       set_PCON_PD;
+      _nop_();
+      _nop_();
     }
-
 }

@@ -247,7 +247,7 @@ void main(void)
 {
     unsigned char dat;
   
-
+		MODIFY_HIRC(HIRC_24);
     Enable_UART0_VCOM_printf_24M_115200();
     printf("\n I2C EEPROM intial...");
     Init_I2C();  

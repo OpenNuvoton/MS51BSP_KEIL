@@ -18,20 +18,27 @@
 #define SPI_CMD_CHIP_ERASE      0xC7
 #define SPI_CMD_SECTOR_ERASE    0x20
 #define SPI_CMD_READ_STATUS1    0x05
-
+#define SS_PIN       P15
 /***************************************************/
 void SPI_Error(void)
 {
+    printf ("\n SPI test error! ...");
     while(1);
 }
 /***************************************************/
 void SPI_Initial(void)
 {
     P15_QUASI_MODE;                            // P15 (SS) Quasi mode
-    P10_QUASI_MODE;                            // P10 (SPCLK) Quasi mode
-    P00_QUASI_MODE;                            // P00 (MOSI) Quasi mode
-    P01_QUASI_MODE;                            // P22 (MISO) Quasi mode
+    P17_QUASI_MODE;                            // P17 (SPCLK) Quasi mode
+    P30_QUASI_MODE;                            // P30 (MOSI) Quasi mode
+    P25_QUASI_MODE;                            // P25 (MISO) Quasi mode
 
+
+/***** SPI multiple function pin define */
+    MFP_P30_SPI0_MOSI;
+    MFP_P25_SPI0_MISO;
+    MFP_P17_SPI0_CLK;
+  
 
     set_SPCR_SPR1;
     clr_SPCR_SPR0;
@@ -178,12 +185,17 @@ void SpiFlash_Program_Verify(void)
         }
     }
     SS_PIN = 1;
-}
+}
+
 /************ main loop **************/
 void main(void)
 {
     unsigned char u8MID,u8DID;
-
+    MODIFY_HIRC(HIRC_24);
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf ("\n Test start ...");
+  
+  
     SPI_Initial();
 
     SpiFlash_Read_MID_DID(&u8MID,&u8DID);
@@ -197,6 +209,7 @@ void main(void)
 /* The procedure of SPI Flash at program mode */
     SpiFlash_Program();
     SpiFlash_Program_Verify();
-
+    printf ("\n Test Done ...");
+    
     while(1);
 }

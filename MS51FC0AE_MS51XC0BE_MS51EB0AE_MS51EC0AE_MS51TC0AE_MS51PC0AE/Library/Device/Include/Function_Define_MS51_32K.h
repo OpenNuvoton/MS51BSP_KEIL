@@ -1,3 +1,10 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
+
 /*--------------------------------------------------------------------------
 MS51_32K Function_define.h
 
@@ -3986,3 +3993,13 @@ extern bit BIT_TMP;
 #define    P65_TTL_ENABLE          SFRS=2;P6S&=0xDF
 #define    P66_TTL_ENABLE          SFRS=2;P6S&=0xBF
 #define    P67_TTL_ENABLE          SFRS=2;P6S&=0x7F
+
+/***** SPI multiple function pin define */
+#define    MFP_P15_SPI0_SS         SFRS=2;AUXR7&=0xE7
+#define    MFP_P35_SPI0_SS         SFRS=2;AUXR7&=0xE7;AUXR7|=0x10
+#define    MFP_P00_SPI0_MOSI       SFRS=2;AUXR7&=CLR_BIT2
+#define    MFP_P30_SPI0_MOSI       SFRS=2;AUXR7|=SET_BIT2
+#define    MFP_P01_SPI0_MISO       SFRS=2;AUXR7&=CLR_BIT1
+#define    MFP_P25_SPI0_MISO       SFRS=2;AUXR7|=SET_BIT1
+#define    MFP_P10_SPI0_CLK        SFRS=2;AUXR7&=CLR_BIT0
+#define    MFP_P17_SPI0_CLK        SFRS=2;AUXR7|=SET_BIT0

@@ -11,31 +11,8 @@
 /************************************************************************************************************/
 #include "MS51_32K.h"
 
-
-/*PWM deadtime define */
-void PWM0_DEAD_TIME_VALUE(unsigned int  DeadTimeData)
-{
-  unsigned char deadtmphigh,deadtmplow;
-  deadtmplow = DeadTimeData;
-  deadtmphigh = DeadTimeData>>8;
-  BIT_TMP = EA;
-  EA = 0;
-	SFRS = 0;
-  if (deadtmphigh==0x01)
-  {
-    TA = 0xAA;
-    TA = 0x55;
-    PWM0DTEN|=0x10;
-  }
-  TA = 0xAA;
-  TA = 0x55;
-  PWM0DTCNT = deadtmplow;
-  EA = BIT_TMP;
-}
-
 /************************************************************************************************************/
 /*    Main function                                                                                         */
-/*     PWM4 P0.5 simple output a 2.7KHz 1/4high duty signal                                                 */
 /************************************************************************************************************/
 void main(void)
 {
@@ -64,9 +41,7 @@ void main(void)
     PWM0C4L = 0xCF;
     SFRS=0;
     
-    ENABLE_PWM0_CH01_DEADTIME;
-    ENABLE_PWM0_CH45_DEADTIME;
-    PWM0_DEAD_TIME_VALUE(0x1FF);      //value never over 0x1FF
+    PWM0_DeadZoneEnable(PWM0_CH01,0x110);      //value never over 0x1FF
     
 /*Please always setting Dead time if needed before PWM run.    */
     set_PWM0CON0_LOAD;
