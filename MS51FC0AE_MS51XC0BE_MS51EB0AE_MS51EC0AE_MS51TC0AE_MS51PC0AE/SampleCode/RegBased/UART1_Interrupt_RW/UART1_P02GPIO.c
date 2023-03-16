@@ -17,7 +17,8 @@
  please remove Nu-link or not in debug mode to test UART1 function.
  External UART1 connect also disturb debug download
  ***************************************************************************************************************/
-
+
+
 #define   UART1_P36_P37      /* This define UART1 pin assign*/
 
 void main (void)
@@ -37,7 +38,7 @@ void main (void)
     ENABLE_UART1_TXD_P36;
     ENABLE_UART1_RXD_P37;
 #elif defined  UART1_P10_P00      /*  if define UART1_P10_P00 initial GPIO and MFP */
-    P01_QUASI_MODE;
+    P10_QUASI_MODE;
     P00_INPUT_MODE;
     ENABLE_UART1_TXD_P10;
     ENABLE_UART1_RXD_P00;
