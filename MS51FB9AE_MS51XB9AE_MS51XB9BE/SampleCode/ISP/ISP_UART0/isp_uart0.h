@@ -22,7 +22,7 @@
 #define BYTE_PROGRAM_CONFIG  0xE1
 #define READ_UID             0x04
 #define PAGE_SIZE            128
-#define APROM_SIZE           14*1024
+#define APROM_SIZE           14UL*1024
 
  
 extern  xdata volatile uint8_t uart_rcvbuf[64]; 

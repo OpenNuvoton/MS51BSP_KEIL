@@ -1,8 +1,17 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
+
 #define I2C0    0
 #define I2C1    1
 
 #define      I2C_R    1
 #define      I2C_W    0
+
+extern bit   I2C_SI_ERROR_FLAG;
 
 void I2C_Master_Open( unsigned long u32SYSCLK, unsigned long u32I2CCLK);
 void I2C_Slave_Open( unsigned char u8SlaveAddress0);

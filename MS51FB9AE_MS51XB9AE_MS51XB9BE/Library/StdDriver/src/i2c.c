@@ -1,5 +1,6 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
@@ -132,13 +133,13 @@ void I2C_ClearTimeoutFlag(void)
  * @brief      Special design for 8051 I2C SI check
  * @param[in]  none
  * @return     None
- * @details    This function setting the slave address mask bit.
+ * @details    This function to check SI clear error. if 
  */
 void I2C0_SI_Check(void)
 {
     clr_I2CON_SI;
     
-    while(I2CON&SET_BIT3)     /* while SI==0; */
+    while(I2CON&SET_BIT3)     /* while SI==1; */
     {
         if(I2STAT == 0x00)
         {
@@ -150,6 +151,7 @@ void I2C0_SI_Check(void)
             clr_I2CON_I2CEN;
             set_I2CON_I2CEN;
             clr_I2CON_SI;
+            clr_I2CON_I2CEN;
         } 
     }
 }

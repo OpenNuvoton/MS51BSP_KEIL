@@ -1,17 +1,13 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//  Date   : Jan/21/2020
-//***********************************************************************************************************
 
 //***********************************************************************************************************
-//  File Function: ML51 
+//  File Function: MS51 R/W EEPROM sample code
 //***********************************************************************************************************
 #include "MS51_8K.H"
 
@@ -70,7 +66,7 @@ void I2C_SI_Check(void)
         I2C_Reset_Flag = 1;
         set_I2CON_STO;
         clr_I2CON_SI;
-        if(I2CON|CLR_BIT3)
+        if(I2CON&SET_BIT3)
         {
             clr_I2CON_I2CEN;
             set_I2CON_I2CEN;
@@ -209,7 +205,7 @@ void One_Page_Read(UINT8 u8PageNumber,UINT8 u8DAT)
   /* Step9 */    
     clr_I2CON_SI;
     set_I2CON_STO;
-    while (I2CON|CLR_BIT4)                        /* Check STOP signal */
+    while (I2CON&SET_BIT4)                        /* Check STOP signal */
     {
       I2C_SI_Check();
       if (I2C_Reset_Flag)
@@ -312,7 +308,7 @@ void One_Page_Write(UINT8 u8PageNumber,UINT8 u8DAT)
     {
         set_I2CON_STO;                            /* Set I2C STOP Control Bit */
         clr_I2CON_SI;
-        while (I2CON|CLR_BIT4)                        /* Check STOP signal */
+        while (I2CON&SET_BIT4)                        /* Check STOP signal */
         {
           I2C_SI_Check();
           if (I2C_Reset_Flag)
@@ -340,7 +336,7 @@ void One_Page_Write(UINT8 u8PageNumber,UINT8 u8DAT)
     /* Step7 */
     set_I2CON_STO;                                /* Set STOP Bit to I2C EEPROM */
     clr_I2CON_SI;
-     while (I2CON|CLR_BIT4)                        /* Check STOP signal */
+     while (I2CON&SET_BIT4)                        /* Check STOP signal */
     {
       I2C_SI_Check();
       if (I2C_Reset_Flag)

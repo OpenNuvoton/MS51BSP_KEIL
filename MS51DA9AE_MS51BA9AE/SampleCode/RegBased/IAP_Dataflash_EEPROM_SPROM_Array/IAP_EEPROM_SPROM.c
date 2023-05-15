@@ -1,18 +1,11 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//***********************************************************************************************************
-
 #include "MS51_8K.h"
-
-/* For printf code only. Disable this define to reduce code size. */
-//#define print_function 
 
 struct
 {
@@ -36,20 +29,16 @@ void main(void)
 {
     unsigned int system16highsite;
 
-#ifdef print_function	
 /* UART0 initial setting
   * include sys.c in Library for modify HIRC value to 24MHz
   * include uart.c in Library for UART initial setting
 */
     MODIFY_HIRC(HIRC_24);
-    P06_PUSHPULL_MODE;
-    UART_Open(24000000,UART0_Timer3,115200);
-    ENABLE_UART0_PRINTF;
-#endif
-
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf("\n Toggle P12 to low to start test...");
     /*loop here while P46 = 1; */
-    P17_QUASI_MODE;
-    while (P17);
+    P02_QUASI_MODE;
+    while (P02);
 
     /** IAP program APROM as EEPROM way * include eeprom.c in Library       */
     for (i = 0; i < 50; i++)
@@ -57,21 +46,23 @@ void main(void)
         ArrayData[i] = i;
     }
 
-    StructData.a = 0x5555;
-    StructData.b = 0x55555555;
-    StructData.c = 0x55;
+    StructData.a=0xA1A2;
+    StructData.b=0xA3A4A5A6;
+    StructData.c=0xA7;
 
-    Write_SPROM_DATAFLASH_ARRAY(1, ArrayData, 50); //write 50 bytes
-    Write_SPROM_DATAFLASH_ARRAY(40, (unsigned char *)&StructData, sizeof(StructData)); //write structure
+    Write_SPROM_DATAFLASH_ARRAY(0, ArrayData, 50); //write 50 bytes
+    system16highsite = Read_SPROM_BYTE(0x05);
+    printf("\n SPROM 0x05 = 0x%X", system16highsite);
+    system16highsite = Read_SPROM_BYTE(0x12) ;
+    printf("\n SPROM 0x12 = 0x%X", system16highsite);
 
-    /*call read byte */
-    system16highsite = Read_SPROM_BYTE(31);
-    system16highsite = (Read_SPROM_BYTE(31) << 8)+ Read_SPROM_BYTE(32);
-    
-#ifdef print_function
-    printf("\n system16highsite = 0x%X", system16highsite);
+    Write_SPROM_DATAFLASH_ARRAY(0x11, (unsigned char *)&StructData, sizeof(StructData)); //write structure
+    system16highsite = Read_SPROM_BYTE(0x05);
+    printf("\n SPROM 0x05 Value is updated = 0x%X", system16highsite);
+    system16highsite = Read_SPROM_BYTE(0x12);
+    printf("\n SPROM 0x12 Value is updated = 0x%X", system16highsite);
+
     DISABLE_UART0_PRINTF;
-#endif
 
     while (1);
 }

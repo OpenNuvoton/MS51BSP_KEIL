@@ -14,13 +14,30 @@
 
 2021/5
 1  DID                           modify iap.c  read DID -> read DID + read PID
-2. I2C interrupt             add project I2C master/slave with interrupt and slave as eeprom mode.
+2. I2C interrupt                 Add project I2C master/slave with interrupt and slave as eeprom mode.
 
 2021/11
-1. sys.c                        Optimizer HIRC adjust 16.6MHz method.
-2. function_defien.h     added DISABLE_PIT function.
-                                     Modified DISABLE_IC0 ~ IC2 to DISABLE_CAP0 ~ CAP2
-
+1. sys.c                         Optimizer HIRC adjust 16.6MHz method.
+2. function_defien.h             Added DISABLE_PIT function.
+                                 Modified DISABLE_IC0 ~ IC2 to DISABLE_CAP0 ~ CAP2
 2022/01
-1. All                            function_define.h  added signed char/int/long type define
-2. All                            Project LX51 + REMOVEUNUSED para. for code size optimize.
+1. All                           function_define.h  added signed char/int/long type define
+2. All                           Project LX51 + REMOVEUNUSED para. for code size optimize.
+
+2022/07
+1. All                           Added Apache License in all lib .c file
+2. ADC                           Remove all adc slow speed code define.
+
+2022/09
+1. PWM                           Added PWM reload API
+2. GPIO                          Added GPIO TTL/Schimtt Trig in function define.
+
+2022/10
+1. WKT                           Added WKT ms/s level lib
+2. GPIO PIT                      PIT project optimize add printf
+
+2022/11
+1. common.c                      Added software reset API
+
+2022/12
+1. I2C                           fix SI check flag in I2C EEPROM project.

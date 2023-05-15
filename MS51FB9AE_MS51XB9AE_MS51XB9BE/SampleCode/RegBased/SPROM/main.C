@@ -1,14 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.       */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/***********************************************************************************************************/
-/* Website: http://www.nuvoton.com                                                                         */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : Jan/21/2020                                                                                   */
-/***********************************************************************************************************/
 
 //***********************************************************************************************************
 //  File Function: MS51 locate data in APROM simple demo 
@@ -19,12 +15,14 @@
 
 void main (void) 
 {
+
     MODIFY_HIRC(HIRC_24);
     P06_QUASI_MODE;
     UART_Open(24000000,UART0_Timer1,115200);
     ENABLE_UART0_PRINTF;
     
     set_IAPUEN_SPMEN;             //Enable SPROM memory mapping only for check SPROM in memory window
+    printf ("\n protect bit is 0x%BX", protect);
     while(1)
     {
       SPROM_CODE();

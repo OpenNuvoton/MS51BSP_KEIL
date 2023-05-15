@@ -1,13 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//***********************************************************************************************************
 
 #include "MS51_8K.H"
 
@@ -122,7 +119,7 @@ void Timer2_Delay(unsigned long u32SYSCLK,unsigned int u16TMDIV, unsigned int u1
       TL2 = TL2TMP;
       TH2 = TH2TMP;
       set_T2CON_TR2;                                    //Start Timer2
-      while (TF2!=1);            //Check Timer2 Time-Out Flag
+      while (!TF2);                                   //Check Timer2 Time-Out Flag
       clr_T2CON_TF2;
       clr_T2CON_TR2;                                    //Stop Timer2
       u16CNT --;
@@ -167,7 +164,7 @@ void Timer3_Delay(unsigned long u32SYSCLK,unsigned char u8TMDIV, unsigned int u1
       RL3 = TL3TMP;
       RH3 = TH3TMP;
       set_T3CON_TR3;                                    //Trigger Timer3
-      while ((T3CON|CLR_BIT4)==CLR_BIT4);    //Check Timer3 Time-Out Flag
+      while (!(T3CON&SET_BIT4));    //Check Timer3 Time-Out Flag
       clr_T3CON_TF3;
       clr_T3CON_TR3;                                    //Stop Timer3
       u16CNT --;

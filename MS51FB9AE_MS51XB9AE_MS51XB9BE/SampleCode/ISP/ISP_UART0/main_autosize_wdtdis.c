@@ -1,5 +1,6 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
@@ -55,8 +56,8 @@ while(1)
               IAPCN = BYTE_READ_AP;              //program byte verify
               if(IAPFD!=uart_rcvbuf[count])
               while(1);                          
-              if (CHPCON==0x43)              //if error flag set, program error stop ISP
-              while(1);
+//              if (CHPCON==0x43)              //if error flag set, program error stop ISP
+//              while(1);
               
               g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
               flash_address++;
@@ -152,6 +153,7 @@ END_2:
             
             case CMD_UPDATE_CONFIG:
             {
+							EA=0;
               recv_CONF0 = uart_rcvbuf[8];
               recv_CONF1 = uart_rcvbuf[9];
               recv_CONF2 = uart_rcvbuf[10];
@@ -165,35 +167,35 @@ END_2:
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              TA=0xAA;TA=0x55;IAPTRG|=0x01;;
 #endif
               IAPCN = BYTE_PROGRAM_CONFIG;        /*Program CONFIG*/ 
               IAPFD = recv_CONF0;
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              TA=0xAA;TA=0x55;IAPTRG|=0x01;;
 #endif
               IAPFD = recv_CONF1;
               IAPAL = 0x01;
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              TA=0xAA;TA=0x55;IAPTRG|=0x01;;
 #endif
               IAPAL = 0x02;
               IAPFD = recv_CONF2;
-  #ifdef isp_with_wdt
+#ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              TA=0xAA;TA=0x55;IAPTRG|=0x01;;
 #endif
               IAPAL = 0x04;
               IAPFD = recv_CONF4;
 #ifdef isp_with_wdt
               set_IAPTRG_IAPGO_WDCLR;
 #else
-              set_IAPTRG_IAPGO;
+              TA=0xAA;TA=0x55;IAPTRG|=0x01;;
 #endif
               clr_IAPUEN_CFUEN;
 
@@ -207,6 +209,7 @@ END_2:
               uart_txbuf[13]=0xff;
               uart_txbuf[14]=0xff;
               uart_txbuf[15]=0xff;
+              EA = 1;
               Send_64byte_To_UART0();
               break;
             }

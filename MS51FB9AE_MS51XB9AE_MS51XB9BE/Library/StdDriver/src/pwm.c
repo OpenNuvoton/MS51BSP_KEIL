@@ -1,14 +1,9 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//***********************************************************************************************************
-
 #include "MS51_16K.h"
 
 /****** PWM0 SETTING ********/
@@ -150,5 +145,16 @@ void PWM0_STOP(void)
   clr_PWMCON0_PWMRUN;
 }
 
+/**
+* @brief This function action PWM value reload
+* @param[in] none
+* @return none
+* @note        
+* @example PWM0_Reload();
+*/
+void PWM0_Reload(void)
+{
+    set_PWMCON0_LOAD;
+}
 
 

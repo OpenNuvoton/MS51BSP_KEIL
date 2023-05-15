@@ -1,3 +1,10 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
+
 extern unsigned char xdata DIDBuffer[2];
 extern unsigned char xdata PIDBuffer[2];
 extern unsigned char xdata UIDBuffer[12];

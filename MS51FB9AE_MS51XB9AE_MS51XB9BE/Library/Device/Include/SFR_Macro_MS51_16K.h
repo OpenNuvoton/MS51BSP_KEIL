@@ -1,3 +1,10 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
+
 /*--------------------------------------------------------------------------------------*/
 /*  SFR_Macro_MS51_16K.H                                                                */
 /*  SFR Macro define for Nuvoton MS51FB9AE / MS51XB9AE / MS51XB9BE                      */
@@ -22,12 +29,15 @@
 #include "i2c.h"
 #include "IAP.h"
 #include "IAP_SPROM.h"
+#include "isr.h"
 #include "eeprom_sprom.h"
 #include "pwm.h"
 #include "spi.h"
 #include "sys.h"
 #include "uart.h"
 #include "watchdog.h"
+#include "wkt.h"
+
 /********************************************************************/
 /*  <Macro define                                                   */
 /********************************************************************/
@@ -503,7 +513,7 @@
 #define set_IPH_PBODH            clr_SFRS_SFRPAGE;IPH|=0x20
 #define set_IPH_PSH              clr_SFRS_SFRPAGE;IPH|=0x10
 #define set_IPH_PT1H             clr_SFRS_SFRPAGE;IPH|=0x08
-#define set_IPH_PX11             clr_SFRS_SFRPAGE;IPH|=0x04
+#define set_IPH_PX1H             clr_SFRS_SFRPAGE;IPH|=0x04
 #define set_IPH_PT0H             clr_SFRS_SFRPAGE;IPH|=0x02
 #define set_IPH_PX0H             clr_SFRS_SFRPAGE;IPH|=0x01
                                     
@@ -511,7 +521,7 @@
 #define clr_IPH_PBODH            clr_SFRS_SFRPAGE;IPH&=0xDF
 #define clr_IPH_PSH              clr_SFRS_SFRPAGE;IPH&=0xEF
 #define clr_IPH_PT1H             clr_SFRS_SFRPAGE;IPH&=0xF7
-#define clr_IPH_PX11             clr_SFRS_SFRPAGE;IPH&=0xFB
+#define clr_IPH_PX1H             clr_SFRS_SFRPAGE;IPH&=0xFB
 #define clr_IPH_PT0H             clr_SFRS_SFRPAGE;IPH&=0xFD
 #define clr_IPH_PX0H             clr_SFRS_SFRPAGE;IPH&=0xFE
 
@@ -855,6 +865,25 @@
 #define clr_PIPEN_PIPEN2        PIPEN&=0xFB
 #define clr_PIPEN_PIPEN1        PIPEN&=0xFD
 #define clr_PIPEN_PIPEN0        PIPEN&=0xFE
+
+/**** PIF ECH ****/
+#define set_PIF_PIF7             PIF|=0x80
+#define set_PIF_PIF6             PIF|=0x40
+#define set_PIF_PIF5             PIF|=0x20
+#define set_PIF_PIF4             PIF|=0x10
+#define set_PIF_PIF3             PIF|=0x08
+#define set_PIF_PIF2             PIF|=0x04
+#define set_PIF_PIF1             PIF|=0x02
+#define set_PIF_PIF0             PIF|=0x01
+                                 
+#define clr_PIF_PIF7             PIF&=0x7F
+#define clr_PIF_PIF6             PIF&=0xBF
+#define clr_PIF_PIF5             PIF&=0xDF
+#define clr_PIF_PIF4             PIF&=0xEF
+#define clr_PIF_PIF3             PIF&=0xF7
+#define clr_PIF_PIF2             PIF&=0xFB
+#define clr_PIF_PIF1             PIF&=0xFD
+#define clr_PIF_PIF0             PIF&=0xFE
 
 /**** C2L  EDH ****/  
 /**** C2H  EEH ****/

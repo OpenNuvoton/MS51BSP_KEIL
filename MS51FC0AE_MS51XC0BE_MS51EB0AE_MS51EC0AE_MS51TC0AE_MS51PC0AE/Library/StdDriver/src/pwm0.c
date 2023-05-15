@@ -1,13 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//***********************************************************************************************************
 
 #include "MS51_32K.h"
 
@@ -160,49 +157,41 @@ void PWM0_ConfigOutputChannel(unsigned char u8PWM0ChannelNum,
 * @param[in] u8PWM0DZValue the insert value.  PWM dead-time = (u8PWM0DZValue+1)/Fsys
 * @return none
 * @note
-* @example PWM0_DeadZoneEnable(PWM0_CH01,0x55);
+* @example PWM0_DeadZoneEnable(PWM0_CH01,0x110);
  */
 void PWM0_DeadZoneEnable(unsigned char u8PWM0Pair, unsigned int u16PWM0DZValue)
 {
     SFRS = 0;
     BIT_TMP = EA;
     EA = 0;
-    ACC = u16PWM0DZValue & 0x0100 >> 4;
-    TA = 0xAA;
-    TA = 0x55;
-    PWM0DTEN |= ACC;
+    TA_REG_TMP = u16PWM0DZValue & 0x0100 >> 4;
 
     switch (u8PWM0Pair)
     {
         case PWM0_CH01:
-            TA = 0xAA;
-            TA = 0x55;
-            PWM0DTEN |= 0x01;
+            TA_REG_TMP |= 0x01;
             break;
 
         case PWM0_CH23:
-            TA = 0xAA;
-            TA = 0x55;
-            PWM0DTEN |= 0x02;
+            TA_REG_TMP |= 0x02;
             break;
 
         case PWM0_CH45:
-            TA = 0xAA;
-            TA = 0x55;
-            PWM0DTEN |= 0x04;
+            TA_REG_TMP |= 0x04;
             break;
 
         case PWM0_ALL:
-            TA = 0xAA;
-            TA = 0x55;
-            PWM0DTEN |= 0x07;
+            TA_REG_TMP |= 0x07;
             break;
     }
-
-    ACC = u16PWM0DZValue;
     TA = 0xAA;
     TA = 0x55;
-    PWM0DTEN = ACC;
+    PWM0DTEN = TA_REG_TMP;
+
+    TA_REG_TMP = u16PWM0DZValue&0x00FF;
+    TA = 0xAA;
+    TA = 0x55;
+    PWM0DTCNT = TA_REG_TMP;
     EA = BIT_TMP;
 }
 
@@ -246,5 +235,17 @@ void PWM0_STOP(void)
     clr_PWM0CON0_PWM0RUN;
 }
 
+
+/**
+* @brief This function action PWM value reload
+* @param[in] none
+* @return none
+* @note        
+* @example PWM0_Reload();
+*/
+void PWM0_Reload(void)
+{
+    set_PWM0CON0_LOAD;
+}
 
 

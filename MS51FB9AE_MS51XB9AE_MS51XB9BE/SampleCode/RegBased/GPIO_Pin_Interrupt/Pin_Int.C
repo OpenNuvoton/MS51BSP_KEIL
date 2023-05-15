@@ -1,33 +1,32 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/***********************************************************************************************************/
-/* Website: http://www.nuvoton.com                                                                         */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : Jan/21/2020                                                                                   */
-/***********************************************************************************************************/
 
 /************************************************************************************************************/
-/*  File Function: MS51 pin interrupt demo                                                                  */
+/*  File Function: MS51 pin interrupt wakeup power down modee                                               */
 /************************************************************************************************************/
 #include "MS51_16K.H"
 
+unsigned char PinIntFlag;
 
+/******************************************************************************
+Pin interrupt subroutine.
+******************************************************************************/
 void PinInterrupt_ISR (void) interrupt 7
 {
 _push_(SFRS);
   
-     if (PIF&=SET_BIT2)
-     {
-       P02 ^= 1;
-     }
-     if (PIF&=SET_BIT2)
-     {
-       P03 ^= 1;
-     }
+    SFRS = 0;
+    switch(PIF)
+    {
+      case (SET_BIT0): PinIntFlag = SET_BIT0; PIF&=CLR_BIT0; break;
+      case (SET_BIT3): PinIntFlag = SET_BIT3; PIF&=CLR_BIT3; break;
+      default: break;
+    }
 
 _pop_(SFRS);
 }
@@ -37,24 +36,28 @@ here after stack initialization.
 ******************************************************************************/
 void main (void) 
 {
-    P02_QUASI_MODE;
-    P03_QUASI_MODE;
-  
-    P12_QUASI_MODE;
-    P13_INPUT_MODE;
-/*----------------------------------------------------*/
-/*  P1.3 set as highlevel trig pin interrupt function */
-/*  otherwise, MCU into idle mode.                    */
-/*----------------------------------------------------*/
-    ENABLE_INT_PORT1;
-    ENABLE_BIT2_BOTHEDGE_TRIG;
-    ENABLE_BIT3_FALLINGEDGE_TRIG;
-    set_EIE_EPI;                            // Enable pin interrupt
-    ENABLE_GLOBAL_INTERRUPT;                // global enable bit
-    set_PCON_IDLE;
-    while(1);
+  /* UART0 initial for printf */
+    MODIFY_HIRC(HIRC_24);
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf("\n PIT test start!");
+  /* Disable BOD for power down current */
+    BOD_DISABLE;
 
+  /* PIT initial setting */
+    P00_QUASI_MODE;
+    P03_INPUT_MODE;
+
+    ENABLE_INT_PORT0;
+    ENABLE_BIT0_FALLINGEDGE_TRIG;
+    ENABLE_BIT3_BOTHEDGE_TRIG;
+    ENABLE_PIN_INTERRUPT;
+    ENABLE_GLOBAL_INTERRUPT;
+
+    switch(PinIntFlag)
+    {
+      case (SET_BIT0): printf("\n PIT0 interrupt!"); PinIntFlag&=CLR_BIT0; break;
+      case (SET_BIT3): printf("\n PIT3 interrupt!"); PinIntFlag&=CLR_BIT2; break;
+      default: break;
+    }
 
 }
-
-

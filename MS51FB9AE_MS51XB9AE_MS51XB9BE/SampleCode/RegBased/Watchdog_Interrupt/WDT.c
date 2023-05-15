@@ -1,14 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/***********************************************************************************************************/
-/* Website: http://www.nuvoton.com                                                                         */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : Jan/21/2020                                                                                   */
-/***********************************************************************************************************/
 
 /************************************************************************************************************/
 /*  File Function: MS51 Watchdog timer interrupt function demo                                              */
@@ -20,14 +16,15 @@
 ************************************************************************************************************/
 void WDT_ISR (void)   interrupt 10
 {
-    _push_(SFRS);
-  
-    clr_WDCON_WDTF;
-    set_WDCON_WDCLR;
-    while((WDCON|~SET_BIT6)==0xFF);
+_push_(SFRS);
+
+  /* Config Enable WDT reset and not clear couter trig reset */
+    WDT_COUNTER_CLEAR;                     /* Clear WDT counter */
+    while(!(WDCON&=SET_BIT6));             /* Check for the WDT counter cleared */
     P12 = ~P12;
 
-    _pop_(SFRS);
+    CLEAR_WDT_INTERRUPT_FLAG;
+_pop_(SFRS);
 }
 
 /************************************************************************************************************
@@ -38,19 +35,19 @@ void main (void)
 /* Note
   WDT timer base is LIRC 10Khz
 */
-  ALL_GPIO_QUASI_MODE;  
+    ALL_GPIO_QUASI_MODE;
 //--------------------------------------------------------
 //Warning:
 //Pleaes always check CONFIG WDT disable first 
 //only when WDT reset disable, WDT use as pure timer
 //--------------------------------------------------------
-    TA=0xAA;TA=0x55;WDCON=0x07;      //Setting WDT prescale 
-    set_WDCON_WIDPD;                       //WDT run in POWER DOWM mode setting if needed
+    WDT_TIMEOUT_800MS;                     /* Setting WDT time out */
+    WDT_RUN_IN_POWERDOWN_ENABLE;           /* WDT run in POWER DOWM mode setting if needed */
     ENABLE_WDT_INTERRUPT;
     ENABLE_GLOBAL_INTERRUPT;
-    set_WDCON_WDTR;                       //WDT run
-    set_WDCON_WDCLR;                      //Clear WDT timer
-    while((WDCON|~SET_BIT6)==0xFF);
+    WDT_COUNTER_RUN;                       /* WDT start to run */
+    WDT_COUNTER_CLEAR;                     /* Clear WDT counter */
+    while(!(WDCON&=SET_BIT6));             /* Check for the WDT counter cleared */
 
     while (1)
     {

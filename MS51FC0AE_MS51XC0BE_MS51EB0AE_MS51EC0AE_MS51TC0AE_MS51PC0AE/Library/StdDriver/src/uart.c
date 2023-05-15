@@ -1,15 +1,12 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/***********************************************************************************************************/
-/*  Website: http://www.nuvoton.com                                                                        */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : June/21/2020                                                                                   */
-/***********************************************************************************************************/
 #include "MS51_32K.h"
+
 bit PRINTFG = 0, uart0_receive_flag = 0, uart1_receive_flag;
 unsigned char uart0_receive_data, uart1_receive_data;
 
@@ -144,4 +141,5 @@ void Enable_UART0_VCOM_printf_24M_115200(void)
     P06_QUASI_MODE;
     UART_Open(24000000,UART0_Timer1,115200);
     ENABLE_UART0_PRINTF;
+    DISABLE_UART0_INTERRUPT;
 }

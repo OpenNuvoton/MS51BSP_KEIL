@@ -1,6 +1,7 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
@@ -170,7 +171,7 @@ void Timer3_Delay(unsigned long u32SYSCLK,unsigned char u8TMDIV, unsigned int u1
       RL3 = TL3TMP;
       RH3 = TH3TMP;
       set_T3CON_TR3;                                    //Trigger Timer3
-      while ((T3CON|CLR_BIT4)==CLR_BIT4);    //Check Timer3 Time-Out Flag
+      while (!(T3CON&SET_BIT4));    //Check Timer3 Time-Out Flag
       clr_T3CON_TF3;
       clr_T3CON_TR3;                                    //Stop Timer3
       u16CNT --;

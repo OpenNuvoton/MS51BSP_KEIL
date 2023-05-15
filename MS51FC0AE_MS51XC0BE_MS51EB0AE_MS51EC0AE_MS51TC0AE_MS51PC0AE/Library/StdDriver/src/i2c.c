@@ -1,11 +1,14 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
 
 #include "MS51_32K.h"
+
+bit   I2C_SI_ERROR_FLAG=0;
 
 /**
   * @brief      Enable specify I2C controller and set divider
@@ -128,27 +131,51 @@ void I2C_ClearTimeoutFlag(void)
 }
 
 /**
- * @brief      Special design for 8051 I2C SI check
+ * @brief      I2C SI check
  * @param[in]  none
  * @return     None
- * @details    This function setting the slave address mask bit.
+ * @details    SI check and confirm with that SI without noise issue
  */
 void I2C0_SI_Check(void)
 {
     clr_I2CON_SI;
     
-    while(I2CON&SET_BIT3)     /* while SI==0; */
+    while(I2CON&SET_BIT3)     /* while SI=1;  measn noise cause SI clear error. Keep clear try clear SI command*/
     {
-        if(I2STAT == 0x00)
-        {
-            set_I2CON_STO;
-        }
-        SI = 0;
-        if(!SI)
+        clr_I2CON_SI;
+        if(I2CON&SET_BIT3)                /* Disable and re enable I2C to clear SI  */
         {
             clr_I2CON_I2CEN;
             set_I2CON_I2CEN;
             clr_I2CON_SI;
-        } 
+        }
+    }
+}
+
+/**
+ * @brief      Special design for noise cause SI clear error. 8051 I2C SI check
+ * @param[in]  none
+ * @return     None
+ * @details    This function special for SI error only.
+ */
+void I2C0_SI_Error(void)
+{
+    clr_I2CON_SI;
+    
+    while(I2CON&SET_BIT3)     /* while SI=1;  measn noise cause SI clear error. Keep clear try clear SI command*/
+    {
+        if(I2STAT == 0x00)    /* Check I2C status if bus error */
+        {
+            set_I2CON_STO;    /* stop all I2C trans  */
+            I2C_SI_ERROR_FLAG = 1;
+        }
+        clr_I2CON_SI;
+        if(I2CON&SET_BIT3)                /* Disable and re enable I2C to clear SI  */
+        {
+            clr_I2CON_I2CEN;
+            set_I2CON_I2CEN;
+            clr_I2CON_SI;
+            clr_I2CON_I2CEN;
+        }
     }
 }

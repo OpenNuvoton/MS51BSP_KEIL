@@ -1,14 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/***********************************************************************************************************/
-/* Website: http://www.nuvoton.com                                                                         */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : Jan/21/2020                                                                                   */
-/***********************************************************************************************************/
 
 /************************************************************************************************************/
 /*  File Function: MS51 INT0 pin external interrupt demo                                                    */
@@ -31,7 +27,7 @@ void main (void)
 {
     P35_PUSHPULL_MODE;
     P30_INPUT_MODE;                      //setting INT0 pin P3.0 as Quasi mode with internal pull high
-    ENABLE_P30_PULLUP;
+    P30_PULLUP_ENABLE;
     P30 = 1;
     INT0_FALLING_EDGE_TRIG;              //setting trig condition level or edge
      set_IE_EX0;                         //INT0_Enable;

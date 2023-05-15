@@ -1,14 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/***********************************************************************************************************/
-/*  Website: http://www.nuvoton.com                                                                        */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : June/21/2020                                                                                   */
-/***********************************************************************************************************/
 
 //**********************************************************************************************************/
 //  File Function: MS51 ADC read bandgap to VDD demo code                                                  */
@@ -39,22 +35,21 @@ void main (void)
     UART_Open(24000000,UART0_Timer3,115200);
     ENABLE_UART0_PRINTF;
 
-/*Read bandgap value */
-//    READ1_BANDGAP();
+
 /* ADC Low speed initial*/  
     ENABLE_ADC_BANDGAP;
     ADCCON1|=0x30;            /* clock divider */
     ADCCON2|=0x0E;            /* AQT time */
-    AUXR1|=SET_BIT4;          /* ADC clock low speed */
+
 /*start bandgap ADC */
     clr_ADCCON0_ADCF;
-    set_ADCCON0_ADCS;                                
+    set_ADCCON0_ADCS;
     while(ADCF == 0);
     ADCdataH = ADCRH;
     ADCdataL = ADCRL;
 /* to convert VDD value */
     bgvalue = (ADCRH<<4) + ADCRL;
-
+/*Read bandgap value */
     Bandgap_Voltage= READ_BANDGAP()*3/4;
     VDD_Voltage = (0x1000/bgvalue)*Bandgap_Voltage;
 

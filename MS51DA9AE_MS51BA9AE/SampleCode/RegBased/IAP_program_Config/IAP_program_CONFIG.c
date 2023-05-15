@@ -1,14 +1,9 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-/***********************************************************************************************************/
-/* Website: http://www.nuvoton.com                                                                         */
-/*  E-Mail : MicroC-8bit@nuvoton.com                                                                       */
-/*  Date   : Jan/21/2020                                                                                   */
-/***********************************************************************************************************/
 
 //***********************************************************************************************************
 //  File Function: MS51 IAP program LDROM demo code
@@ -27,7 +22,11 @@ void main (void)
     P02 = 1;
     while(P02);
 
-    Modify_CONFIG(0xEF,0xFF,0x6B,0xFF,0xFF);
+    if(PCON&SET_BIT4)        /* Check with power on flag. Only the first power on check with CONFIG */
+    {
+       Modify_CONFIG(0xEF,0xFF,0x6B,0xFF,0xFF);
+       PCON&=CLR_BIT4;      /* Clear power on flag to avoid software reset modify CONFIG again. */
+    }
 
     while(1);
 }

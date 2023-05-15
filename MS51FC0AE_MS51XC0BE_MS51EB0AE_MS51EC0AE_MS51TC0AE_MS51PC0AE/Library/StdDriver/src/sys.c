@@ -1,14 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
-/* Copyright(c) 2020 nuvoton Technology Corp. All rights reserved.                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-//***********************************************************************************************************
-//  Website: http://www.nuvoton.com
-//  E-Mail : MicroC-8bit@nuvoton.com
-//  Date   : June/21/2020
-//***********************************************************************************************************
 #include "MS51_32K.h"
 
   /**
@@ -103,42 +99,42 @@ void FsysSelect(unsigned char u8FsysMode)
   {
     //***** HXT enable part*****
     case FSYS_HXT:
-        ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
+        ClockEnable(FSYS_HIRC);                      /*step1: switching system clock to HIRC */
         ClockSwitch(FSYS_HIRC);
-        ClockEnable(FSYS_HXT);                  //step2: switching system clock to HXT
+        ClockEnable(FSYS_HXT);                       /*step2: switching system clock to HXT  */
         ClockSwitch(FSYS_HXT);
-        clr_CKEN_HIRCEN;                      //step4: disable HIRC if needed 
+        clr_CKEN_HIRCEN;                             /*step4: disable HIRC if needed  */
     break;    
         
         //***** HIRC enable part *****  
     case FSYS_HIRC:
-        ClockEnable(FSYS_HIRC);                 //step1: switching system clock HIRC
+        ClockEnable(FSYS_HIRC);                      /*step1: switching system clock HIRC */
         ClockSwitch(FSYS_HIRC);
     break;
     
     //***** LIRC enable part*****
     case FSYS_LIRC:
-        ClockEnable(FSYS_LIRC);                 //step2: switching system clock LIRC
+        ClockEnable(FSYS_LIRC);                      /*step2: switching system clock LIRC  */
         ClockSwitch(FSYS_LIRC);
-        clr_CKEN_HIRCEN;                        //step4: disable HIRC if needed 
+        clr_CKEN_HIRCEN;                             /*step4: disable HIRC if needed  */
     break;
         
     /***** ECLK enable part clock in with P3.0 *****/      
     case FSYS_OSCIN_P30:
-        ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
+        ClockEnable(FSYS_HIRC);                      /*step1: switching system clock to HIRC  */
         ClockSwitch(FSYS_HIRC);
-        ClockEnable(FSYS_OSCIN_P30);                 //step1: switching system clock to External clock
+        ClockEnable(FSYS_OSCIN_P30);                 /*step1: switching system clock to External clock  */
         ClockSwitch(FSYS_OSCIN_P30);
-        clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
+        clr_CKEN_HIRCEN;                             /*step5: disable HIRC if needed */
     break;
     
     /***** ECLK enable part clock in with P0.0 *****/ 
     case FSYS_HXTIN_P00:
-        ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
+        ClockEnable(FSYS_HIRC);                      /*step1: switching system clock to HIRC */
         ClockSwitch(FSYS_HIRC);
-        ClockEnable(FSYS_HXTIN_P00);                 //step1: switching system clock to External clock
+        ClockEnable(FSYS_HXTIN_P00);                 /*step1: switching system clock to External clock */
         ClockSwitch(FSYS_HXTIN_P00);
-        clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
+        clr_CKEN_HIRCEN;                             /*step5: disable HIRC if needed */
     break;
   }
 }
@@ -149,35 +145,35 @@ void ClockEnable(unsigned char u8FsysMode)
   {
     /***** HIRC enable part ******/
     case FSYS_HXT:
-        clr_CKEN_EXTEN1;                        /*step1: Enable extnal 4~ 24MHz crystal clock source.*/
+        clr_CKEN_EXTEN1;                          /*step1: Enable extnal 4~ 24MHz crystal clock source.*/
         set_CKEN_EXTEN0;
-        while(CKSWT|CLR_BIT7);                  /*step2: check clock source status and wait for ready*/
+        while(!(CKSWT&SET_BIT7));                 /*step2: check clock source status and wait for ready*/
     break;
    
     /***** HIRC enable part ******/
     case FSYS_HIRC:
-        set_CKEN_HIRCEN;                        //step1: Enable extnal clock source.
-        while((CKSWT|CLR_BIT5)==CLR_BIT5);      //step2: check clock source status and wait for ready
+        set_CKEN_HIRCEN;                          /*step1: Enable extnal clock source.                  */
+        while(!(CKSWT&SET_BIT5));                 /*step2: check clock source status and wait for ready */
     break;
    
     /***** LIRC enable part******/
     case FSYS_LIRC:
-        set_CKEN_LIRCEN;                        //step1: Enable extnal clock source.
-        while((CKSWT|CLR_BIT4)==CLR_BIT4);      //step2: check clock source status and wait for ready
+        set_CKEN_LIRCEN;                         /*step1: Enable extnal clock source.                   */
+        while(!(CKSWT&SET_BIT4));                /*step2: check clock source status and wait for ready */
     break;
     
     /***** ECLK P30 enable part ******/
     case FSYS_OSCIN_P30:
-        set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
+        set_CKEN_EXTEN1;                        /*step1: Enable extnal clock source. */
         set_CKEN_EXTEN0;
-        while((CKSWT|CLR_BIT3)==CLR_BIT3);      //step2: check clock source status and wait for ready
+        while(!(CKSWT&SET_BIT3));               /*step2: check clock source status and wait for ready  */
     break;
     
-    /***** ECLK P00 enable part ******/
+    /***** HXT P00 enable part ******/
     case FSYS_HXTIN_P00:
-        set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
+        set_CKEN_EXTEN1;                        /*step1: Enable extnal clock source. */
         clr_CKEN_EXTEN0;
-        while((CKSWT|CLR_BIT6)==CLR_BIT6);      //step2: check clock source status and wait for ready
+        while(!(CKSWT&SET_BIT7));               /*step2: check clock source status and wait for ready */
     break;
   }
 }
@@ -191,15 +187,15 @@ void ClockDisable(unsigned char u8FsysMode)
   {
     /***** HXT Disable part ******/
     case FSYS_HXT:
-      closeflag = 1;                
+      closeflag = 1;
     break;
      /***** HIRC Disable part ******/
     case FSYS_HIRC:
-        clr_CKEN_HIRCEN;                        
+        clr_CKEN_HIRCEN;
     break;
     /***** LIRC Disable part******/
     case FSYS_LIRC:
-        clr_CKEN_LIRCEN;                        
+        clr_CKEN_LIRCEN;
     break;
     //***** ECLK from P3.0 Disable part ******/
     case FSYS_OSCIN_P30:
@@ -207,7 +203,7 @@ void ClockDisable(unsigned char u8FsysMode)
     break;
     //***** ECLK from P0.0 Disable part ******/
     case FSYS_HXTIN_P00:
-        closeflag = 1; 
+        closeflag = 1;
     break;
   }
   if (closeflag)
