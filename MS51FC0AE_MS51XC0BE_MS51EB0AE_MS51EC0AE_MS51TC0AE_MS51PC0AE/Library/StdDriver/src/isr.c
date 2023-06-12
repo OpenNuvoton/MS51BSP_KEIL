@@ -12,6 +12,7 @@
 
 
 /*all interrupt subroutine list */
+#if 0 
 //-----------------------------------------------------------------------------------------------------------
 void INT0_ISR(void) interrupt 0          // Vector @  0x03
 {
@@ -135,6 +136,7 @@ void WKT_ISR(void) interrupt 17                 // Vector @  0x8B
     clr_WKCON_WKTF;
     _pop_(SFRS);
 }
+#endif
 
 void Set_Interrupt_Priority_Level( unsigned char u8InterruptSource, unsigned char u8u8InterruptPriorityLevel)
 {

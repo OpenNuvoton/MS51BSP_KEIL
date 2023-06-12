@@ -48,6 +48,7 @@ void I2C0_ISR(void) interrupt 6
     {
         case 0x00:
             set_I2CON_STO;
+            while(STO);
         break;
 
         case 0x60:

@@ -40,7 +40,7 @@ void Timer0_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16
       clr_TCON_TR0;                       //Stop Timer0
       u16CNT --;
     }
-//    clr_TCON_TR0;                                     //Stop Timer0
+
 }
 
 /**

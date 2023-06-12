@@ -146,16 +146,16 @@ typedef signed long           int32_t;
 #define    ENABLE_INT0_INTERRUPT         set_IE_EX0
                                          
 #define    ENABLE_TIMER2_INTERRUPT       set_EIE_ET2
-#define    ENABLE_SPI0_INTERRUPT         set_EIE_ESPI 
-#define    ENABLE_PWM0_FB_INTERRUPT      set_EIE_EFB0  
-#define    ENABLE_WDT_INTERRUPT          set_EIE_EWDT  
-#define    ENABLE_PWMM0_INTERRUPT        set_EIE_EPWM0  
-#define    ENABLE_CAPTURE_INTERRUPT      set_EIE_ECAP  
-#define    ENABLE_PIN_INTERRUPT          set_EIE_EPI  
+#define    ENABLE_SPI0_INTERRUPT         set_EIE_ESPI
+#define    ENABLE_PWM0_FB_INTERRUPT      set_EIE_EFB0
+#define    ENABLE_WDT_INTERRUPT          set_EIE_EWDT
+#define    ENABLE_PWMM0_INTERRUPT        set_EIE_EPWM
+#define    ENABLE_CAPTURE_INTERRUPT      set_EIE_ECAP
+#define    ENABLE_PIN_INTERRUPT          set_EIE_EPI
 #define    ENABLE_I2C_INTERRUPT          set_EIE_EI2C
                                          
 #define    ENABLE_WKT_INTERRUPT          set_EIE1_EWKT
-#define    ENABLE_TIMER3_INTERRUPT       set_EIE1_ET3    
+#define    ENABLE_TIMER3_INTERRUPT       set_EIE1_ET3
 #define    ENABLE_UART1_INTERRUPT        set_EIE1_ES_1
 
 /*DISABLE INTERRUPT*/ 
@@ -835,8 +835,8 @@ typedef signed long           int32_t;
 //--------- PMW interrupt setting ------------------------------
 #define    PWM_FALLING_INT                   set_SFRS_SFRPAGE;PWMINTC&=0xCF;PWMINTC|=0x00;clr_SFRS_SFRPAGE
 #define    PWM_RISING_INT                    set_SFRS_SFRPAGE;PWMINTC&=0xCF;PWMINTC|=0x10;clr_SFRS_SFRPAGE
-#define    PWM_CENTRAL_POINT_INT             set_SFRS_SFRPAGE;PWMINTC&=0xCF;PWMINTC|=0x20;clr_SFRS_SFRPAGE
-#define    PWM_PERIOD_END_INT                set_SFRS_SFRPAGE;PWMINTC&=0xCF;PWMINTC|=0x30;clr_SFRS_SFRPAGE
+#define    PWM_CENTRAL_POINT_INT             set_SFRS_SFRPAGE;PWMINTC&=0xCF;PWMINTC|=0x20;clr_SFRS_SFRPAGE;set_PWMCON1_PWMTYP
+#define    PWM_PERIOD_END_INT                set_SFRS_SFRPAGE;PWMINTC&=0xCF;PWMINTC|=0x30;clr_SFRS_SFRPAGE;set_PWMCON1_PWMTYP
 //--------- PWM interrupt pin select ---------------------------
 #define    PWM_INT_PWM0                      set_SFRS_SFRPAGE;PWMINTC&=0xF8;PWMINTC|=0x00;clr_SFRS_SFRPAGE
 #define    PWM_INT_PWM1                      set_SFRS_SFRPAGE;PWMINTC&=0xF8;PWMINTC|=0x01;clr_SFRS_SFRPAGE

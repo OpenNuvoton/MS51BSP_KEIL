@@ -31,10 +31,8 @@ void main (void)
 
 /* UART0 settting for printf function */
     MODIFY_HIRC(HIRC_24);
-    P06_PUSHPULL_MODE;
-    UART_Open(24000000,UART0_Timer3,115200);
-    ENABLE_UART0_PRINTF;
-
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf ("\n Test start ...");
 
 /* ADC Low speed initial*/  
     ENABLE_ADC_BANDGAP;

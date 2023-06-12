@@ -113,17 +113,24 @@ unsigned char Receive_Data(unsigned char UARTPort)
 }
 #endif
 
-void UART_Send_Data(UINT8 UARTPort, UINT8 c)
+void UART_Send_Data(unsigned char UARTPort, unsigned char c)
 {
+    _push_(SFRS);
+    SFRS = 0;
     switch (UARTPort)
     {
-      case UART0:
-        SBUF = c;
-      break;
-      case UART1:
-        SBUF_1 = c;
-      break;
+        case UART0:
+          TI=0;
+          SBUF = c;
+          while(!TI);
+        break;
+        case UART1:
+          TI_1=0;
+          SBUF_1 = c;
+          while(TI_1);
+        break;
     }
+    _pop_(SFRS);
 }
 
 void Enable_UART0_VCOM_printf_24M_115200(void)

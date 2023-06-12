@@ -8,7 +8,7 @@
 #include "MS51_32K.h"
 
 volatile unsigned char xdata page_buffer[128];
-
+unsigned char WriteDataToOnePage(unsigned int u16_addr, const unsigned char *pDat, unsigned char num);
 /**
  * @brief       Write Dataflash as EEPROM,
  * @param       u16EPAddr the 16bit EEPROM start address. Any of APROM address can be defined as start address (0x3800)

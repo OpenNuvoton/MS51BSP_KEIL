@@ -20,6 +20,7 @@
 ************************************************************************************************************/
 void main(void)
 {
+    MODIFY_HIRC(HIRC_24);
     P12_PUSHPULL_MODE;
     P11_PUSHPULL_MODE;
     P05_PUSHPULL_MODE;
@@ -37,8 +38,15 @@ void main(void)
     PWM123_ConfigOutputChannel(PWM2,CH1_P30, 0x06FF,40);
     PWM123_ConfigOutputChannel(PWM3,CH0_P05, 0x06FF,50);
     PWM123_ConfigOutputChannel(PWM3,CH1_P34, 0x06FF,60);
-	
-	  PWM_ALL_RUN();
-    while(1);
+
+    PWM_ALL_RUN();
+
+    while(1)
+    {
+       PWM123_ConfigOutputChannel(PWM2,CH0_P05, 0x06FF,90);
+       PWM123_ConfigOutputChannel(PWM2,CH1_P30, 0x06FF,10);
+       PWM2_Reload();
+       Timer0_Delay(16000000,1000,1000);
+    }
 }
 

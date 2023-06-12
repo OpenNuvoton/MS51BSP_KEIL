@@ -11,8 +11,7 @@
 /**********************************************************************************************************/
 #include "MS51_16K.H"
 
-unsigned char xdata ADCdataAIN5H, ADCdataAIN5L;
-unsigned char xdata ADCdataVBGH, ADCdataVBGL;
+unsigned int ADCdataAIN5, ADCdataVBG;
 
 /*****************************************************************************/
 /*The main C function.  Program execution starts                             */
@@ -22,33 +21,36 @@ void main (void)
 {
   /* UART0 settting for printf function */
     MODIFY_HIRC(HIRC_24);
-    P06_QUASI_MODE;
-    UART_Open(24000000,UART0_Timer3,115200);
-    ENABLE_UART0_PRINTF;
-  
-/*Enable channel 5 */ 
-      ENABLE_ADC_AIN5;
-      ADCCON1|=0X30;            /* clock divider */
-      ADCCON2|=0X0E;            /* AQT time */
-      clr_ADCCON0_ADCF;
-      set_ADCCON0_ADCS;                                
-      while(ADCF == 0);
-      ADCdataAIN5H = ADCRH;
-      ADCdataAIN5L = ADCRL;
-      DISABLE_ADC;
-      printf("\n ADC channel 5 =0x%bx", ADCdataAIN5H);
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf ("\n Test start ...");
 
-/*Enable Bandgap */     
-      ENABLE_ADC_BANDGAP;
-      ADCCON1|=0X30;            /* clock divider */
-      ADCCON2|=0X0E;            /* AQT time */
-      clr_ADCCON0_ADCF;
-      set_ADCCON0_ADCS;                                
-      while(ADCF == 0);
-      ADCdataVBGH = ADCRH;
-      ADCdataVBGL = ADCRL;
-      DISABLE_ADC;
-      printf("\n ADC channel bandgap =0x%bx", ADCdataVBGH);
+/*Enable Bandgap */
+    ENABLE_ADC_BANDGAP;
+    ADCCON1|=0X30;            /* clock divider */
+    ADCCON2|=0X0E;            /* AQT time */
+    clr_ADCCON0_ADCF;
+    set_ADCCON0_ADCS;
+    while(!(ADCCON0&SET_BIT7));;
+    ADCdataVBG = ADCRH<<4;
+    ADCdataVBG |= ADCRL&0x0F;
+    DISABLE_ADC;
+    printf("\n ADC channel bandgap =0x%x", ADCdataVBG);
+    Timer0_Delay(24000000,200,1000);
+
+/*Enable channel 5 */ 
+    ENABLE_ADC_AIN5;
+    ADCCON1|=0X30;            /* clock divider */
+    ADCCON2|=0X0E;            /* AQT time */
+    clr_ADCCON0_ADCF;
+    set_ADCCON0_ADCS;
+    while(!(ADCCON0&SET_BIT7)); /* wait ADCF */
+    ADCdataAIN5 = ADCRH<<4;
+    ADCdataAIN5 |= ADCRL&0x0F;
+    DISABLE_ADC;
+    printf("\n ADC channel 5 =0x%x", ADCdataAIN5);
+    Timer0_Delay(24000000,200,1000);
+
+    while(1);
       
     while(1);  
 }

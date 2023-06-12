@@ -91,11 +91,11 @@ _push_(SFRS);
       {
           case CH0_P23:
           case CH0_P12:
-            PWM1C0H=(u16PWMFrequency*u16PWMDutyCycle/100)>>8;PWM1C0L=(u16PWMFrequency*u16PWMDutyCycle/100); break;
+            PWM1C0H=(u16PWMFrequency/100UL*u16PWMDutyCycle)>>8;PWM1C0L=(u16PWMFrequency/100UL*u16PWMDutyCycle); break;
           case CH1_P22:
           case CH1_P14:
           case CH1_P11:
-            PWM1C1H=(u16PWMFrequency*u16PWMDutyCycle/100)>>8;PWM1C1L=(u16PWMFrequency*u16PWMDutyCycle/100); break;
+            PWM1C1H=(u16PWMFrequency/100UL*u16PWMDutyCycle)>>8;PWM1C1L=(u16PWMFrequency/100UL*u16PWMDutyCycle); break;
       }
       PWM1PH = u16PWMFrequency>>8;
       PWM1PL = u16PWMFrequency;
@@ -107,19 +107,19 @@ _push_(SFRS);
           case CH1_P14:   ENABLE_PWM1_CH1_P14_OUTPUT; break;
           case CH1_P11:   ENABLE_PWM1_CH1_P11_OUTPUT; break;
       }
-			break;
+      break;
     case PWM2:
       switch (u8PWMoutputSel)
       {
           case CH0_P21:
           case CH0_P10:
           case CH0_P05:
-            PWM2C0H=(u16PWMFrequency*u16PWMDutyCycle/100)>>8;PWM2C0L=(u16PWMFrequency*u16PWMDutyCycle/100); break;
+            PWM2C0H=(u16PWMFrequency/100UL*u16PWMDutyCycle)>>8;PWM2C0L=(u16PWMFrequency/100UL*u16PWMDutyCycle); break;
           case CH1_P30:
           case CH1_P31:
           case CH1_P00:
           case CH1_P04:
-            PWM2C1H=(u16PWMFrequency*u16PWMDutyCycle/100)>>8;PWM2C1L=(u16PWMFrequency*u16PWMDutyCycle/100); break;
+            PWM2C1H=(u16PWMFrequency/100UL*u16PWMDutyCycle)>>8;PWM2C1L=(u16PWMFrequency/100UL*u16PWMDutyCycle); break;
       }
       PWM2PH = u16PWMFrequency>>8;
       PWM2PL = u16PWMFrequency;
@@ -140,11 +140,11 @@ _push_(SFRS);
           case CH0_P32:
           case CH0_P01:
           case CH0_P17:
-            PWM3C0H=(u16PWMFrequency*u16PWMDutyCycle/100)>>8;PWM3C0L=(u16PWMFrequency*u16PWMDutyCycle/100);break;
+            PWM3C0H=(u16PWMFrequency/100UL*u16PWMDutyCycle)>>8;PWM3C0L=(u16PWMFrequency/100UL*u16PWMDutyCycle);break;
           case CH1_P34:
           case CH1_P15:
           case CH1_P03:
-            PWM3C1H=(u16PWMFrequency*u16PWMDutyCycle/100)>>8;PWM3C1L=(u16PWMFrequency*u16PWMDutyCycle/100);break;
+            PWM3C1H=(u16PWMFrequency/100UL*u16PWMDutyCycle)>>8;PWM3C1L=(u16PWMFrequency/100UL*u16PWMDutyCycle);break;
       }
       PWM3PH = u16PWMFrequency>>8;
       PWM3PL = u16PWMFrequency;
@@ -162,21 +162,34 @@ _push_(SFRS);
 _pop_(SFRS);
 }
 
-void PWM_ALL_RUN()
+void PWM_ALL_RUN(void)
 {
    SFRS=0; 
-	 PWM0CON0 |= 0x8E;;
+    PWM0CON0 |= 0x8E;;
 }
 
-void PWM1_RUN()
+void PWM1_RUN(void)
 {
-	set_PWM1CON0_PWMRUN;
+   set_PWM1CON0_PWMRUN;
 }
-void PWM2_RUN()
+void PWM2_RUN(void)
 {
-	set_PWM2CON0_PWMRUN;
+   set_PWM2CON0_PWMRUN;
 }
-void PWM3_RUN()
+void PWM3_RUN(void)
 {
-	set_PWM3CON0_PWMRUN;
+   set_PWM3CON0_PWMRUN;
+}
+
+void PWM1_Reload(void)
+{
+   set_PWM1CON0_LOAD;
+}
+void PWM2_Reload(void)
+{
+   set_PWM2CON0_LOAD;
+}
+void PWM3_Reload(void)
+{
+   set_PWM3CON0_LOAD;
 }
