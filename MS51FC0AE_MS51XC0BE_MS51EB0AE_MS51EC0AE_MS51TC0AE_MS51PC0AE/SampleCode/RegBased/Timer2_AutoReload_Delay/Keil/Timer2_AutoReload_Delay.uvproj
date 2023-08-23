@@ -46,7 +46,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Output\</OutputDirectory>
-          <OutputName>Timer2</OutputName>
+          <OutputName>Timer2_AutoReload_Delay</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -322,7 +322,7 @@
             <InterruptVectorAddress>0</InterruptVectorAddress>
             <VariousControls>
               <MiscControls />
-              <Define>FOSC_160000</Define>
+              <Define />
               <Undefine />
               <IncludePath>..\..\..\..\Library\Device\Include;..\..\..\..\Library\StdDriver\inc</IncludePath>
             </VariousControls>
@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>Timer2_delay.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Timer2_delay.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

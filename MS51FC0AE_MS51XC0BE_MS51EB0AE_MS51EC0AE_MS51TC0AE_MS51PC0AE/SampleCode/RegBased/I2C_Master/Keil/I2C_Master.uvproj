@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>I2C_M.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\I2C_M.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

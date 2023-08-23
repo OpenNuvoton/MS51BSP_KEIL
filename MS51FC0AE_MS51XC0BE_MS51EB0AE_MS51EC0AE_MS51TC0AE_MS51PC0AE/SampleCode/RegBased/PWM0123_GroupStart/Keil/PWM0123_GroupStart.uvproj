@@ -374,12 +374,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>PWM123_GP_INT.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\PWM123_GP_INT.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

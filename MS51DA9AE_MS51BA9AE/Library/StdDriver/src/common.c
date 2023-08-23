@@ -5,7 +5,7 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_8K.h"
+#include "ms51_8k.h"
 
 bit BIT_TMP;
 
@@ -37,4 +37,38 @@ void Software_Reset(unsigned char u8Bootarea)
     TA = 0xAA;
     TA = 0x55;
     CHPCON = boottemp;                   //software reset enable
+}
+
+/**
+ * @brief       MCU power down mode enable API
+ * @param       Enable power down mode
+ *                       - \ref ENABLE: Run into power down mode .
+ * @return      None
+ * @details     None
+ */
+void PowerDown_Mode(bit PDStatus)
+{
+    if (PDStatus)
+    {
+       POWERDOWN_MODE_ENABLE;
+       _nop_();
+       _nop_();
+    }
+}
+
+/**
+ * @brief       MCU idle mode enable API
+ * @param       Enable idle mode
+ *                       - \ref ENABLE: Run into idle mode .
+ * @return      None
+ * @details     None
+ */
+void Idle_Mode(bit IdleStatus)
+{
+    if (IdleStatus)
+    {
+       IDLE_MODE_ENABLE;
+       _nop_();
+       _nop_();
+    }
 }

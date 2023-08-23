@@ -1,4 +1,4 @@
-unsigned char code Table_LoByteAddress[1713] = 
+unsigned char code table_address[1713] = 
 {
 0x13 ,
 0x01 ,

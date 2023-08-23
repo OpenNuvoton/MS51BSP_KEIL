@@ -322,7 +322,7 @@
             <InterruptVectorAddress>0</InterruptVectorAddress>
             <VariousControls>
               <MiscControls />
-              <Define>FOSC_160000</Define>
+              <Define />
               <Undefine />
               <IncludePath>..\..\..\..\Library\Device\Include;..\..\..\..\Library\StdDriver\inc</IncludePath>
             </VariousControls>
@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>I2C_S.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\I2C_S.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

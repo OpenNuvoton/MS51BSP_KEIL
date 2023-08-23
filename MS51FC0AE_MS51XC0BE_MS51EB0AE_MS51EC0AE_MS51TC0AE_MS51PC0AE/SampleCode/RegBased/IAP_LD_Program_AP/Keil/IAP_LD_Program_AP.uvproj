@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>ISP_LD_AP.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ISP_LD_AP.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

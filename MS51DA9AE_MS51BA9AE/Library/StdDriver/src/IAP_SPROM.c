@@ -6,7 +6,7 @@
 /*---------------------------------------------------------------------------------------------------------*/
 
 
-#include "MS51_8K.h"
+#include "ms51_8k.h"
 
 unsigned char xdata IAPSPDataBuf[127];
 
@@ -14,8 +14,8 @@ unsigned char xdata IAPSPDataBuf[127];
 
 /**
  * @brief       Erase LDROM
- * @param       u16IAPStartAddress define LDROM area start address
- * @param       u16IAPDataSize define LDROM need be erase bytes size
+ * @param       u16IAPStartAddress #include "ms51_8k.h" LDROM area start address
+ * @param       u16IAPDataSize #include "ms51_8k.h" LDROM need be erase bytes size
  * @return      none
  * @details     Page erase LDROM area base on data start address
  * @example     Erase_LDROM(0x0000,2048);
@@ -39,8 +39,8 @@ void Erase_SPROM(void)
 
 /**
  * @brief       LDROM blank check
- * @param       u16IAPStartAddress define LDROM area start address
- * @param       u16IAPDataSize define LDROM need be erase bytes size
+ * @param       u16IAPStartAddress #include "ms51_8k.h" LDROM area start address
+ * @param       u16IAPDataSize #include "ms51_8k.h" LDROM need be erase bytes size
  * @return      none
  * @details     Check each byte of LDROM is FFH or not.
  * @example      LDROM_BlanckCheck(0x0000,2048);
@@ -73,8 +73,8 @@ void Erase_Verify_SPROM(unsigned int u16IAPDataSize)
 
 /**
  * @brief       LDROM program loop
- * @param       u16IAPStartAddress define LDROM area start address
- * @param       u16IAPDataSize define LDROM need be erase bytes size
+ * @param       u16IAPStartAddress #include "ms51_8k.h" LDROM area start address
+ * @param       u16IAPDataSize #include "ms51_8k.h" LDROM need be erase bytes size
  * @return      none
  * @details     Copy IAPDataBuf to LDROM
  * @example      LDROM_Program(0x0000,1024);
@@ -104,8 +104,8 @@ void Program_SPROM(unsigned int u16IAPDataSize)
 
 /**
  * @brief       LDROM check loop
- * @param       u16IAPStartAddress define LDROM area start address
- * @param       u16IAPDataSize define LDROM need be erase bytes size
+ * @param       u16IAPStartAddress #include "ms51_8k.h" LDROM area start address
+ * @param       u16IAPDataSize #include "ms51_8k.h" LDROM need be erase bytes size
  * @return      none
  * @details     Check with XRAM IAPDataBuf with LDROM
  * @example      LDROM_Program_Verify(0x0000,1024);

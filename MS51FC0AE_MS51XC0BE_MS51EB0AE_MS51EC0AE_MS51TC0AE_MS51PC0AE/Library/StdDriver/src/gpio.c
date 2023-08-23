@@ -22,26 +22,22 @@ void GPIO_Pull_Enable(unsigned char u8Port, unsigned char u8PinMask, unsigned ch
   SFRS=1;
   switch (u8PullMode)
   {
-    case PullUp:
+    case PULLUP:
         switch(u8Port)
         {
           case Port0:  P0UP |= u8PinMask;  break;
           case Port1:  P1UP |= u8PinMask;  break;
           case Port2:  P2UP |= u8PinMask;  break;
           case Port3:  P3UP |= u8PinMask;  break;
-          case Port4:  P4UP |= u8PinMask;  break;
-          case Port5:  P5UP |= u8PinMask;  break;
         }
     break;
-    case PullDown:
+    case PULLDOWN:
         switch(u8Port)
         {
           case Port0:  P0DW |= u8PinMask;  break;
           case Port1:  P1DW |= u8PinMask;  break;
           case Port2:  P2DW |= u8PinMask;  break;
           case Port3:  P3DW |= u8PinMask;  break;
-          case Port4:  P4DW |= u8PinMask;  break;
-          case Port5:  P5DW |= u8PinMask;  break;
         }
     break;
     }
@@ -69,8 +65,6 @@ void GPIO_Pull_Disable(unsigned char u8Port, unsigned char u8PinMask, unsigned c
           case Port1:  P1UP &= ~u8PinMask;  break;
           case Port2:  P2UP &= ~u8PinMask;  break;
           case Port3:  P3UP &= ~u8PinMask;  break;
-          case Port4:  P4UP &= ~u8PinMask;  break;
-          case Port5:  P5UP &= ~u8PinMask;  break;
         }
     break;
     case PullDown:
@@ -80,8 +74,6 @@ void GPIO_Pull_Disable(unsigned char u8Port, unsigned char u8PinMask, unsigned c
           case Port1:  P1DW &= ~u8PinMask;  break;
           case Port2:  P2DW &= ~u8PinMask;  break;
           case Port3:  P3DW &= ~u8PinMask;  break;
-          case Port4:  P4DW &= ~u8PinMask;  break;
-          case Port5:  P5DW &= ~u8PinMask;  break;
         }
     break;
     }
@@ -108,8 +100,6 @@ void GPIO_SetMode(unsigned char u8Port, unsigned char u8PinMask, unsigned char u
         case Port1:  u8PnM1 = P1M1;  u8PnM2 = P1M2;  break;
         case Port2:  u8PnM1 = P2M1;  u8PnM2 = P2M2;  break;
         case Port3:  u8PnM1 = P3M1;  u8PnM2 = P3M2;  break;
-        case Port4:  u8PnM1 = P4M1;  u8PnM2 = P4M2;  break;
-        case Port5:  u8PnM1 = P5M1;  u8PnM2 = P5M2;  break;
     }
     switch(u8Mode)
     {
@@ -136,7 +126,6 @@ void GPIO_SetMode(unsigned char u8Port, unsigned char u8PinMask, unsigned char u
         case Port1:  P1M1 = u8PnM1;  P1M2 = u8PnM2;  break;
         case Port2:  P2M1 = u8PnM1;  P2M2 = u8PnM2;  break;
         case Port3:  P3M1 = u8PnM1;  P3M2 = u8PnM2;  break;
-        case Port4:  P4M1 = u8PnM1;  P4M2 = u8PnM2;  break;
-        case Port5:  P5M1 = u8PnM1;  P5M2 = u8PnM2;  break;
+
     }
 }

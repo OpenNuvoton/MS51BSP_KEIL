@@ -374,12 +374,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>INT0.C</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\INT0.C</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -9,11 +9,11 @@
 //***********************************************************************************************************
 //  File Function: ML51 UART0 ISP subroutine
 //***********************************************************************************************************
-#include "MS51_8K.H"
+#include "ms51_8k.h"
 #include "ISP_I2C.h"
 
-#define  SDA   P04
-#define  SCL   P03
+#define   SDA   P04
+#define   SCL   P03
 bit BIT_TMP;
 
   xdata volatile uint8_t rx_buf[64]; 
@@ -34,7 +34,7 @@ bit BIT_TMP;
 
 unsigned char PID_highB,PID_lowB,DID_highB,DID_lowB,CONF0,CONF1,CONF2,CONF4;
 unsigned char recv_CONF0,recv_CONF1,recv_CONF2,recv_CONF4;
-#define ADDR_SLA              0x60<<1
+#define  ADDR_SLA              0x60<<1
 
 
 void READ_ID(void)
@@ -130,7 +130,7 @@ void Init_I2C(void)
     SCL = 1;
     set_EIE_EI2C;                               //enable I2C interrupt by setting IE1 bit 0
     set_I2CON_I2CEN;                              //enable I2C circuit 
-    I2ADDR = ADDR_SLA;                    //define own slave address    
+    I2ADDR = ADDR_SLA;                    //#include "ms51_8k.h" own slave address    
     SI = 0;
     AA = 1;
     EA=1;

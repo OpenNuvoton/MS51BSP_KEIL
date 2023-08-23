@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>Fsys_LIRC.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Fsys_LIRC.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

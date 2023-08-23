@@ -13,14 +13,14 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>MS51DA9AE</Device>
+          <Device>MS51PC0AE</Device>
           <Vendor>Nuvoton</Vendor>
-          <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x1FFF)  XRAM(0 - 0x3FF) CLOCK(24000000)</Cpu>
+          <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x7FFF)  XRAM(0 - 0x7FF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec />
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll />
           <DeviceId>0</DeviceId>
-          <RegisterFile>MS51_8K.H</RegisterFile>
+          <RegisterFile>MS51_32K.H</RegisterFile>
           <MemoryEnv />
           <Cmp />
           <Asm />
@@ -273,7 +273,7 @@
               <IRO>
                 <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x2000</Size>
+                <Size>0x8000</Size>
               </IRO>
               <IRA>
                 <Type>0</Type>
@@ -283,7 +283,7 @@
               <XRA>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x400</Size>
+                <Size>0x800</Size>
               </XRA>
               <XRA512>
                 <Type>0</Type>
@@ -374,12 +374,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>UART3_TX_RX.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\UART3_TX_RX.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

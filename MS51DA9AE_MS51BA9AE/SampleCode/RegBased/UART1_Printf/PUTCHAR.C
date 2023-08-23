@@ -14,10 +14,10 @@
 /*     Lx51 <your object file list>, PUTCHAR.OBJ <controls>            */
 /*                                                                     */
 /***********************************************************************/
-#include "MS51_8K.H"
+#include "ms51_8k.h"
 
 /****************************************************************************/
-/* Define putchar send from UART1, printf function will send from P1.6(TXD_1)
+/* #include "ms51_8k.h" putchar send from UART1, printf function will send from P1.6(TXD_1)
 /* NOTICE: Since UART1 pin is multi-function with OCD DATA/CLK pin.
 /* Suggest download than use run with realchip but not OCD mode.
 /****************************************************************************/

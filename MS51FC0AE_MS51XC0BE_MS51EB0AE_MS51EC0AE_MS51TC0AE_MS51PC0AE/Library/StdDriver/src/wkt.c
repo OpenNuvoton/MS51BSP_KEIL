@@ -1,11 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
 /* SPDX-License-Identifier: Apache-2.0                                                                     */
-/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/* Copyright(c) 2022 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
 /**
   * @brief     WKT Interrupt vector demo
@@ -21,6 +20,7 @@ _push_(SFRS);
 _pop_(SFRS);
 }
 #endif
+
 
 /**
   * @brief WKT delay interrupt initial setting 
@@ -94,16 +94,6 @@ void WKT_Open(unsigned int u16WKTDIV, unsigned int u16WKTRLData)
     set_WKCON_WKTR;
 }
 
-
-/**
-  * @brief WKT close disable 
-*/
-void WKT_Close()
-{
-    clr_WKCON_WKTR;
-}
-
-
 /**
  * @brief       Wakeup time interrupt Enable/disable 
  * @return      WKT_Current_Value
@@ -116,4 +106,12 @@ void WKT_Interrupt(unsigned char u8WKTINT)
         case Disable: DISABLE_WKT_INTERRUPT;
         case Enable:  ENABLE_WKT_INTERRUPT;
     }
+}
+
+/**
+  * @brief WKT close disable 
+*/
+void WKT_Close(void)
+{
+    clr_WKCON_WKTR;
 }

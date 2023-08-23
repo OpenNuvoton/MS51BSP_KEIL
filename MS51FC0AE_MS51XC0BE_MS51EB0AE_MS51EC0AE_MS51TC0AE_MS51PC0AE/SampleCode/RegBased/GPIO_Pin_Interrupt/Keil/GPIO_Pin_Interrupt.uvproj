@@ -46,7 +46,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Output\</OutputDirectory>
-          <OutputName>Pin_Int</OutputName>
+          <OutputName>GPIO_Pin_Interrupt</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -322,7 +322,7 @@
             <InterruptVectorAddress>0</InterruptVectorAddress>
             <VariousControls>
               <MiscControls />
-              <Define>FOSC_160000</Define>
+              <Define />
               <Undefine />
               <IncludePath>..\..\..\..\Library\Device\Include;..\..\..\..\Library\StdDriver\inc</IncludePath>
             </VariousControls>
@@ -374,12 +374,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>Pin_Int.C</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Pin_Int.C</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

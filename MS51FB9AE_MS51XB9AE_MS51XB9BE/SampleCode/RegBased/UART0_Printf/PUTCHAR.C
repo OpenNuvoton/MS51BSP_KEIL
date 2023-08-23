@@ -16,7 +16,7 @@
 /***********************************************************************/
 
 //#include <reg51.h>
-#include "MS51_16K.H"
+#include "ms51_16k.h"
 
 /****************************************************************************/
 /* Define putchar send from UART1, printf function will send from P1.6(TXD_1)

@@ -14,7 +14,7 @@
 /*     Lx51 <your object file list>, PUTCHAR.OBJ <controls>            */
 /*                                                                     */
 /***********************************************************************/
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
 /****************************************************************************/
 /* Define putchar send from UART1, printf function will send from P1.6(TXD_1)

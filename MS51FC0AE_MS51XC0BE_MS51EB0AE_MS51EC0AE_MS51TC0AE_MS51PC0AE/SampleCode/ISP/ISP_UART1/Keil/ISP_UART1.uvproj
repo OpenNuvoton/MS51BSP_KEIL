@@ -347,7 +347,7 @@
             <WarningLevel>2</WarningLevel>
             <DataOverlaying>1</DataOverlaying>
             <OverlayString />
-            <MiscControls />
+            <MiscControls>REMOVEUNUSED</MiscControls>
             <DisableWarningNumbers>16</DisableWarningNumbers>
             <LinkerCmdFile />
             <Assign />
@@ -377,21 +377,19 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>ISP_UART1_main.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ISP_UART1_main.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Library</GroupName>
-          <Files>
             <File>
               <FileName>isp_uart1.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\isp_uart1.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Library</GroupName>
         </Group>
         <Group>
           <GroupName>Startup</GroupName>

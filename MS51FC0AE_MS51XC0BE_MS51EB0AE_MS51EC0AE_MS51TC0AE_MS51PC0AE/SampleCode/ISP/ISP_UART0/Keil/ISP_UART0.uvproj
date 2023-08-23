@@ -347,7 +347,7 @@
             <WarningLevel>2</WarningLevel>
             <DataOverlaying>1</DataOverlaying>
             <OverlayString />
-            <MiscControls />
+            <MiscControls>REMOVEUNUSED</MiscControls>
             <DisableWarningNumbers>16</DisableWarningNumbers>
             <LinkerCmdFile />
             <Assign />
@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>main_autosize_wdtdis.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\main_autosize_wdtdis.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
             <File>
               <FileName>isp_uart0.c</FileName>

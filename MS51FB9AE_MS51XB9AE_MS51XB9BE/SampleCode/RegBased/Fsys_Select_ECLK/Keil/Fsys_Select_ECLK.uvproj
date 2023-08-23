@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version='1.0' encoding='UTF-8'?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_proj.xsd">
 
   <SchemaVersion>1.1</SchemaVersion>
@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>CLK_OUT</TargetName>
+      <TargetName>Fsys_Select_ECLK</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <uAC6>0</uAC6>
@@ -16,26 +16,26 @@
           <Device>MS51FB9AE</Device>
           <Vendor>Nuvoton</Vendor>
           <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x3FFF)  XRAM(0 - 0x3FF) CLOCK(24000000)</Cpu>
-          <FlashUtilSpec></FlashUtilSpec>
+          <FlashUtilSpec />
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
-          <FlashDriverDll></FlashDriverDll>
+          <FlashDriverDll />
           <DeviceId>0</DeviceId>
           <RegisterFile>MS51_16K.H</RegisterFile>
-          <MemoryEnv></MemoryEnv>
-          <Cmp></Cmp>
-          <Asm></Asm>
-          <Linker></Linker>
-          <OHString></OHString>
-          <InfinionOptionDll></InfinionOptionDll>
-          <SLE66CMisc></SLE66CMisc>
-          <SLE66AMisc></SLE66AMisc>
-          <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile></SFDFile>
+          <MemoryEnv />
+          <Cmp />
+          <Asm />
+          <Linker />
+          <OHString />
+          <InfinionOptionDll />
+          <SLE66CMisc />
+          <SLE66AMisc />
+          <SLE66LinkerMisc />
+          <SFDFile />
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath></BinPath>
-          <IncludePath></IncludePath>
-          <LibPath></LibPath>
+          <BinPath />
+          <IncludePath />
+          <LibPath />
           <RegisterFilePath>Nuvoton\</RegisterFilePath>
           <DBRegisterFilePath>Nuvoton\</DBRegisterFilePath>
           <TargetStatus>
@@ -59,8 +59,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -69,8 +69,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -80,14 +80,14 @@
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>$K\C51\NULink\Hex2Bin.exe .\output\@L.hex</UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>1</SelectedForBatchBuild>
-          <SVCSIdString></SVCSIdString>
+          <SVCSIdString />
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -101,20 +101,20 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument></CustomArgument>
-          <IncludeLibraryModules></IncludeLibraryModules>
+          <CustomArgument />
+          <IncludeLibraryModules />
           <ComprImg>1</ComprImg>
           <BankNo>65535</BankNo>
         </CommonProperty>
         <DllOption>
           <SimDllName>S8051.DLL</SimDllName>
-          <SimDllArguments></SimDllArguments>
+          <SimDllArguments />
           <SimDlgDll>DP51.DLL</SimDlgDll>
-          <SimDlgDllArguments></SimDlgDllArguments>
+          <SimDlgDllArguments />
           <TargetDllName>S8051.DLL</TargetDllName>
-          <TargetDllArguments></TargetDllArguments>
+          <TargetDllArguments />
           <TargetDlgDll>TP51.DLL</TargetDlgDll>
-          <TargetDlgDllArguments></TargetDlgDllArguments>
+          <TargetDlgDllArguments />
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -151,18 +151,18 @@
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
           <SimDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
+            <CpuDll />
+            <CpuDllArguments />
+            <PeripheralDll />
+            <PeripheralDllArguments />
+            <InitializationFile />
           </SimDlls>
           <TargetDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
+            <CpuDll />
+            <CpuDllArguments />
+            <PeripheralDll />
+            <PeripheralDllArguments />
+            <InitializationFile />
             <Driver>BIN\Nuvoton_8051_Keil_uVision_Driver.dll</Driver>
           </TargetDlls>
         </DebugOption>
@@ -178,10 +178,10 @@
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\Nuvoton_8051_Keil_uVision_Driver.dll</Flash2>
           <Flash3>"" ()</Flash3>
-          <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
+          <Flash4 />
+          <pFcarmOut />
+          <pFcarmGrp />
+          <pFcArmRoot />
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <Target51>
@@ -321,9 +321,9 @@
             <ACallAJmp>0</ACallAJmp>
             <InterruptVectorAddress>0</InterruptVectorAddress>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
+              <MiscControls />
+              <Define />
+              <Undefine />
               <IncludePath>..\..\..\..\Library\Device\Include;..\..\..\..\Library\StdDriver\inc</IncludePath>
             </VariousControls>
           </C51>
@@ -333,10 +333,10 @@
             <UseCase>0</UseCase>
             <UseMod51>0</UseMod51>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <MiscControls />
+              <Define />
+              <Undefine />
+              <IncludePath />
             </VariousControls>
           </Ax51>
           <Lx51>
@@ -346,29 +346,29 @@
             <CaseSensitiveSymbols>0</CaseSensitiveSymbols>
             <WarningLevel>2</WarningLevel>
             <DataOverlaying>1</DataOverlaying>
-            <OverlayString></OverlayString>
+            <OverlayString />
             <MiscControls>REMOVEUNUSED</MiscControls>
             <DisableWarningNumbers>16</DisableWarningNumbers>
-            <LinkerCmdFile></LinkerCmdFile>
-            <Assign></Assign>
-            <ReserveString></ReserveString>
-            <CClasses></CClasses>
-            <UserClasses></UserClasses>
-            <CSection></CSection>
-            <UserSection></UserSection>
-            <CodeBaseAddress></CodeBaseAddress>
-            <XDataBaseAddress></XDataBaseAddress>
-            <PDataBaseAddress></PDataBaseAddress>
-            <BitBaseAddress></BitBaseAddress>
-            <DataBaseAddress></DataBaseAddress>
-            <IDataBaseAddress></IDataBaseAddress>
-            <Precede></Precede>
-            <Stack></Stack>
-            <CodeSegmentName></CodeSegmentName>
-            <XDataSegmentName></XDataSegmentName>
-            <BitSegmentName></BitSegmentName>
-            <DataSegmentName></DataSegmentName>
-            <IDataSegmentName></IDataSegmentName>
+            <LinkerCmdFile />
+            <Assign />
+            <ReserveString />
+            <CClasses />
+            <UserClasses />
+            <CSection />
+            <UserSection />
+            <CodeBaseAddress />
+            <XDataBaseAddress />
+            <PDataBaseAddress />
+            <BitBaseAddress />
+            <DataBaseAddress />
+            <IDataBaseAddress />
+            <Precede />
+            <Stack />
+            <CodeSegmentName />
+            <XDataSegmentName />
+            <BitSegmentName />
+            <DataSegmentName />
+            <IDataSegmentName />
           </Lx51>
         </Target51>
       </TargetOption>
@@ -377,9 +377,9 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>Fsys_SEL.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Fsys_SEL.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

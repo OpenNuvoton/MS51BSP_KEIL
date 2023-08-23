@@ -1,11 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
 /* SPDX-License-Identifier: Apache-2.0                                                                     */
-/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/* Copyright(c) 2022 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-#include "MS51_16K.h"
+#include "ms51_16k.h"
 
 /**
   * @brief     WKT Interrupt vector demo
@@ -25,7 +24,7 @@ _pop_(SFRS);
 
 /**
   * @brief WKT delay s level application lib 
-  * @param[in] u8WKTRLData define Fsys clock value. for example 8, use the real Fsys value.
+  * @param[in] u8WKTRLData #include "ms51_8k.h" Fsys clock value. for example 8, use the real Fsys value.
   *                   - \ref  value range is 1 ~ 25.  means wakeupt time from about 1s ~ 50s
   * @note      limitation of the 8bit delay time. Range is 1s ~ 50s
   * @example   WKT_AutoReload_Interrupt_Initial_S(16);
@@ -40,7 +39,7 @@ void WKT_AutoReload_Interrupt_Initial_S(unsigned int u16WKTRLData)
 
 /**
   * @brief WKT delay ms level application lib 
-  * @param[in] u8WKTRLData define wakeup time value. for example 80 
+  * @param[in] u8WKTRLData #include "ms51_8k.h" wakeup time value. for example 80 
   *                  - \ref  value range is 10 ~ 1000.  means wakeupt time from about 10 ms ~ 1000 ms
   * @note      limitation of the 8bit delay time. Range is 10 ms ~ 1000 ms
   * @example   WKT_AutoReload_Interrupt_Initial_MS(200);
@@ -56,12 +55,12 @@ void WKT_AutoReload_Interrupt_Initial_MS(unsigned int u16WKTRLData)
 
 /**
  * @brief       Wakeup time setting 
- * @param       u8WKTCLKSouce clock source select define (LIRC / LXT)
+ * @param       u8WKTCLKSouce clock source select #include "ms51_8k.h" (LIRC / LXT)
  * @param       u16WKTDIV WKT counter divider select  (1/4/16/64/256/512/1024/2048)
  * @param       u8WKTRLData reload counter value(Value < 256) 
  * @return      none
  * @details     wake up time = u16WKTRLData * u16WKTDIV / 10000    (unit S)
- * @note        Once timer1 or timer3 use as baudrate generator, please not define as timer delay.
+ * @note        Once timer1 or timer3 use as baudrate generator, please not #include "ms51_8k.h" as timer delay.
  * @example      WKT_Open (256,100);
  */
 

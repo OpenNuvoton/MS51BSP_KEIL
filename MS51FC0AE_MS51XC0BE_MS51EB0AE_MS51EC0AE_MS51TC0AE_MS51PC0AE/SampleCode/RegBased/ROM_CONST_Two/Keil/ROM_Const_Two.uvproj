@@ -355,7 +355,8 @@
             <CClasses />
             <UserClasses />
             <CSection />
-            <UserSection />
+            <UserSection>?CO?TABLE_ADDRESS(C:0x2C00),
+?CO?TABLE_DATA(C:0x3400)</UserSection>
             <CodeBaseAddress />
             <XDataBaseAddress />
             <PDataBaseAddress />
@@ -377,19 +378,19 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>ROM_const.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ROM_const.c</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
             <File>
-              <FileName>Table_Address.c</FileName>
+              <FileName>table_address.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Table_Address.c</FilePath>
+              <FilePath>..\table_address.c</FilePath>
             </File>
             <File>
-              <FileName>Table_Data .c</FileName>
+              <FileName>table_data.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Table_Data .c</FilePath>
+              <FilePath>..\table_data.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -405,6 +406,11 @@
               <FileName>common.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Library\StdDriver\src\common.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Library\StdDriver\src\uart.c</FilePath>
             </File>
           </Files>
         </Group>

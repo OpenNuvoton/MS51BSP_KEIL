@@ -135,7 +135,19 @@ extern bit BIT_TMP;
 #define     PAGE_SIZE               128
 
 /*****************************************************************************/
-/*   BOD Define                                                      */
+/*   Software reset                                                          */
+/*****************************************************************************/
+#define    ENABLE_SOFTWARE_RESET_TO_APROM    clr_CHPCON_BS;set_CHPCON_SWRST
+#define    ENABLE_SOFTWARE_RESET_TO_LDROM    set_CHPCON_BS;set_CHPCON_SWRST
+
+/*****************************************************************************/
+/*   Power down / idle mode define                                           */
+/*****************************************************************************/
+#define    POWERDOWN_MODE_ENABLE    set_PCON_PD
+#define    IDLE_MODE_ENABLE         set_PCON_IDLE
+
+/*****************************************************************************/
+/*   BOD Define                                                              */
 /*****************************************************************************/
 #define    BOD_ENABLE               BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x80;EA=BIT_TMP
 #define    BOD_RESET_ENABLE         BIT_TMP=EA;EA=0;SFRS=0;TA=0xAA;TA=0x55;BODCON0|=0x84;EA=BIT_TMP
@@ -729,17 +741,17 @@ extern bit BIT_TMP;
 #define    PWM0_CLOCK_DIV_64                    SFRS=0;PWM0CON1&=0xF8;PWM0CON1|=0x06
 #define    PWM0_CLOCK_DIV_128                   SFRS=0;PWM0CON1|=0x07
 /*--------- PWM ouput GPIO select define ------------------------------*/
-#define    ENABLE_PWM0_CH0_P12_OUTPUT           set_PIOCON0_PIO12;SFRS=2;AUXR4&=0xFC
+#define    ENABLE_PWM0_CH0_P12_OUTPUT           set_PIOCON0_PIO12;
 #define    ENABLE_PWM0_CH0_P33_OUTPUT           set_PIOCON2_PIO33
-#define    ENABLE_PWM0_CH1_P14_OUTPUT           set_PIOCON1_PIO14;SFRS=2;AUXR4&=0xF3
-#define    ENABLE_PWM0_CH1_P11_OUTPUT           set_PIOCON0_PIO11;SFRS=2;AUXR4&=0xF3
-#define    ENABLE_PWM0_CH2_P05_OUTPUT           set_PIOCON1_PIO05;SFRS=2;AUXR4&=0xCF
+#define    ENABLE_PWM0_CH1_P14_OUTPUT           set_PIOCON1_PIO14;
+#define    ENABLE_PWM0_CH1_P11_OUTPUT           set_PIOCON0_PIO11;
+#define    ENABLE_PWM0_CH2_P05_OUTPUT           set_PIOCON1_PIO05;
 #define    ENABLE_PWM0_CH2_P10_OUTPUT           set_PIOCON0_PIO10
-#define    ENABLE_PWM0_CH3_P04_OUTPUT           set_PIOCON1_PIO04;SFRS=2;AUXR4&=0x3F
-#define    ENABLE_PWM0_CH3_P00_OUTPUT           set_PIOCON0_PIO00;SFRS=2;AUXR4&=0x3F
-#define    ENABLE_PWM0_CH4_P01_OUTPUT           set_PIOCON0_PIO01;SFRS=2;AUXR5&=0xFC
-#define    ENABLE_PWM0_CH5_P15_OUTPUT           set_PIOCON1_PIO15;SFRS=2;AUXR5&=0xF3
-#define    ENABLE_PWM0_CH5_P03_OUTPUT           set_PIOCON0_PIO03;SFRS=2;AUXR5&=0xF3
+#define    ENABLE_PWM0_CH3_P04_OUTPUT           set_PIOCON1_PIO04;
+#define    ENABLE_PWM0_CH3_P00_OUTPUT           set_PIOCON0_PIO00;
+#define    ENABLE_PWM0_CH4_P01_OUTPUT           set_PIOCON0_PIO01;
+#define    ENABLE_PWM0_CH5_P15_OUTPUT           set_PIOCON1_PIO15;
+#define    ENABLE_PWM0_CH5_P03_OUTPUT           set_PIOCON0_PIO03;
 #define    ENABLE_ALL_PWM0_OUTPUT               SFRS=0;PIOCON0=0xFF;SFRS=1;PIOCON1=0xFF
 
 #define    DISABLE_PWM0_CH0_P12_OUTPUT          clr_PIOCON0_PIO12

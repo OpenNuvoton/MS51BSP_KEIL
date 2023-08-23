@@ -6,7 +6,7 @@
 /*---------------------------------------------------------------------------------------------------------*/
 
 
-#include "MS51_8K.H"
+#include "ms51_8k.h"
 
 
 
@@ -15,7 +15,7 @@ volatile unsigned char xdata page_buffer[128];
 
 /**
  * @brief       Write Dataflash as EEPROM, 
- * @param       u16EPAddr the 16bit EEPROM start address. Any of APROM address can be defined as start address (0x3800)
+ * @param       u16EPAddr the 16bit EEPROM start address. Any of APROM address can be #include "ms51_8k.h"d as start address (0x3800)
  * @param       u8EPData the 8bit value need storage in (0x3800)
  * @return      none
  * @details     Storage dataflash page data into XRAM 380H-400H, modify data in XRAM, Erase dataflash page, writer updated XRAM data into dataflash

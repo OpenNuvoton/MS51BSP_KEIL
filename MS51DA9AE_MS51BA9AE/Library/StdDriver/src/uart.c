@@ -5,11 +5,11 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_8K.h"
+#include "ms51_8k.h"
 bit PRINTFG=0,uart0_receive_flag=0,uart1_receive_flag;
 unsigned char uart0_receive_data,uart1_receive_data;
 
-
+#if 0
 void Serial_ISR (void) interrupt 4 
 {
     _push_(SFRS);
@@ -53,6 +53,7 @@ void SerialPort1_ISR(void) interrupt 15
 
     _pop_(SFRS);
 }
+#endif
 
 /*MS51 new version buadrate */
 void UART_Open(unsigned long u32SysClock, unsigned char u8UARTPort,unsigned long u32Baudrate)

@@ -4,19 +4,14 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-
-//***********************************************************************************************************
-//  File Function: MS51 locate data in APROM simple demo 
-//***********************************************************************************************************
-#include "MS51_16K.H"
-#include "SPROM.h"
+#include "ms51_16k.h"
+#include "sprom.h"
 
 unsigned char  SPTEMP=1;
 
 void SPROM_CODE (void)
 {
-  P12 = ~P12;
+  GPIO_LED ^= 1;
   SPTEMP++;
 
 }

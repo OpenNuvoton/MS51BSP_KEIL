@@ -1,17 +1,13 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
 /* SPDX-License-Identifier: Apache-2.0                                                                     */
-/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/* Copyright(c) 2022 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-//***********************************************************************************************************
-//  File Function: MS51 interrupt vector list
-//***********************************************************************************************************
-#include "MS51_16K.H"
-
+#include "ms51_16k.h"
 
 /*all interrupt subroutine list */
+#if 0
 //-----------------------------------------------------------------------------------------------------------
 void INT0_ISR(void) interrupt 0          // Vector @  0x03
 {
@@ -169,7 +165,32 @@ void WKT_ISR(void) interrupt 17            // Vector @  0x8B
 
     _pop_(SFRS);
 }
+#endif
 
+  /**
+  * @brief This API configures Interrupt level
+  * @param[in] u8InterruptSource . Valid values are the interrupt name:
+  *                       - \ref INT_INT0       :
+  *                       - \ref INT_BOD        :
+  *                       - \ref INT_WDT        :
+  *                       - \ref INT_Timer0     :
+  *                       - \ref INT_I2C0       :
+  *                       - \ref INT_ADC        :
+  *                       - \ref INT_INT1       :
+  *                       - \ref INT_PIT        :
+  *                       - \ref INT_Timer1     :
+  *                       - \ref INT_UART0      :
+  *                       - \ref INT_PWM0_Brake :
+  *                       - \ref INT_SPI0       :
+  *                       - \ref INT_Timer2     :
+  *                       - \ref INT_Capture    :
+  *                       - \ref INT_PWM0       : 
+  *                       - \ref INT_Timer3     :
+  *                       - \ref INT_WKT        :
+  * @note      u8u8InterruptPriorityLevel.Valid values are the interrupt level number:
+  *                       - \ref 0~3            :
+  * @exmaple : Set_Interrupt_Priority_Level(INT_ADC, 1);
+*/
 void Set_Interrupt_Priority_Level( unsigned char u8InterruptSource, unsigned char u8u8InterruptPriorityLevel)
 {
    switch (u8InterruptSource)

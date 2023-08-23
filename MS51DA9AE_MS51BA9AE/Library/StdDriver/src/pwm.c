@@ -5,7 +5,7 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_8K.h"
+#include "ms51_8k.h"
 
 /****** PWM0 SETTING ********/
  /**
@@ -82,7 +82,7 @@ void PWM0_ConfigOutputChannel(unsigned char u8PWM0ChannelNum,
 
  /**
  * @brief This function config PWM Complementary pair inset dead zone time 
- * @param[in] u8PWM0Pair PWM0 channel pair need insert pair define. (PWM0_CH01 / PWM0_CH23 / PWM0_CH45 / PWM0_ALL) 
+ * @param[in] u8PWM0Pair PWM0 channel pair need insert pair #include "ms51_8k.h". (PWM0_CH01 / PWM0_CH23 / PWM0_CH45 / PWM0_ALL) 
  * @param[in] u8PWM0DZValue the insert value.  PWM dead-time = (u8PWM0DZValue+1)/Fsys
  * @return none
  * @note        

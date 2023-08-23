@@ -1,0 +1,64 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
+#include "ms51_16k.h"
+
+unsigned char PinIntFlag;
+
+/************************************************************************************************************/
+/* FUNCTION_PURPOSE: Pin interrupt Service Routine                                                          */
+/************************************************************************************************************/
+void PinInterrupt_ISR (void) interrupt 7
+{
+_push_(SFRS);
+  
+    SFRS = 0;
+    switch(PIF)
+    {
+      case (SET_BIT0): PinIntFlag = SET_BIT0; PIF&=CLR_BIT0; break;
+      case (SET_BIT3): PinIntFlag = SET_BIT3; PIF&=CLR_BIT3; break;
+      default: break;
+    }
+
+_pop_(SFRS);
+}
+
+/************************************************************************************************************/
+/* FUNCTION_PURPOSE: Main Loop                                                                              */
+/************************************************************************************************************/
+void main (void) 
+{
+  /* UART0 initial for printf */
+    MODIFY_HIRC(HIRC_24);
+    Enable_UART0_VCOM_printf_24M_115200();
+    printf("\n PIT test start!");
+  /* Disable BOD for power down current */
+    BOD_DISABLE;
+
+  /* PIT initial setting */
+    P00_QUASI_MODE;
+    P03_INPUT_MODE;
+
+    P00 = 1;
+    P03 = 0;
+  
+    ENABLE_INT_PORT0;
+    ENABLE_BIT0_RISINGEDGE_TRIG;
+//    ENABLE_BIT3_BOTHEDGE_TRIG;
+    ENABLE_PIN_INTERRUPT;
+    ENABLE_GLOBAL_INTERRUPT;
+
+    while(1)
+    {
+      while  (PinIntFlag == 00);
+      switch(PinIntFlag)
+      {
+        case (SET_BIT0): printf("\n PIT0 interrupt!"); PinIntFlag&=CLR_BIT0; break;
+        case (SET_BIT3): printf("\n PIT3 interrupt!"); PinIntFlag&=CLR_BIT2; break;
+        default: break;
+      }
+    }
+}

@@ -376,22 +376,22 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>main.C</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\main.C</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
             <File>
-              <FileName>ProtectBit.C</FileName>
+              <FileName>protectbit.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ProtectBit.C</FilePath>
+              <FilePath>..\protectbit.c</FilePath>
             </File>
             <File>
-              <FileName>SPROM.C</FileName>
+              <FileName>sprom.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\SPROM.C</FilePath>
+              <FilePath>..\sprom.c</FilePath>
             </File>
           </Files>
         </Group>

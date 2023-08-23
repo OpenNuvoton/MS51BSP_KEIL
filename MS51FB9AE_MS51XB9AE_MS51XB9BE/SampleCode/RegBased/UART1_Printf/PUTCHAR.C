@@ -1,43 +1,30 @@
-/***********************************************************************/
-/*  This file is part of the C51 Compiler package                      */
-/*  Copyright KEIL ELEKTRONIK GmbH 1990 - 2002                         */
-/***********************************************************************/
-/*                                                                     */
-/*  PUTCHAR.C:  This routine is the general character output of C51.   */
-/*  You may add this file to a uVision2 project.                       */
-/*                                                                     */
-/*  To translate this file use C51 with the following invocation:      */
-/*     C51 PUTCHAR.C <memory model>                                    */
-/*                                                                     */
-/*  To link the modified PUTCHAR.OBJ file to your application use the  */
-/*  following Lx51 invocation:                                         */
-/*     Lx51 <your object file list>, PUTCHAR.OBJ <controls>            */
-/*                                                                     */
-/***********************************************************************/
-#include "MS51_16K.H"
+/*---------------------------------------------------------------------------------------------------------*/
+/*                                                                                                         */
+/* SPDX-License-Identifier: Apache-2.0                                                                     */
+/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/*                                                                                                         */
+/*---------------------------------------------------------------------------------------------------------*/
 
-/****************************************************************************/
-/* Define putchar send from UART1, printf function will send from P1.6(TXD_1)
-/* NOTICE: Since UART1 pin is multi-function with OCD DATA/CLK pin.
-/* Suggest download than use run with realchip but not OCD mode.
-/****************************************************************************/
-#if 1
-char putchar (char c)        //for UART1_printf
+
+//***********************************************************************************************************
+//  File Function: MS51 UART1 output for printf function demo
+//***********************************************************************************************************
+#include "ms51_16k.h"
+                          
+/*==========================================================================*/
+/* Remove ICE to check UART1 function */ 
+/*==========================================================================*/
+void main (void) 
 {
-    while (!TI_1);  /* wait until transmitter ready */
-    TI_1 = 0;
-    SBUF_1 = c;      /* output character */
-    return (c);
+/* Modify HIRC to 24MHz for UART baud rate deviation not over 1%*/
+    MODIFY_HIRC(HIRC_24);
+    P16_QUASI_MODE;
+    P02_INPUT_MODE;  
+    UART_Open(24000000,UART1_Timer3,115200);
+    ENABLE_UART1_PRINTF;
+    while(1)
+    {
+      printf("\n hello world !!!");
+      Timer0_Delay(16000000,300,1000);
+    }
 }
-#else
-/*
- * putchar (mini version): outputs charcter only
- */
-char putchar (char c)        //for UART0_printf
-{        
-  while (!TI);
-  TI = 0;
-  return (SBUF = c);
-}
-
-#endif

@@ -1,16 +1,16 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
 /* SPDX-License-Identifier: Apache-2.0                                                                     */
-/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/* Copyright(c) 2022 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
+#include "ms51_16k.h"
 
-#include "MS51_16K.H"
-bit PRINTFG = 0, uart0_receive_flag = 0, uart1_receive_flag;
+ bit PRINTFG = 0, uart0_receive_flag = 0, uart1_receive_flag;
 unsigned char uart0_receive_data, uart1_receive_data;
 
 
-
+#if 0 
 void Serial_ISR(void) interrupt 4
 {
     _push_(SFRS);
@@ -31,9 +31,7 @@ void Serial_ISR(void) interrupt 4
     }
 
     _pop_(SFRS);
-}	
-
-
+}
 
 void SerialPort1_ISR(void) interrupt 15
 {
@@ -56,6 +54,7 @@ void SerialPort1_ISR(void) interrupt 15
 
     _pop_(SFRS);
 }
+#endif 
 
 /*MS51 new version buadrate */
 void UART_Open(unsigned long u32SysClock, unsigned char u8UARTPort,unsigned long u32Baudrate)

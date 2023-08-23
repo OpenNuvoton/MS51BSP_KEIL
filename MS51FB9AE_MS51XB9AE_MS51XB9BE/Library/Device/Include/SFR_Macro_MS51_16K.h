@@ -5,11 +5,11 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------------------*/
-/*  SFR_Macro_MS51_16K.H                                                                */
-/*  SFR Macro define for Nuvoton MS51FB9AE / MS51XB9AE / MS51XB9BE                      */
-/*  <Define rule I> set or clr _ regsiter name _ register bit name                      */
-/*--------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------*/
+/*  sfr_macro_ms51_16k.h                                                                                   */
+/*  SFR Macro define for Nuvoton MS51FB9AE / MS51XB9AE / MS51XB9BE                                         */
+/*  <Define rule I> set or clr _ regsiter name _ register bit name                                         */
+/*---------------------------------------------------------------------------------------------------------*/
 /******************************************************************************/
 /*                         Keil C51 include files                            */
 /******************************************************************************/
@@ -21,21 +21,23 @@
 /******************************************************************************/
 /*                         Peripheral header files                            */
 /******************************************************************************/
-#include "Function_define_MS51_16K.h"
+#include "function_define_ms51_16k.h"
+#include "adc.h"
 #include "bod.h"
 #include "common.h"
-#include "Delay.h"
+#include "delay.h"
 #include "eeprom.h"
 #include "i2c.h"
-#include "IAP.h"
-#include "IAP_SPROM.h"
+#include "iap.h"
+#include "iap_sprom.h"
 #include "isr.h"
 #include "eeprom_sprom.h"
 #include "pwm.h"
 #include "spi.h"
 #include "sys.h"
+#include "timer.h"
 #include "uart.h"
-#include "watchdog.h"
+#include "wdt.h"
 #include "wkt.h"
 
 /********************************************************************/

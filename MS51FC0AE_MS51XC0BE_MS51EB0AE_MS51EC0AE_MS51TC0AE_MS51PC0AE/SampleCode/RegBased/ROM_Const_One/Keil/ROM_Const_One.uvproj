@@ -13,14 +13,14 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>MS51DA9AE</Device>
+          <Device>MS51PC0AE</Device>
           <Vendor>Nuvoton</Vendor>
-          <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x1FFF)  XRAM(0 - 0x3FF) CLOCK(24000000)</Cpu>
+          <Cpu>IRAM(0 - 0xFF) IROM(0 - 0x7FFF)  XRAM(0 - 0x7FF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec />
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll />
           <DeviceId>0</DeviceId>
-          <RegisterFile>MS51_8K.H</RegisterFile>
+          <RegisterFile>MS51_32K.H</RegisterFile>
           <MemoryEnv />
           <Cmp />
           <Asm />
@@ -46,7 +46,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Output\</OutputDirectory>
-          <OutputName>ROM_const_One</OutputName>
+          <OutputName>ROM_Const_One</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -177,7 +177,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\Nuvoton_8051_Keil_uVision_Driver.dll</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3 />
           <Flash4 />
           <pFcarmOut />
           <pFcarmGrp />
@@ -273,7 +273,7 @@
               <IRO>
                 <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x2000</Size>
+                <Size>0x8000</Size>
               </IRO>
               <IRA>
                 <Type>0</Type>
@@ -283,7 +283,7 @@
               <XRA>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x400</Size>
+                <Size>0x800</Size>
               </XRA>
               <XRA512>
                 <Type>0</Type>
@@ -374,12 +374,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>ROM_Const_One.C</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ROM_Const_One.C</FilePath>
+              <FilePath>..\main.c</FilePath>
             </File>
           </Files>
         </Group>

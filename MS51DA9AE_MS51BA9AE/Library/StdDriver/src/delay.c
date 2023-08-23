@@ -6,21 +6,21 @@
 /*---------------------------------------------------------------------------------------------------------*/
 
 
-#include "MS51_8K.H"
+#include "ms51_8k.h"
 
  
 /**
   * @brief Timer0 delay setting 
-  * @param[in] u32SYSCLK define Fsys clock value. for example 24000000, use the real Fsys value.
+  * @param[in] u32SYSCLK #include "ms51_8k.h" Fsys clock value. for example 24000000, use the real Fsys value.
   *                       - \ref 24000000 (use HIRC 24MHz)
   *                       - \ref 16000000 (use HIRC 16MHz)
-  * @param[in] u8CNT define count time.
-  * @param[in] u6DLYUnit define delay time base is us. From 1~10000, the maxima value please not over 10000.
+  * @param[in] u8CNT #include "ms51_8k.h" count time.
+  * @param[in] u6DLYUnit #include "ms51_8k.h" delay time base is us. From 1~10000, the maxima value please not over 10000.
   *                       - \ref 1000 (1ms)
   *                       - \ref 100 (100us)
   * @return  None
   * @note    If use LIRC or LXT as Fsys need adjust this marco.
-  * @exmaple :  Timer0_Delay(16000000,200,1000);
+  * @exmaple :  Timer0_Delay(24000000,200,1000);
 */
 void Timer0_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16DLYUnit)
 {
@@ -46,11 +46,11 @@ void Timer0_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16
 
 /**
   * @brief Timer1 delay setting 
-  * @param[in] u32SYSCLK define Fsys clock value. for example 24000000, use the real Fsys value.
+  * @param[in] u32SYSCLK #include "ms51_8k.h" Fsys clock value. for example 24000000, use the real Fsys value.
   *                       - \ref 24000000 (use HIRC)
   *                       - \ref 22118400 (use HXT)
-  * @param[in] u8CNT define count time.
-  * @param[in] u16DLYUnit define delay time base is us. From 1~10000, the maxima value please not over 10000.
+  * @param[in] u8CNT #include "ms51_8k.h" count time.
+  * @param[in] u16DLYUnit #include "ms51_8k.h" delay time base is us. From 1~10000, the maxima value please not over 10000.
   *                       - \ref 1000 (1ms)
   *                       - \ref 100 (100us)
   * @return  None
@@ -80,13 +80,13 @@ void Timer1_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16
 
 /**
   * @brief Timer2 delay setting 
-  * @param[in] u32SYSCLK define Fsys clock value. for example 24000000, use the real Fsys value.
+  * @param[in] u32SYSCLK #include "ms51_8k.h" Fsys clock value. for example 24000000, use the real Fsys value.
   *                       - \ref 24000000 (use HIRC)
   *                       - \ref 22118400 (use HXT for example)
-  * @param[in] u16TMDIV define timer2 clock devider value from 1\4\16\32\64\128\256\512 detail check datasheet T2MOD.
+  * @param[in] u16TMDIV #include "ms51_8k.h" timer2 clock devider value from 1\4\16\32\64\128\256\512 detail check datasheet T2MOD.
   *                       - \ref 512
-  * @param[in] u16CNT define total count times.
-  * @param[in] u6DLYUnit define delay time base is us. From 1~1000000, please consider the value with devider.
+  * @param[in] u16CNT #include "ms51_8k.h" total count times.
+  * @param[in] u6DLYUnit #include "ms51_8k.h" delay time base is us. From 1~1000000, please consider the value with devider.
   *                       - \ref 1000 (1ms)
   *                       - \ref 100 (100us)
   * @return  None
@@ -127,13 +127,13 @@ void Timer2_Delay(unsigned long u32SYSCLK,unsigned int u16TMDIV, unsigned int u1
 }
 /**
   * @brief Timer3 delay setting 
-  * @param[in] u32SYSCLK define Fsys clock value. for example 24000000, use the real Fsys value.
+  * @param[in] u32SYSCLK #include "ms51_8k.h" Fsys clock value. for example 24000000, use the real Fsys value.
   *                       - \ref 24000000 (use HIRC)
   *                       - \ref 22118400 (use HXT for example)
-  * @param[in] u8TMDIV define timer2 clock devider value from 1\2\4\8\16\32\64\128 detail check datasheet T3MOD.
+  * @param[in] u8TMDIV #include "ms51_8k.h" timer2 clock devider value from 1\2\4\8\16\32\64\128 detail check datasheet T3MOD.
   *                       - \ref 512
-  * @param[in] u16CNT define total count times.
-  * @param[in] u32DLYUnit define delay time base is us. From 1~1000000, please consider the value with devider.
+  * @param[in] u16CNT #include "ms51_8k.h" total count times.
+  * @param[in] u32DLYUnit #include "ms51_8k.h" delay time base is us. From 1~1000000, please consider the value with devider.
   *                       - \ref 1000 (1ms)
   *                       - \ref 100 (100us)
   * @return  None
@@ -175,7 +175,7 @@ void Timer3_Delay(unsigned long u32SYSCLK,unsigned char u8TMDIV, unsigned int u1
 //****************************************************************************************************************  
 //**** Timer Interrupt enable setting  
 //**** 1. Delay value
-//**** 2. Define unit
+//**** 2. #include "ms51_8k.h" unit
 //**** For example: Timer3_Delay(5,UNIT_100US) = Delay 100us
 void Timer_Interrupt_Enable(unsigned char u8TM)
 {

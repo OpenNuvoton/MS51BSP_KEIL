@@ -5,14 +5,14 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_8K.h"
+#include "ms51_8k.h"
 
 /**
   * @brief BOD initial setting 
-  * @param[in] u8bodstatus define enable BOD status.
+  * @param[in] u8bodstatus #include "ms51_8k.h" enable BOD status.
   *                       - \ref Enable 
   *                       - \ref Disable
-  * @param[in] u8bodlevel define BOD level.
+  * @param[in] u8bodlevel #include "ms51_8k.h" BOD level.
   *                       - \ref VBOD_1_8 (1.8V)
   *                       - \ref VBOD_2_0 (2.0V)
   *                       - \ref VBOD_2_4 (2.4V)
@@ -20,7 +20,7 @@
   *                       - \ref VBOD_3_0 (3.0V)
   *                       - \ref VBOD_3_7 (3.7V)
   *                       - \ref VBOD_4_4 (4.4V)
-  * @param[in] u8bodresetstatus define reset or not when BOD event trig.
+  * @param[in] u8bodresetstatus #include "ms51_8k.h" reset or not when BOD event trig.
   *                       - \ref BOD_Reset_Enable
   *                       - \ref BOD_Reset_Disable
   * @return  None
@@ -41,7 +41,7 @@ void BOD_Open(unsigned char u8bodstatus, unsigned char u8bodlevel, unsigned char
 
 /**
   * @brief Low power BOD initial setting 
-  * @param[in] u8bodlevel define BOD level.
+  * @param[in] u8bodlevel #include "ms51_8k.h" BOD level.
   *                       - \ref LPBOD_MODE_NORMAL (Turn on BOD always)
   *                       - \ref LPBOD_MODE_1 (Turn on BOD every 1.6ms)
   *                       - \ref LPBOD_MODE_2 (Turn on BOD every 6.4ms)
@@ -58,7 +58,7 @@ void BOD_LowPower(unsigned char u8LPBDD)
 
 /**
   * @brief Low power BOD initial setting 
-  * @param[in] u8bodINTstatus define interrupt enable status when BOD event trig.
+  * @param[in] u8bodINTstatus #include "ms51_8k.h" interrupt enable status when BOD event trig.
   *                       - \ref ENABLE
   *                       - \ref DISALBE 
   * @return  None

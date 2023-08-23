@@ -14,23 +14,18 @@
 #define  PORT2     2
 #define  PORT3     3
 #define  PORT4     4
-#define  PORT5     5
-#define  PORT6     6
 
 #define  Port0  0
 #define  Port1  1
 #define  Port2  2
 #define  Port3  3
 #define  Port4  4
-#define  Port5  5
-#define  Port6  6
 
 #define  PULLUP     0
 #define  PULLDOWN   1
 #define  PullUp     0
 #define  PullDown   1
 
-#define  Port40     0
 #define  Port30     1
 #define  Port21     2
 #define  Port20     3

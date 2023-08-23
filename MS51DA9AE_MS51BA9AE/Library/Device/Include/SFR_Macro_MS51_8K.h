@@ -21,22 +21,22 @@
 /******************************************************************************/
 /*                         Peripheral header files                            */
 /******************************************************************************/
-#include "Function_define_MS51_8K.h"
+#include "function_define_ms51_8k.h"
 #include "bod.h"
-#include "Common.h"
-#include "Delay.h"
+#include "common.h"
+#include "delay.h"
 #include "eeprom.h"
 #include "eeprom_sprom.h"
 #include "i2c.h"
-#include "IAP.h"
-#include "IAP_SPROM.h"
+#include "iap.h"
+#include "iap_sprom.h"
 #include "isr.h"
 #include "pwm.h"
 #include "sys.h"
 #include "spi.h"
 #include "timer.h"
 #include "uart.h"
-#include "watchdog.h"
+#include "wdt.h"
 #include "wkt.h"
 /********************************************************************/
 /*  <Macro define                                                   */

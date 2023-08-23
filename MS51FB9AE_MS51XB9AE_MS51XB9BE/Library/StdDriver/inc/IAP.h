@@ -23,6 +23,7 @@ extern unsigned char xdata UIDBuffer[12];
 extern unsigned char xdata UCIDBuffer[12];
 extern unsigned char xdata IAPDataBuf[128];
 extern unsigned char xdata IAPCFBuf[5];
+extern bit  ConfigModifyFlag;
 
 void Trigger_IAP(void);
 void Erase_LDROM(unsigned int u16IAPStartAddress, unsigned int u16IAPDataSize);
@@ -38,3 +39,4 @@ void Read_UID(void);
 void Read_UCID(void);
 void Read_DID(void);
 void Read_PID(void);
+void Read_CONFIG(void);

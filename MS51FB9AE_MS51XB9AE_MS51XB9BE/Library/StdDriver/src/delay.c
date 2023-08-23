@@ -1,11 +1,10 @@
 /*---------------------------------------------------------------------------------------------------------*/
 /*                                                                                                         */
 /* SPDX-License-Identifier: Apache-2.0                                                                     */
-/* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
+/* Copyright(c) 2022 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-#include "MS51_16K.H"
+#include "ms51_16k.h"
 
  
 /**
@@ -19,7 +18,7 @@
   *                       - \ref 100 (100us)
   * @return  None
   * @note    If use LIRC or LXT as Fsys need adjust this marco.
-  * @exmaple :  Timer0_Delay(16000000,200,1000);
+  * @exmaple :  Timer0_Delay(24000000,200,1000);
 */
 void Timer0_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16DLYUnit)
 {

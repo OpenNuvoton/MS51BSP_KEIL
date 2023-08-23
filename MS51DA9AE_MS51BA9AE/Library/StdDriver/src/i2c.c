@@ -6,14 +6,14 @@
 /*---------------------------------------------------------------------------------------------------------*/
 
 
-#include "MS51_8K.h"
+#include "ms51_8k.h"
 
 /**
   * @brief      Enable specify I2C controller and set divider
   * @param[in]  u8I2CSel:  Specify I2C port
   *                  - \ref I2C0
   *                  - \ref I2C1
-  * @param[in]  u32SYSCLK: Define Fsys clock value in Hz.
+  * @param[in]  u32SYSCLK: #include "ms51_8k.h" Fsys clock value in Hz.
   *                  - \ref 8000000
   * @param[in]  u32I2CCLK: The target I2C bus clock in Hz. Use HIRC the I2C clock is from 23473 ~ 2000000
   * @return     None
@@ -35,7 +35,7 @@ void I2C_Master_Open(unsigned long u32SYSCLK, unsigned long u32I2CCLK)
   * @param[in]  u8I2CSel:  Specify I2C port
   *                  - \ref I2C0
   *                  - \ref I2C1
-  * @param[in]  u32SYSCLK: Define Fsys clock value in Hz.
+  * @param[in]  u32SYSCLK: #include "ms51_8k.h" Fsys clock value in Hz.
   *                  - \ref 8000000
   * @param[in]  u32I2CCLK: The target I2C bus clock in Hz. Use HIRC the I2C clock is from 23473 ~ 2000000
   * @return     None

@@ -4,15 +4,10 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-
-//***********************************************************************************************************
-//  File Function: MS51 SPROM lock demo code
-//***********************************************************************************************************
-#include "MS51_16K.H"
+#include "ms51_16k.h"
 
  
-unsigned char  code protect [] = { 
+unsigned char code protect [] = { 
 0xFF                        //Setting for un lock status, mark it if need lock
 //0X00                      //Setting for Lock 
 };

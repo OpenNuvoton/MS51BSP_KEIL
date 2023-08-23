@@ -41,3 +41,7 @@
 
 2022/12
 1. I2C                           fix SI check flag in I2C EEPROM project.
+
+2023/08
+1. ALL                           Added PowerManagerment folder for all power consumption test project.
+                                 All checked by py tool.
