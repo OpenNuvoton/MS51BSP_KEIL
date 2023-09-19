@@ -27,18 +27,37 @@
 /*
  * putchar (mini version): outputs charcter only
  */
+ #if 1
+char putchar (char c)  {
+    while (!TI);
+    TI = 0;
+    return (SBUF = c);
+}
+#endif
 #if 0
 char putchar (char c)
 {
-		while (!TI_1);  /* wait until transmitter ready */
-		TI_1 = 0;
-		SBUF_1 = c;      /* output character */
-		return (c);
+    while (!TI_1);  /* wait until transmitter ready */
+    TI_1 = 0;
+    SBUF_1 = c;      /* output character */
+    return (c);
 }
-#else
+#endif
+#if 0
 char putchar (char c)  {
-  while (!TI);
-  TI = 0;
-  return (SBUF = c);
+    UART2_Send_Data(c);
+    return (c);
+}
+#endif
+#if 0
+char putchar (char c)  {
+    UART3_Send_Data(c);
+    return (c);
+}
+#endif
+#if 0
+char putchar (char c)  {
+    UART4_Send_Data(c);
+    return (c);
 }
 #endif

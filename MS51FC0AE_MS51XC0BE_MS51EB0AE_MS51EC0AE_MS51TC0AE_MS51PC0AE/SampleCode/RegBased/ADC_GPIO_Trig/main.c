@@ -16,11 +16,11 @@
  ******************************************************************************/
 void ADC_ISR (void) interrupt 11
 {
-    _push_(SFRS);
+    PUSH_SFRS;
     clr_ADCCON0_ADCF;                               //clear ADC interrupt flag
     printf ("\n ADCRH Value = 0x%bx",ADCRH);
     printf (" ADCRL Value = 0x%bx",ADCRL);
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 /******************************************************************************

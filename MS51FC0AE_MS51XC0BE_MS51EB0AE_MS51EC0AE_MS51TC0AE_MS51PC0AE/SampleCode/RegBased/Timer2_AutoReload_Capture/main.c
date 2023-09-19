@@ -17,7 +17,7 @@ UINT8  capLowByte,capHighByte;
 /************************************************************************************************************/
 void Capture_ISR (void) interrupt 12
 {
-    _push_(SFRS);
+    PUSH_SFRS;
 
     clr_CAPCON0_CAPF2;                  /* clear capture2 interrupt flag  */
     capLowByte = C2L;                   /* For capture mode CxL/CxH with data capture from I/O pin*/
@@ -25,7 +25,7 @@ void Capture_ISR (void) interrupt 12
     clr_T2CON_TF2;
     captureflag = 1;
 
-    _pop_(SFRS);
+    POP_SFRS;
 }
 /************************************************************************************************************/
 /*    Main function                                                                                         */

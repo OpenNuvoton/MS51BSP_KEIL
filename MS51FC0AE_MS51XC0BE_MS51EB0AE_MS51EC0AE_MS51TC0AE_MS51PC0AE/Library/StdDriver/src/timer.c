@@ -4,7 +4,7 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
 unsigned long data TIMER0CT,TIMER1CT,TIMER2CT,TIMER3CT;
 unsigned char data TH0TMP,TL0TMP,TH1TMP,TL1TMP;
@@ -24,14 +24,14 @@ unsigned char data TH0TMP,TL0TMP,TH1TMP,TL1TMP;
 #if 0   /* Interrup Vector demo */
 void Timer0_ISR (void) interrupt 1        // Vector @  0x0B
 {
-_push_(SFRS);
+PUSH_SFRS;
       SFRS = 0;
 /* following setting for reload Timer 0 counter */
       TH0 = TH0TMP;
       TL0 = TL0TMP;
 /* following clear flag for next interrupt */
       clr_TCON_TF0;
-_pop_(SFRS);
+POP_SFRS;
 }
 #endif 0
 
@@ -71,13 +71,13 @@ void  Timer0_AutoReload_Interrupt_CounterClear(void)
 #if 0
 void Timer1_ISR (void) interrupt 3        // Vector @  0x1B
 { 
-    _push_(SFRS);
+    PUSH_SFRS;
 /* following setting for reload Timer 0 counter, this is must for next time*/
       TH1 = TH1TMP;
       TL1 = TL1TMP;
 /* following clear flag is necessary for next time */
       clr_TCON_TF1;
-    _pop_(SFRS);
+    POP_SFRS;
 }
 #endif
 
@@ -112,9 +112,9 @@ void Timer1_AutoReload_Interrupt_Initial(unsigned char u8SYSCLK, unsigned long u
 #if 0    
 void Timer2_ISR (void) interrupt 5        // Vector @  0x2B
 {
-_push_(SFRS);
+PUSH_SFRS;
     clr_T2CON_TF2;
-_pop_(SFRS);
+POP_SFRS;
 }
 #endif
 
@@ -147,9 +147,9 @@ void Timer2_AutoReload_Interrupt_Initial(unsigned char u8SYSCLK, unsigned long u
 #if 0
 void Timer3_ISR (void) interrupt 16        // Vector @  0x83
 {
-_push_(SFRS);
+PUSH_SFRS;
     clr_T3CON_TF3;
-_pop_(SFRS);
+POP_SFRS;
 }
 #endif 
 

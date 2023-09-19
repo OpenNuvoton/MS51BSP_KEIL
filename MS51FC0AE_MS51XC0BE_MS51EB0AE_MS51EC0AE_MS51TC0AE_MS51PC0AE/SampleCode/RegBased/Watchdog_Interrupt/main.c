@@ -12,12 +12,12 @@ BIT   wdtintflag;
 ************************************************************************************************************/
 void WDT_ISR (void)   interrupt 10
 {
-_push_(SFRS);
+PUSH_SFRS;
    CLEAR_WDT_INTERRUPT_FLAG;
   /* Config Enable WDT reset and not clear couter trig reset */
     GPIO_LED ^= 1;
     wdtintflag = 1;
-_pop_(SFRS);
+POP_SFRS;
 }
 
 /************************************************************************************************************

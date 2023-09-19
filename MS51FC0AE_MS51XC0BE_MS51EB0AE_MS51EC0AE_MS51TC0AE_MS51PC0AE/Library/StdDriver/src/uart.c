@@ -5,7 +5,7 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
 bit PRINTFG = 0, uart0_receive_flag = 0, uart1_receive_flag;
 unsigned char uart0_receive_data, uart1_receive_data;
@@ -13,7 +13,7 @@ unsigned char uart0_receive_data, uart1_receive_data;
 
 void Serial_ISR(void) interrupt 4
 {
-    _push_(SFRS);
+    PUSH_SFRS;
     if (RI)
     {
         uart0_receive_flag = 1;
@@ -28,14 +28,14 @@ void Serial_ISR(void) interrupt 4
 //            TI = 0;
 //        }
     }
-    _pop_(SFRS);
+    POP_SFRS;
 }  
 
 
 
 void SerialPort1_ISR(void) interrupt 15
 {
-    _push_(SFRS);
+    PUSH_SFRS;
 
     if (RI_1 == 1)
     {
@@ -51,7 +51,7 @@ void SerialPort1_ISR(void) interrupt 15
             clr_SCON_1_TI_1;                             /* if emission occur */
         }
     }
-    _pop_(SFRS);
+    POP_SFRS;
 }  
 
 /*MS51 new version buadrate */
@@ -117,7 +117,7 @@ unsigned char Receive_Data(unsigned char UARTPort)
 
 void UART_Send_Data(unsigned char UARTPort, unsigned char c)
 {
-    _push_(SFRS);
+    PUSH_SFRS;
     SFRS = 0;
     switch (UARTPort)
     {
@@ -132,7 +132,7 @@ void UART_Send_Data(unsigned char UARTPort, unsigned char c)
           while(TI_1);
         break;
     }
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 

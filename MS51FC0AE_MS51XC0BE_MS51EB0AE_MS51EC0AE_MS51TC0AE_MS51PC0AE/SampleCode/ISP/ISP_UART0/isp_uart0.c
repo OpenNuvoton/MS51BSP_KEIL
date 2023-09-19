@@ -171,7 +171,7 @@ void Send_64byte_To_UART0(void)
 
 void Serial_ISR(void) interrupt 4
 {
-    _push_(SFRS);
+    PUSH_SFRS;
 
     if (RI == 1)
     {
@@ -194,12 +194,12 @@ void Serial_ISR(void) interrupt 4
         g_timer1Over = 0;
         bufhead = 0;
     }
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 void Timer0_ISR(void) interrupt 1
 {
-    _push_(SFRS);
+    PUSH_SFRS;
     if (g_timer0Counter)
     {
         g_timer0Counter--;
@@ -216,5 +216,5 @@ void Timer0_ISR(void) interrupt 1
             g_timer1Over = 1;
         }
     }
-    _pop_(SFRS);
+    POP_SFRS;
 }

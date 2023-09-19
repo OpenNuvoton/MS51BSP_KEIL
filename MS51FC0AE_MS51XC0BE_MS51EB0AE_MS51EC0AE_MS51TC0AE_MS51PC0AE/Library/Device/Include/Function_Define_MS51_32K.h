@@ -28,8 +28,6 @@ typedef signed char           int8_t;
 typedef signed int            int16_t;
 typedef signed long           int32_t;
 
-extern bit BIT_TMP;
-
 #define Disable  0
 #define Enable   1
 
@@ -89,7 +87,10 @@ extern bit BIT_TMP;
 #define CLR_BIT14       0xBFFF
 #define CLR_BIT15       0x7FFF
 
-#define nop _nop_();
+#define nop             _nop_()
+#define CALL_NOP        _nop_()
+#define PUSH_SFRS       _push_(SFRS)
+#define POP_SFRS        _pop_(SFRS)
 
 /****************************************************************************/
 /* Software loop delay by HIRC, about 3ms 
@@ -412,7 +413,7 @@ extern bit BIT_TMP;
 #define    CLEAR_TIMER2_INTERRUPT_FLAG       clr_T2CON_TF2
 #define    CLEAR_SPI0_INTERRUPT_FLAG         clr_SPSR_SPIF
 #define    CLEAR_PWM0_FB_INTERRUPT_FLAG      clr_PWM0FBD_FBF
-#define    CLEAR_WDT_INTERRUPT_FLAG          clr_WKCON_WKTF
+#define    CLEAR_WDT_INTERRUPT_FLAG          clr_WDCON_WDTF
 #define    CLEAR_PWM0_INTERRUPT_FLAG         clr_PWM1CON0_PWMF
 #define    CLEAR_CAPTURE_INTERRUPT_IC0_FLAG  clr_CAPCON0_CAPF0
 #define    CLEAR_CAPTURE_INTERRUPT_IC1_FLAG  clr_CAPCON0_CAPF1

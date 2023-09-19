@@ -4,21 +4,31 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-
-//***********************************************************************************************************
-//  File Function: ML51 UART receive and transmit toggle out demo code
-//***********************************************************************************************************
-
 #include "ms51_32k.h"
 
+#define     UART3_P12_P11
+
 /**
- * @brief       UART2 TXD output demo
+ * @brief       SC1 interrupt vector
  * @param       None
  * @return      None
- * @details     conned UART2 and UART0 to loop check.
+ * @details     Store receive data.
  */
-#define     UART3_P12_P11
+void SC1_ISR(void) interrupt 22          // Vector @  0x9B
+{
+    PUSH_SFRS;
+        SFRS = 2;
+        uart3rvflag = 1;
+        uart3rvbuffer = SC1DR;
+    POP_SFRS;
+} 
+ 
+/**
+ * @brief       Main loop
+ * @param       None
+ * @return      None
+ * @details     UART3 send received data loop check.
+ */
 void main (void) 
 {
   /* UART3 initial */

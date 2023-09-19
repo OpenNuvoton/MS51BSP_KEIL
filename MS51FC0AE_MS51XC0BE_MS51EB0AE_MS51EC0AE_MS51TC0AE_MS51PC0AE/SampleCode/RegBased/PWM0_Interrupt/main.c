@@ -17,11 +17,11 @@
 void PWM0_ISR (void) interrupt 13
 
 {
-    _push_(SFRS);
+    PUSH_SFRS;
   
     clr_PWM0CON0_PWMF;               // clear PWM interrupt flag
   
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 /************************************************************************************************************

@@ -5,19 +5,27 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
-unsigned char uart4rvbuffer=0;
-bit uart4rvflag;
+unsigned char uart4rvbuffer;
+BIT uart4rvflag;
 
-void SMC2_ISR(void) interrupt 23          // Vector @  0x9B
+/**
+ * @brief       SC3 interrupt vector
+ * @param       None
+ * @return      None
+ * @details     Store receive data.
+ */
+#if 0
+void SC2_ISR(void) interrupt 23          // Vector @  0x9B
 {
-    _push_(SFRS);
+    PUSH_SFRS;
         SFRS =2;
         uart4rvflag = 1;
         uart4rvbuffer = SC2DR;
-    _pop_(SFRS);
+    POP_SFRS;
 }
+#endif
 /**
  * @brief       UART3 transfer data without interrupt 
  * @param       u32SysClock , define Fsys value(value)

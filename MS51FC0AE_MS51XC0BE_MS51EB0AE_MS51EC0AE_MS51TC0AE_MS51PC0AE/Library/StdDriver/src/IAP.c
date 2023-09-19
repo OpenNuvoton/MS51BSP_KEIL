@@ -4,7 +4,7 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
 unsigned char xdata DIDBuffer[2];
 unsigned char xdata PIDBuffer[2];

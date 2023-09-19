@@ -4,22 +4,29 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
+#include "ms51_32k.h"
 
-#include "MS51_32K.h"
+unsigned char uart2rvbuffer;
+BIT uart2rvflag;
 
-unsigned char uart2rvbuffer=0;
-bit uart2rvflag;
-
-void SMC0_ISR(void) interrupt 21          // Vector @  0x9B
+/**
+ * @brief       SC0 interrupt vector demo
+ * @param       None
+ * @return      None
+ * @details     Store receive data.
+ */
+#if 0
+void SC0_ISR(void) interrupt 21          // Vector @  0x9B
 {
-    _push_(SFRS);
+    PUSH_SFRS;
  /* Since only enable receive interrupt, not add flag check */
         SFRS = 2;
         uart2rvflag = 1;
         uart2rvbuffer = SC0DR;
 
-    _pop_(SFRS);
+    POP_SFRS;
 }
+#endif
 /**
  * @brief       UART2 transfer data without interrupt 
  * @param       u32SysClock , define Fsys value(value)

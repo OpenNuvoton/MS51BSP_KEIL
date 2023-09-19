@@ -5,7 +5,7 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
  /**
   * @brief This configures ADC module to be ready for convert the input from selected channel

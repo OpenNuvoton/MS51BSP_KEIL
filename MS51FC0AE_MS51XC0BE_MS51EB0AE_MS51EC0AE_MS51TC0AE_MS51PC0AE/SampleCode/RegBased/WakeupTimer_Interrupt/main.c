@@ -10,13 +10,13 @@ BIT wktflag=0;
 
 void WakeUp_Timer_ISR (void)   interrupt 17     //ISR for self wake-up timer
 {
-    _push_(SFRS);
+    PUSH_SFRS;
   
     clr_WKCON_WKTF;
     wktflag = 1;
     GPIO_LED ^= 1;
 
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 /************************************************************************************************************

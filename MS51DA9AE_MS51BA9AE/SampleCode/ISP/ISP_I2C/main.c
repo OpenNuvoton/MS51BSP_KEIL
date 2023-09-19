@@ -66,6 +66,7 @@ while(1)
               if(flash_address==AP_size)
               {
                 g_progarmflag=0;
+				g_timer0Over =1;
                  goto END_2;          
               }
             } 

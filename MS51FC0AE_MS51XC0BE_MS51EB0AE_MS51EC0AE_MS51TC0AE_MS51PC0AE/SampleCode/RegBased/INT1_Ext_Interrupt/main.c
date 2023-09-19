@@ -14,12 +14,12 @@
 /* External pin interrupt INT0 subroutine */
 void INT0_ISR(void) interrupt 2          // Vector @  0x03
 {
-    _push_(SFRS);
+    PUSH_SFRS;
   
     clr_TCON_IE1;          //clr int flag wait next falling edge
     P35 ^= 1;
   
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 void main (void) 

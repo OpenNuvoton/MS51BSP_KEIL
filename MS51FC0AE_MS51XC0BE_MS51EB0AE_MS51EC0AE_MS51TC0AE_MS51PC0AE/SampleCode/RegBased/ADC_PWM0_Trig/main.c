@@ -16,10 +16,10 @@
  ******************************************************************************/
 void ADC_ISR (void) interrupt 11
 {
-    _push_(SFRS);
+    PUSH_SFRS;
     clr_ADCCON0_ADCF;                       // Clear ADC interrupt flag
     P30 ^= 1;                                // Check the P3.0 toggle at falling edge of PWM
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 /******************************************************************************

@@ -4,28 +4,25 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-
-/************************************************************************************************************/
-/*  File Function: MS51 use UART0 as printf function output demo                                            */
-/************************************************************************************************************/
 #include "ms51_32k.h"
 
 
+/**
+ * @brief       Main loop
+ * @param       None
+ * @return      None
+ * @details     UART4 printf send data.
+ */
 void main (void) 
 {
 
 /* Modify HIRC to 24MHz is for UART baud rate deviation not over 1% */
-    P06_QUASI_MODE;
     MODIFY_HIRC(HIRC_24);
-    UART_Open(24000000,UART0_Timer3,115200);
-    ENABLE_UART0_PRINTF;                              // Important! use prinft function must set TI=1;
+    Enable_UART0_VCOM_printf_24M_115200();
   
     while(1)
     {
-      ENABLE_UART0_PRINTF;
       printf("\n Hello world!");
-      DISABLE_UART0_PRINTF;
-      Timer0_Delay(16000000,300,1000);
+      Timer0_Delay(24000000,300,1000);
     }
 }

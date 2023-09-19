@@ -5,7 +5,7 @@
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
 
-#include "MS51_32K.h"
+#include "ms51_32k.h"
 
 volatile unsigned char xdata page_buffer[128];
 unsigned char WriteDataToOnePage(unsigned int u16_addr, const unsigned char *pDat, unsigned char num);

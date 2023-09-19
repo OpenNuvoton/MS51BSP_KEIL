@@ -15,9 +15,9 @@
  */
 void WDT_ISR (void)   interrupt 10
 {
-  _push_(SFRS);
+  PUSH_SFRS;
     clr_WDCON_WDTF;
-  _pop_(SFRS);
+  POP_SFRS;
 }
 #endif
 

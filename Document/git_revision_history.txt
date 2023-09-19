@@ -45,3 +45,6 @@
 2023/08
 1. ALL                           Added PowerManagerment folder for all power consumption test project.
                                  All checked by py tool.
+
+2023/09
+1. MS51_32K                      Added UART2 ~ UART4  printf project.

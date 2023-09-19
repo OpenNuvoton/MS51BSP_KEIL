@@ -55,7 +55,7 @@ void I2C0_Master_Tx_Isr(void)
     static uint8_t addr_flag = 0;
     static uint8_t count = 0;
 
-_push_(SFRS);
+PUSH_SFRS;
     SFRS = 0;
     printf ("\n I2C Transmit Interrupt" );
     printf("\n I2STAT = 0x%BD", I2STAT);
@@ -102,7 +102,7 @@ _push_(SFRS);
 
     I2C0_SI_Check();
     //while(STO);
-_pop_(SFRS);
+POP_SFRS;
 }
 
 /*========================================================================================================*/
@@ -110,7 +110,7 @@ void I2C0_Master_Rx_Isr(void)
 {
     static uint8_t addr_flag = 0;
     static uint8_t count = 0;
-_push_(SFRS);
+PUSH_SFRS;
 
     SFRS = 0;
     printf ("\n I2C Receive Interrupt" );
@@ -166,7 +166,7 @@ _push_(SFRS);
     I2C0_SI_Check();
     //while(STO);
 
-_pop_(SFRS);
+POP_SFRS;
 }
 
 

@@ -4,23 +4,33 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-
-//***********************************************************************************************************
-//  File Function: ML51 simple GPIO toggle out demo code
-//***********************************************************************************************************
-
 #include "ms51_32k.h"
 
-
-/**
- * @brief       UART2 TXD output demo
- * @param       None
- * @return      None
- * @details     conned UART2 and UART0 to loop check.
- */
 #define  UART2_P30_P17;
 
+/**
+ * @brief       SC0 interrupt vector
+ * @param       None
+ * @return      None
+ * @details     Store receive data.
+ */
+void SC0_ISR(void) interrupt 21          // Vector @  0x9B
+{
+    PUSH_SFRS;
+ /* Since only enable receive interrupt, not add flag check */
+        SFRS = 2;
+        uart2rvflag = 1;
+        uart2rvbuffer = SC0DR;
+
+    POP_SFRS;
+}
+
+/**
+ * @brief       Main loop
+ * @param       None
+ * @return      None
+ * @details     UART2 send received data loop check.
+ */
 void main (void) 
 {
     unsigned char temp=0x30;

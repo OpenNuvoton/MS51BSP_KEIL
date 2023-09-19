@@ -18,7 +18,7 @@ Pin interrupt subroutine.
 ******************************************************************************/
 void PinInterrupt_ISR (void) interrupt 7
 {
-_push_(SFRS);
+PUSH_SFRS;
 
     SFRS = 0;
     switch(PIF)
@@ -28,7 +28,7 @@ _push_(SFRS);
       default: break;
     }
 
-_pop_(SFRS);
+POP_SFRS;
 }
 
 /******************************************************************************

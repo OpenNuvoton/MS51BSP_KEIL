@@ -22,12 +22,12 @@ bit ADC_CONT_FINAL_FLAG=0;
  */
 void ADC_ISR (void) interrupt 11
 {
-    _push_(SFRS);
+    PUSH_SFRS;
 
     clr_ADCCON0_ADCF;
     ADC_CONT_FINAL_FLAG = 1;
 
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 /**

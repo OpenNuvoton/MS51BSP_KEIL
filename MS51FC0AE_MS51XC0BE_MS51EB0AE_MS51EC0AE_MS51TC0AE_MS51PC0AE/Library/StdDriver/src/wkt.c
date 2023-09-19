@@ -13,11 +13,11 @@
 #if 0
 void WKT_ISR (void) interrupt 17            /* Vector @  0x8B  */
 {
-_push_(SFRS);
+PUSH_SFRS;
 
     clr_WKCON_WKTF;
 
-_pop_(SFRS);
+POP_SFRS;
 }
 #endif
 

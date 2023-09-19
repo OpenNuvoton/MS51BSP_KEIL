@@ -23,22 +23,22 @@
 ************************************************************************************************************/
 void Timer0_ISR (void) interrupt 1              // interrupt address is 0x000B
 {
-    _push_(SFRS);
+    PUSH_SFRS;
               
     TL0 = TL0_INIT;                              
     TF0=0;
   
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 void Timer1_ISR (void) interrupt 3              // interrupt address is 0x000B
 {
-    _push_(SFRS);
+    PUSH_SFRS;
                 
     TH0 = TH0_INIT;
     TF1=0;
   
-    _pop_(SFRS);
+    POP_SFRS;
 }
 
 /************************************************************************************************************

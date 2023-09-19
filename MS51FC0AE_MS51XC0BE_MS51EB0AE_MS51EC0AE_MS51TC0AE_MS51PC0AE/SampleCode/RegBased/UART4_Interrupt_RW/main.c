@@ -4,24 +4,35 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
-
-
-//***********************************************************************************************************
-//  File Function: ML51 UART receive and transmit toggle out demo code
-//***********************************************************************************************************
-
 #include "ms51_32k.h"
 
+
 /**
- * @brief       UART4 TXD output demo
+ * @brief       SC3 interrupt vector
  * @param       None
  * @return      None
- * @details     conned UART2 and UART0 to loop check.
+ * @details     Store receive data.
  */
+void SC2_ISR(void) interrupt 23          // Vector @  0x9B
+{
+    PUSH_SFRS;
+        SFRS =2;
+        uart4rvflag = 1;
+        uart4rvbuffer = SC2DR;
+    POP_SFRS;
+}
 
+/**
+ * @brief       Main loop
+ * @param       None
+ * @return      None
+ * @details     UART2 send received data loop check.
+ */
 void main (void) 
 {
-    UART4_Open(16000000,115200);                 /* Open UART3 use timer1 as baudrate generate and baud rate = 115200*/
+    MODIFY_HIRC(HIRC_24);
+
+    UART4_Open(24000000,115200);                 /* Open UART3 use timer1 as baudrate generate and baud rate = 115200*/
     P23_QUASI_MODE;                              /* Set UART4_TXD pin P2.3 as Quasi mode */
     P22_INPUT_MODE;                              /* Set UART5_RXD pin P2.2 as Input mode */
     ENABLE_UART4_TXD_P23;

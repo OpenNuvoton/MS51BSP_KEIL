@@ -47,7 +47,7 @@ void I2C0_Master_Tx_Isr(void)
     static uint8_t addr_flag = 0;
     static uint8_t u8Count = 0;
 
-_push_(SFRS);
+PUSH_SFRS;
     SFRS = 0;
     printf("\n I2C Transmit Interrupt" );
     printf("\n I2STAT = 0x%BD", I2STAT);
@@ -94,7 +94,7 @@ _push_(SFRS);
 
     I2C0_SI_Check();
 
-_pop_(SFRS);
+POP_SFRS;
 }
 
 /*======== I2C master read from eeprom process======================================*/
@@ -102,7 +102,7 @@ void I2C0_Master_Rx_Isr(void)
 {
     static uint8_t addr_flag = 0;
     static uint8_t u8Count = 0;
-_push_(SFRS);
+PUSH_SFRS;
 
     SFRS = 0;
     printf ("\n I2C Receive Interrupt" );
@@ -164,7 +164,7 @@ _push_(SFRS);
 
     I2C0_SI_Check();
 
-_pop_(SFRS);
+POP_SFRS;
 }
 
 

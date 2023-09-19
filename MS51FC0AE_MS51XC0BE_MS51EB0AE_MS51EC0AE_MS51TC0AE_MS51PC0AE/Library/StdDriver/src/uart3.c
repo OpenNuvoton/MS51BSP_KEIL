@@ -4,21 +4,28 @@
 /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                         */
 /*                                                                                                         */
 /*---------------------------------------------------------------------------------------------------------*/
+#include "ms51_32k.h"
 
+unsigned char uart3rvbuffer;
+BIT uart3rvflag;
 
-#include "MS51_32K.h"
-
-unsigned char uart3rvbuffer=0;
-bit uart3rvflag;
-
-void SMC1_ISR(void) interrupt 22          // Vector @  0x9B
+/**
+ * @brief       SC1 interrupt vector
+ * @param       None
+ * @return      None
+ * @details     Store receive data.
+ */
+#if 0
+void SC1_ISR(void) interrupt 22          // Vector @  0x9B
 {
-    _push_(SFRS);
+    PUSH_SFRS;
         SFRS = 2;
         uart3rvflag = 1;
         uart3rvbuffer = SC1DR;
-    _pop_(SFRS);
+    POP_SFRS;
 }
+#endif
+
 /**
  * @brief       UART3 transfer data without interrupt 
  * @param       u32SysClock , define Fsys value(value)
