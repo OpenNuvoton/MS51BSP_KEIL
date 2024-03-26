@@ -421,9 +421,9 @@ typedef signed long           int32_t;
 /***************************************************************************/
 /*  Enable INT port 0~3                                                    */
 /***************************************************************************/
-#define    ENABLE_INT_PORT0                 PICON &= 0xFB;
-#define    ENABLE_INT_PORT1                 PICON |= 0x01;
-#define    ENABLE_INT_PORT2                 PICON |= 0x02;
+#define    ENABLE_INT_PORT0                 PICON &= 0xFC;
+#define    ENABLE_INT_PORT1                 PICON &= CLR_BIT1;PICON |= SET_BIT0;
+#define    ENABLE_INT_PORT2                 PICON |= SET_BIT1;PICON &= CLR_BIT0;
 #define    ENABLE_INT_PORT3                 PICON |= 0x03;
 /*------  Enable each bit low level trig mode-----*/
 #define    ENABLE_BIT7_LOWLEVEL_TRIG        PICON&=0x7F;PINEN|=0x80;PIPEN&=0x7F
